@@ -48,6 +48,13 @@ export default function CTASection() {
             height={403}
             className="absolute right-0 bottom-0"
           />
+                  <Image
+          src="/forge/mascot/divider.svg"
+          alt=""
+          width={1440}
+          height={2}
+          className="absolute bottom-0"
+        />
         </div>
       </div>
     </section>

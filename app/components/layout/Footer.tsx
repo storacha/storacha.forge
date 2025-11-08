@@ -5,13 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#0176CE] text-white pt-8 pb-12">
       <div className="container-custom">
-        <Image
-          src="/forge/mascot/divider.svg"
-          alt=""
-          width={1440}
-          height={2}
-          className="w-full mb-10"
-        />
+
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
           <div className="space-y-5">
