@@ -10,15 +10,15 @@ export default function HeroSection() {
   return (
     <section className="bg-[#C5DFFD] relative min-h-screen overflow-hidden">
       {/* Background Earth Image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/forge/hero/earth-bg.png"
-          alt="Earth Background"
-          fill
-          className="object-cover opacity-30 blur-[50px]"
-          priority
-        />
-      </div>
+      <div
+        className="absolute inset-0 z-0 opacity-100"
+        style={{
+          backgroundImage: "url(/forge/hero/earth-bg.png)",
+          backgroundSize: "50%",
+          backgroundPosition: "bottom right",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
 
       {/* Header Navigation */}
       <header className="container-custom relative z-10 py-6">
@@ -98,15 +98,15 @@ export default function HeroSection() {
       {/* Hero Content */}
       <div className="container-custom relative z-10 pt-20 pb-32">
         <div className="flex flex-col gap-10 max-w-4xl">
-          <h1 className="font-epilogue font-medium text-5xl lg:text-[72px] leading-[1.2] text-[#0176CE] tracking-[-2.88px]">
+          <h1 className="font-epilogue font-medium text-4xl lg:text-[56px] leading-[1.15] text-[#0176CE] tracking-[-1px]">
             Cut Cloud Backup Costs by{" "}
             <span className="text-[#E91315]">80%.</span>
             <br />
             Keep Full Control of Your Data.
           </h1>
 
-          <p className="font-dm-sans text-2xl lg:text-[28px] text-[#0176CE] leading-relaxed max-w-3xl">
-            Decentralized backup & archival for enterprises, secure, verifiable,
+          <p className="font-dm-sans text-lg lg:text-[20px] text-[#0176CE] leading-relaxed max-w-2xl">
+            Decentralized backup & archival for enterprises, secure, verifiable,<br />
             zero lock-in. Your data, governed by protocol, not corporations.
           </p>
 
