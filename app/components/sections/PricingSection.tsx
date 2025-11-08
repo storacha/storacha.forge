@@ -17,7 +17,7 @@ export default function PricingSection() {
 
           <div className="relative">
             <div className="border border-[#0089F0] rounded-[40px] p-10 w-full max-w-[800px] bg-white/50 relative">
-              <div className="space-y-8 text-center">
+              <div className="space-y-8 text-left">
                 <p className="font-dm-sans font-medium text-[26px] text-[#0089F0]">
                   Reserved Capacity Plan
                 </p>
@@ -29,27 +29,27 @@ export default function PricingSection() {
                 <div className="space-y-4 text-left max-w-md mx-auto">
                   <div className="flex items-center gap-3">
                     <Image src="/forge/pricing/checkmark.svg" alt="" width={24} height={24} />
-                    <p className="font-dm-sans font-medium text-[22px] text-[#0089F0]">
+                    <p className="font-dm-sans font-medium text-[18px] text-[#0089F0]">
                       Capacity Billing
                     </p>
                   </div>
                   <div className="flex items-center gap-3">
                     <Image src="/forge/pricing/checkmark.svg" alt="" width={24} height={24} />
-                    <p className="font-dm-sans font-medium text-[22px] text-[#0089F0]">
+                    <p className="font-dm-sans font-medium text-[18px] text-[#0089F0]">
                       Egress: $10/TiB
                     </p>
                   </div>
                   <div className="flex items-center gap-3">
                     <Image src="/forge/pricing/checkmark.svg" alt="" width={24} height={24} />
-                    <p className="font-dm-sans font-medium text-[22px] text-[#0089F0]">
+                    <p className="font-dm-sans font-medium text-[18px] text-[#0089F0]">
                       Data Ingress: Free for 18+ month contracts
                     </p>
                   </div>
                 </div>
               </div>
               
-              <div className="absolute -top-4 right-8 transform rotate-[42deg]">
-                <Image src="/forge/pricing/80%savings.svg" alt="80% Savings" width={175} height={157} />
+              <div className="absolute top-0 right-0  ">
+                <Image src="/forge/pricing/savings.svg" alt="80% Savings" width={175} height={157} />
               </div>
             </div>
           </div>
