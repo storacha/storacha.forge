@@ -14,7 +14,7 @@ export default function Footer() {
               alt="Storacha"
               width={168}
               height={60}
-              className="h-[60px] w-auto invert"
+              className="h-[60px] w-auto "
             />
             <p className="font-dm-sans text-[28px] leading-relaxed">
               Your data. Your keys.<br />Your control.
