@@ -1,9 +1,10 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
+  output: 'standalone',  
   images: {
     domains: [],
-    unoptimized: process.env.NODE_ENV === 'development',
+    unoptimized: true,
   },
   reactStrictMode: true,
 }
