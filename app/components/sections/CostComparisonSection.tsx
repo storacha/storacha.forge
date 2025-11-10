@@ -64,7 +64,7 @@ export default function CostComparisonSection() {
   ];
 
   return (
-    <section className="bg-[#C5DFFD] py-20">
+    <section id="comparison" className="bg-[#C5DFFD] py-20">
       <div className="container-custom">
         <div className="space-y-16">
           <div className="text-center">

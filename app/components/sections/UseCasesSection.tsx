@@ -27,7 +27,7 @@ export default function UseCasesSection() {
   ];
 
   return (
-    <section className="bg-white py-20">
+    <section id="use-cases" className="bg-white py-20">
       <div className="container-custom">
         <div className="space-y-12">
           <h2 className="font-epilogue font-medium text-5xl lg:text-[72px] text-[#0176CE] tracking-[-2.88px]">

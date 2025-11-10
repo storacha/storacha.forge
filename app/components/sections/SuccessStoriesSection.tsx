@@ -29,7 +29,7 @@ export default function SuccessStoriesSection() {
   ]
 
   return (
-    <section className="bg-[#C5DFFD] py-20">
+    <section id="stories" className="bg-[#C5DFFD] py-20">
       <div className="container-custom">
         <div className="space-y-12">
           <div className="text-center space-y-6">

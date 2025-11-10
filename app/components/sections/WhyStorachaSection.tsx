@@ -55,7 +55,7 @@ export default function WhyStorachaSection() {
   ];
 
   return (
-    <section className="bg-white py-20">
+    <section id="why" className="bg-white py-20">
       <div className="container-custom">
         <div className="space-y-12">
           <div className="text-center space-y-6">

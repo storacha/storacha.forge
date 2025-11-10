@@ -1,5 +1,6 @@
 "use client";
 
+import { MEETING_URL } from "@/lib/constants";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -9,7 +10,6 @@ export default function HeroSection() {
 
   return (
     <section className="bg-[#C5DFFD] relative min-h-screen overflow-hidden">
-      {/* Background Earth Image */}
       <div
         className="absolute inset-0 z-0 opacity-100"
         style={{
@@ -20,7 +20,6 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Header Navigation */}
       <header className="container-custom relative z-10 py-6">
         <nav className="flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -33,11 +32,9 @@ export default function HeroSection() {
             />
           </div>
 
-          {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-2 border-2 border-[#0176CE] rounded-full p-2">
-            {" "}
             <Link
-              href="#product"
+              href="#why"
               className="bg-white text-[#0176CE] px-6 py-3 rounded-full font-medium text-xl"
             >
               PRODUCT
@@ -49,14 +46,13 @@ export default function HeroSection() {
               PRICING
             </Link>
             <Link
-              href="#get-started"
+              href={MEETING_URL}
               className="bg-[#0176CE] text-white px-6 py-3 rounded-full text-xl hover:bg-[#0089F0] transition-colors"
             >
               GET STARTED
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="lg:hidden p-2"
@@ -70,23 +66,24 @@ export default function HeroSection() {
           </button>
         </nav>
 
-        {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="lg:hidden absolute top-full left-0 right-0 bg-white shadow-lg py-4 px-6 space-y-4">
             <Link
-              href="#product"
+              href="#why"
               className="block py-2 text-[#0176CE] font-medium"
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               PRODUCT
             </Link>
             <Link
               href="#pricing"
               className="block py-2 text-[#0176CE] font-medium"
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               PRICING
             </Link>
             <Link
-              href="#get-started"
+              href={MEETING_URL}
               className="block py-2 text-[#0176CE] font-medium"
             >
               GET STARTED
@@ -95,7 +92,6 @@ export default function HeroSection() {
         )}
       </header>
 
-      {/* Hero Content */}
       <div className="container-custom relative z-10 pt-20 pb-32">
         <div className="flex flex-col gap-10 max-w-4xl">
           <h1 className="font-epilogue font-medium text-4xl lg:text-[56px] leading-[1.15] text-[#0176CE] tracking-[-1px]">
@@ -110,7 +106,10 @@ export default function HeroSection() {
             zero lock-in. Your data, governed by protocol, not corporations.
           </p>
 
-          <button className="btn-primary w-fit">
+          <Link 
+            href={MEETING_URL}
+            className="btn-primary w-fit"
+          >
             <Image
               src="/forge/hero/cta-arrow-icon.svg"
               alt=""
@@ -118,7 +117,7 @@ export default function HeroSection() {
               height={24}
             />
             <span>Book a call with an expert</span>
-          </button>
+          </Link>
         </div>
       </div>
     </section>

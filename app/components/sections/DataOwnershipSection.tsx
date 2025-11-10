@@ -1,8 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
+import { MEETING_URL } from "@/lib/constants";
 
 export default function DataOwnershipSection() {
   return (
-    <section className="bg-[#0176CE] relative overflow-hidden py-20">
+    <section id="data-ownership" className="bg-[#0176CE] relative overflow-hidden py-20">
       <div className="container-custom">
         {/* Heading - Full Width */}
         <div className="text-white mb-16">
@@ -44,7 +46,10 @@ export default function DataOwnershipSection() {
               </p>
             </div>
 
-            <button className="bg-[#E91315] text-white px-7 py-3.5 rounded-full font-semibold text-xl flex items-center gap-2.5 hover:bg-red-700 transition-colors">
+            <Link 
+              href={MEETING_URL}
+              className="bg-[#E91315] text-white px-7 py-3.5 rounded-full font-semibold text-xl flex items-center gap-2.5 hover:bg-red-700 transition-colors w-fit"
+            >
               <Image
                 src="/forge/hero/cta-arrow-icon.svg"
                 alt=""
@@ -52,7 +57,7 @@ export default function DataOwnershipSection() {
                 height={20}
               />
               <span>Talk to your expert</span>
-            </button>
+            </Link>
           </div>
         </div>
       </div>

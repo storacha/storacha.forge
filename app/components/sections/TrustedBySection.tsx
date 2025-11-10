@@ -10,7 +10,7 @@ export default function TrustedBySection() {
   ]
 
   return (
-    <section className="bg-white border-t border-gray-200">
+    <section id="trusted-by" className="bg-white border-t border-gray-200">
       <div className="container-custom py-6">
         <div className="flex flex-wrap items-center justify-between gap-6">
           <div className="bg-white border-2 border-[#0176CE] rounded-full px-5 py-2.5">
