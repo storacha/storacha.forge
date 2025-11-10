@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function UseCasesSection() {
   const useCases = [
@@ -70,7 +71,12 @@ export default function UseCasesSection() {
           </div>
 
           <div className="flex justify-center">
-            <button className="bg-[#0176CE] text-white px-8 py-5 rounded-full font-semibold text-2xl flex items-center gap-2.5 hover:bg-[#0089F0] transition-colors">
+            <Link
+              href="https://docs.storacha.network/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#0176CE] text-white px-8 py-5 rounded-full font-semibold text-2xl flex items-center gap-2.5 hover:bg-[#0089F0] transition-colors w-fit"
+            >
               <Image
                 src="/forge/use-cases/arrow.svg"
                 alt=""
@@ -78,7 +84,7 @@ export default function UseCasesSection() {
                 height={24}
               />
               <span>View our documentation</span>
-            </button>
+            </Link>
           </div>
         </div>
       </div>
