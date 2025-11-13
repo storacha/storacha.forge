@@ -83,11 +83,11 @@ export default function WhyStorachaSection() {
                     height={36}
                     className="w-9 h-9"
                   />
-                  <h3 className="font-epilogue font-semibold text-m text-[#0176CE] mt-4">
+                  <h3 className="font-epilogue font-semibold text-xl text-[#0176CE] mt-4">
                     {feature.title}
                   </h3>
                   </div>
-                  <p className="font-dm-sans text-[12px] text-[#0176CE] mt-4">
+                  <p className="font-dm-sans text-[15px] text-[#0176CE] mt-4">
                     {feature.description}
                   </p>
                 </div>

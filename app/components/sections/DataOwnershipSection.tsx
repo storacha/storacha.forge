@@ -20,7 +20,7 @@ export default function DataOwnershipSection() {
           {/* Left Column - Image */}
           <div className="relative">
             <Image
-              src="/forge/data-ownership/globe-sphere.png"
+              src="/forge/data-ownership/data-centre.png"
               alt="Globe"
               width={500}
               height={400}

@@ -45,31 +45,6 @@ export default function CTASection() {
             <span>Talk to your expert</span>
           </Link>
         </div>
-
-        {/* Mascot Characters */}
-        <div className="relative mt-12 h-[300px] overflow-hidden">
-          <Image
-            src="/forge/mascot/racha-sad.png"
-            alt=""
-            width={257}
-            height={403}
-            className="absolute left-0 bottom-0"
-          />
-          <Image
-            src="/forge/mascot/racha-happy.png"
-            alt=""
-            width={260}
-            height={403}
-            className="absolute right-0 bottom-0"
-          />
-          <Image
-            src="/forge/mascot/divider.svg"
-            alt=""
-            width={1440}
-            height={2}
-            className="absolute bottom-0"
-          />
-        </div>
       </div>
     </section>
   );

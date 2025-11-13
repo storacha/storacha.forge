@@ -10,19 +10,19 @@ export default function SuccessStoriesSection() {
     },
     {
       quote: "Storacha Forge lets us back up Solana's full network state with full integrity and instant accessibility. Node operators can retrieve any block by byte range, reducing storage costs dramatically, no slow restores, no cold storage limits, no compromise on verifiability.",
-      author: "Triton Team",
+      author: "Brian Long",
       role: "Infrastructure",
       company: "Triton"
     },
     {
       quote: "Storacha Forge lets us store auditable transactional data and network analytics with guaranteed data integrity. We get compliance-grade verifiability, no vendor lock-in, no surprise fees, just low-cost archival storage that stays accessible when regulators or auditors need it.",
-      author: "Parasail Team",
+      author: "Tim Harris",
       role: "Infrastructure",
       company: "Parasail"
     },
     {
       quote: "Storacha Forge backs up our historical blockchain state on verifiable storage at a fraction of cloud costs. During network upgrades, state data is accessible immediately not locked in cold storage. Cryptographic proofs give our backups the same integrity guarantees as the chains themselves.",
-      author: "Chainsafe Team",
+      author: "Aidan Hyman",
       role: "Infrastructure",
       company: "Chainsafe"
     }

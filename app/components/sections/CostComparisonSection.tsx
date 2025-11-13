@@ -179,13 +179,9 @@ export default function CostComparisonSection() {
 
             <div className="space-y-6 text-[#0176CE]">
               <p className="text-[32px] leading-relaxed">
-                Transparent <span className="font-bold">flat-rate pricing</span>{" "}
-                per TiB.
-                <br />
-                No egress, API, or retrieval fees.
-              </p>
-              <p className="text-[32px] leading-relaxed">
-                <span className="font-bold">Decentralized storage</span> with
+                Transparent <span className="font-bold">flat-rate pricing,</span>{" "}
+
+                <span className="font-bold">decentralized storage</span> with
                 predictable costs and cryptographic proof of ownership, your
                 data, <span className="font-bold">your control</span>, forever.
               </p>
