@@ -9,13 +9,13 @@ export default function HeroSection() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <section className="bg-[#C5DFFD] relative min-h-screen overflow-hidden">
+    <section className="bg-[#C5DFFD] relative overflow-hidden">
       <div
         className="absolute inset-0 z-0 opacity-100"
         style={{
           backgroundImage: "url(/forge/hero/earth-bg.png)",
-          backgroundSize: "50%",
-          backgroundPosition: "bottom right",
+          backgroundSize: "min(650px, 50vw)",
+          backgroundPosition: "100% 100%",
           backgroundRepeat: "no-repeat",
         }}
       />
@@ -92,7 +92,7 @@ export default function HeroSection() {
         )}
       </header>
 
-      <div className="container-custom relative z-10 pt-20 pb-32">
+      <div className="container-custom relative z-10 pt-12 pb-20 lg:pt-16 lg:pb-24 xl:pt-20 xl:pb-32">
         <div className="flex flex-col gap-10 max-w-4xl">
           <h1 className="font-epilogue font-medium text-4xl lg:text-[56px] leading-[1.15] text-[#0176CE] tracking-[-1px]">
             Cut Cloud Backup Costs by{" "}
