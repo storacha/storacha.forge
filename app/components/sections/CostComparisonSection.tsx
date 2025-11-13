@@ -4,7 +4,7 @@ export default function CostComparisonSection() {
   const competitors = [
     {
       name: "Storacha Forge",
-      logo: "/forge/cost-comparison/forge.svg",
+      logo: "/forge/cost-comparison/forge.png",
       storage: "$5.99",
       egress: "$10",
       ownership: true,
@@ -56,7 +56,7 @@ export default function CostComparisonSection() {
     },
     {
       company: "Storacha",
-      logo: "/forge/cost-comparison/forge.svg",
+      logo: "/forge/cost-comparison/forge.png",
       cost: 1797,
       height: 65,
       highlight: true,
