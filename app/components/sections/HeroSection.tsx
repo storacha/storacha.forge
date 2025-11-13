@@ -24,7 +24,7 @@ export default function HeroSection() {
         <nav className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Image
-              src="/forge/logos/forge-header.png"
+              src="/forge/logos/forge-header.svg"
               alt="Storacha"
               width={191}
               height={68}

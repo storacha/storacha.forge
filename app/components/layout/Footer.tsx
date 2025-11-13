@@ -51,7 +51,7 @@ export default function Footer() {
         {/* Bottom row */}
         <div className="flex flex-wrap items-center justify-between gap-6 pt-8 border-t border-gray-200">
           <Image
-            src="/forge/logos/storacha-logo.png"
+            src="/forge/logos/storacha-logo-blue.svg"
             alt="Storacha"
             width={140}
             height={50}
