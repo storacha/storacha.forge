@@ -52,3 +52,18 @@
            hover:shadow-xl transition-shadow duration-200;
   }
 }
+
+@keyframes logo-loop {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(var(--scroll-width));
+  }
+}
+
+.animate-logo-loop {
+  animation: logo-loop var(--duration) linear infinite;
+  display: flex;
+}
+
