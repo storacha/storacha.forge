@@ -37,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${epilogue.variable} ${dmSans.variable}`}>
       <body className="font-sans antialiased">
-      <PlausibleProvider domain="forge.staging.staging.network">
+      <PlausibleProvider domain="forge.staging.storacha.network">
         {children}
         </PlausibleProvider>
       </body>
