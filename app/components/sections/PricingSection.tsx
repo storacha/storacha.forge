@@ -18,7 +18,7 @@ export default function PricingSection() {
             </p>
           </div>
 
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center ">
             <div className="relative">
               <div className="border border-[#0089F0] rounded-[20px] md:rounded-[40px] p-5 md:p-8 lg:p-10 w-full bg-white/50 relative">
                 <div className="space-y-4 md:space-y-6 lg:space-y-8 text-left">
@@ -85,7 +85,7 @@ export default function PricingSection() {
               </div>
             </div>
 
-            <p className="font-dm-sans text-xs sm:text-sm md:text-base lg:text-[18px] text-[#0089F0] text-center max-w-[500px] px-4">
+            <p className="font-dm-sans text-[10px] sm:text-xs md:text-sm lg:text-[14px] text-[#0089F0] text-center max-w-[450px] px-4">
               *After 18 months, transition your data to cold storage for $1/TB
               on archival data you access infrequently.
             </p>
