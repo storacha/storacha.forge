@@ -1,13 +1,16 @@
 "use client";
-
 import { MEETING_URL } from "@/lib/constants";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import MobileMenu from "../layout/MobileMenu";
+import { usePlausible } from 'next-plausible';
+
 
 export default function HeroSection() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const plausible = usePlausible();
+
 
   return (
     <section className="bg-[#C5DFFD] relative overflow-hidden">
@@ -118,6 +121,7 @@ export default function HeroSection() {
 
           <Link
             href={MEETING_URL}
+            onClick={() => plausible('CTA Click', { props: { location: 'hero' } })}
             className="bg-[#E91315] text-white px-4 py-2.5 sm:px-6 sm:py-3 md:px-7 md:py-3.5 rounded-full font-semibold text-sm sm:text-base md:text-xl flex items-center gap-2 md:gap-2.5 hover:bg-red-700 transition-colors w-fit"
           >
             <Image

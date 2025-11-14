@@ -1,8 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { MEETING_URL } from "@/lib/constants";
+import { usePlausible } from "next-plausible";
 
 export default function CTASection() {
+  const plausible = usePlausible();
   const steps = [
     { number: "1", text: "Submit the form" },
     { number: "2", text: "Connect with a solutions expert" },
@@ -19,7 +23,10 @@ export default function CTASection() {
 
           <div className="space-y-2 md:space-y-3">
             {steps.map((step) => (
-              <div key={step.number} className="flex items-center gap-2 md:gap-3">
+              <div
+                key={step.number}
+                className="flex items-center gap-2 md:gap-3"
+              >
                 <div className="bg-[#E91315] border-2 border-white rounded-full w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 flex items-center justify-center flex-shrink-0">
                   <span className="font-epilogue font-medium text-white text-sm sm:text-base md:text-lg">
                     {step.number}
@@ -34,6 +41,9 @@ export default function CTASection() {
 
           <Link
             href={MEETING_URL}
+            onClick={() =>
+              plausible("CTA Click", { props: { location: "cta-section" } })
+            }
             className="bg-[#E91315] text-white px-5 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5 rounded-full font-semibold text-base sm:text-lg md:text-xl lg:text-2xl flex items-center gap-2 md:gap-2.5 hover:bg-red-700 transition-colors w-fit"
           >
             <Image
