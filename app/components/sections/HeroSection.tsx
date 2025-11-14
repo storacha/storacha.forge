@@ -4,6 +4,7 @@ import { MEETING_URL } from "@/lib/constants";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import MobileMenu from "../layout/MobileMenu";
 
 export default function HeroSection() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -61,58 +62,39 @@ export default function HeroSection() {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 relative z-50"
+            className="lg:hidden p-2 relative z-[60]"
             aria-label="Toggle menu"
           >
-            <div className="space-y-1.5 md:space-y-2">
-              <span className="block w-6 md:w-8 h-0.5 bg-[#0176CE]"></span>
-              <span className="block w-6 md:w-8 h-0.5 bg-[#0176CE]"></span>
-              <span className="block w-6 md:w-8 h-0.5 bg-[#0176CE]"></span>
-            </div>
+            {isMobileMenuOpen ? (
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-6 h-6 md:w-8 md:h-8"
+              >
+                <path
+                  d="M24 8L8 24M8 8L24 24"
+                  stroke="#0176CE"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
+            ) : (
+              <div className="space-y-1.5 md:space-y-2">
+                <span className="block w-6 md:w-8 h-0.5 bg-[#0176CE]"></span>
+                <span className="block w-6 md:w-8 h-0.5 bg-[#0176CE]"></span>
+                <span className="block w-6 md:w-8 h-0.5 bg-[#0176CE]"></span>
+              </div>
+            )}
           </button>
         </nav>
 
-        {isMobileMenuOpen && (
-          <>
-            {/* Overlay */}
-            <div
-              className="lg:hidden fixed inset-0 bg-black/50 z-30"
-              onClick={() => setIsMobileMenuOpen(false)}
-            />
-
-            {/* Menu */}
-            <div className="lg:hidden fixed top-[64px] left-0 right-0 bottom-0 bg-white z-40 py-8 px-6 flex flex-col gap-6">
-              <Link
-                href="#why"
-                className="text-[#0176CE] font-medium text-lg md:text-xl py-3 border-b border-gray-200"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                FEATURES
-              </Link>
-              <Link
-                href="#pricing"
-                className="text-[#0176CE] font-medium text-lg md:text-xl py-3 border-b border-gray-200"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                PRICING
-              </Link>
-              <Link
-                href="#use-cases"
-                className="text-[#0176CE] font-medium text-lg md:text-xl py-3 border-b border-gray-200"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                USE CASES
-              </Link>
-              <Link
-                href={MEETING_URL}
-                className="bg-[#0176CE] text-white px-6 py-4 rounded-full font-medium text-lg md:text-xl text-center mt-4"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                GET STARTED
-              </Link>
-            </div>
-          </>
-        )}
+        <MobileMenu
+          isOpen={isMobileMenuOpen}
+          onClose={() => setIsMobileMenuOpen(false)}
+        />
       </header>
 
       <div
