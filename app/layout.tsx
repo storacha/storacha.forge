@@ -41,7 +41,7 @@ export default function RootLayout({
     <html lang="en" className={`${epilogue.variable} ${dmSans.variable}`}>
       <body className="font-sans antialiased">
         <PlausibleProvider
-          domain="forge.staging.storacha.network"
+          domain="forge.storacha.network"
           trackFileDownloads={true}
           trackOutboundLinks={true}
           taggedEvents={true}
