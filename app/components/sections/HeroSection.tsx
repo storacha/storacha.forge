@@ -35,19 +35,25 @@ export default function HeroSection() {
           <div className="hidden lg:flex items-center gap-2 border-2 border-[#0176CE] rounded-full p-2">
             <Link
               href="#why"
-              className="bg-white text-[#0176CE] px-6 py-3 rounded-full font-medium text-xl"
+              className="bg-white text-[#0176CE] px-6 py-3 rounded-full font-medium text-l"
             >
-              PRODUCT
+              FEATURES
             </Link>
             <Link
               href="#pricing"
-              className="bg-white text-[#0176CE] px-6 py-3 rounded-full font-medium text-xl"
+              className="bg-white text-[#0176CE] px-6 py-3 rounded-full font-medium text-l"
             >
               PRICING
             </Link>
             <Link
+              href="#use-cases"
+              className="bg-white text-[#0176CE] px-6 py-3 rounded-full font-medium text-l"
+            >
+              USE CASES
+            </Link>
+            <Link
               href={MEETING_URL}
-              className="bg-[#0176CE] text-white px-6 py-3 rounded-full text-xl hover:bg-[#0089F0] transition-colors"
+              className="bg-[#0176CE] text-white px-6 py-3 rounded-full text-l hover:bg-[#0089F0] transition-colors"
             >
               GET STARTED
             </Link>
@@ -73,7 +79,7 @@ export default function HeroSection() {
               className="block py-2 text-[#0176CE] font-medium text-sm md:text-base"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              PRODUCT
+              FEATURES
             </Link>
             <Link
               href="#pricing"
@@ -81,6 +87,13 @@ export default function HeroSection() {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               PRICING
+            </Link>
+            <Link
+              href="#use-cases"
+              className="block py-2 text-[#0176CE] font-medium text-sm md:text-base"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              USE CASES
             </Link>
             <Link
               href={MEETING_URL}
