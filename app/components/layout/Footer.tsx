@@ -1,7 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePlausible } from 'next-plausible'
+
 
 export default function Footer() {
+  const plausible = usePlausible()
   return (
     <footer className="bg-white border-t border-gray-200 pt-8 md:pt-12 lg:pt-16 pb-4 md:pb-6 lg:pb-8">
       <div className="container-custom">
@@ -61,6 +66,7 @@ export default function Footer() {
           <div className="flex flex-wrap items-center gap-4 md:gap-6 lg:gap-8">
             <Link
               href="https://docs.storacha.network/terms/"
+              onClick={() => plausible('External Link', { props: { destination: 'terms' } })}
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#0176CE] font-dm-sans text-xs sm:text-sm md:text-base lg:text-[18px] font-semibold leading-6 hover:underline"
@@ -69,6 +75,7 @@ export default function Footer() {
             </Link>
             <Link
               href="https://docs.storacha.network/privacy-policy/"
+              onClick={() => plausible('External Link', { props: { destination: 'privacy' } })}
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#0176CE] font-dm-sans text-xs sm:text-sm md:text-base lg:text-[18px] font-semibold leading-6 hover:underline"
@@ -77,6 +84,7 @@ export default function Footer() {
             </Link>
             <Link
               href="https://www.linkedin.com/company/storacha"
+              onClick={() => plausible('External Link', { props: { destination: 'linkedin' } })}
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#0176CE] font-dm-sans text-xs sm:text-sm md:text-base lg:text-[18px] font-semibold leading-6 hover:underline"

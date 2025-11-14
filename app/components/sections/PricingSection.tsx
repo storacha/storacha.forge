@@ -1,8 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { MEETING_URL } from "@/lib/constants";
+import { usePlausible } from 'next-plausible'
+
 
 export default function PricingSection() {
+  const plausible = usePlausible()
   return (
     <section id="pricing" className="bg-[#C5DFFD] py-10 md:py-16 lg:py-20">
       <div className="container-custom">
@@ -93,6 +98,7 @@ export default function PricingSection() {
 
           <Link
             href={MEETING_URL}
+            onClick={() => plausible('CTA Click', { props: { location: 'pricing' } })}
             className="bg-[#E91315] text-white px-4 py-2.5 sm:px-5 sm:py-3 md:px-7 md:py-3.5 rounded-full font-semibold text-xs sm:text-sm md:text-base lg:text-xl flex items-center gap-2 md:gap-2.5 hover:bg-red-700 transition-colors w-fit"
           >
             <Image

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Epilogue, DM_Sans } from 'next/font/google'
 import './globals.css'
+import PlausibleProvider from 'next-plausible';
 
 const epilogue = Epilogue({
   variable: '--font-epilogue',
@@ -36,7 +37,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${epilogue.variable} ${dmSans.variable}`}>
       <body className="font-sans antialiased">
+      <PlausibleProvider domain="forge.staging.staging.network">
         {children}
+        </PlausibleProvider>
       </body>
     </html>
   )
