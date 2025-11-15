@@ -26,7 +26,14 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           height={68}
           className="h-10 w-auto"
         />
-        <button onClick={onClose} className="p-2" aria-label="Close menu">
+        <button
+          onClick={() => {
+            plausible("Mobile Menu Toggle", { props: { action: "close" } });
+            onClose();
+          }}
+          className="p-2"
+          aria-label="Close menu"
+        >
           <svg
             width="32"
             height="32"
@@ -52,7 +59,12 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           <Link
             href="#why"
             className="flex items-center gap-4 text-[#0176CE] font-medium text-xl py-2"
-            onClick={onClose}
+            onClick={() => {
+              plausible("Navigation Click", {
+                props: { section: "features", source: "mobile-menu" },
+              });
+              onClose();
+            }}
           >
             <svg
               width="32"
@@ -89,7 +101,12 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           <Link
             href="#pricing"
             className="flex items-center gap-4 text-[#0176CE] font-medium text-xl py-2"
-            onClick={onClose}
+            onClick={() => {
+              plausible("Navigation Click", {
+                props: { section: "pricing", source: "mobile-menu" },
+              });
+              onClose();
+            }}
           >
             <svg
               width="32"
@@ -112,7 +129,12 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           <Link
             href="#use-cases"
             className="flex items-center gap-4 text-[#0176CE] font-medium text-xl py-2"
-            onClick={onClose}
+            onClick={() => {
+              plausible("Navigation Click", {
+                props: { section: "use-cases", source: "mobile-menu" },
+              });
+              onClose();
+            }}
           >
             <svg
               width="32"
@@ -178,6 +200,11 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         <div className="pt-4 pb-6 flex justify-center gap-2 flex-shrink-0 mt-auto">
           <a
             href="https://discord.gg/pqa6Dn6RnP"
+            onClick={() =>
+              plausible("Social Click", {
+                props: { platform: "discord", source: "mobile-menu" },
+              })
+            }
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#0176CE] hover:opacity-70 transition-opacity"
@@ -195,6 +222,11 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           </a>
           <a
             href="https://x.com/storachanetwork"
+            onClick={() =>
+              plausible("Social Click", {
+                props: { platform: "twitter", source: "mobile-menu" },
+              })
+            }
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#0176CE] hover:opacity-70 transition-opacity"
@@ -212,6 +244,11 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           </a>
           <a
             href="https://github.com/storacha"
+            onClick={() =>
+              plausible("Social Click", {
+                props: { platform: "github", source: "mobile-menu" },
+              })
+            }
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#0176CE] hover:opacity-70 transition-opacity"
@@ -229,6 +266,11 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           </a>
           <a
             href="https://medium.com/@storacha"
+            onClick={() =>
+              plausible("Social Click", {
+                props: { platform: "medium", source: "mobile-menu" },
+              })
+            }
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#0176CE] hover:opacity-70 transition-opacity"
@@ -246,6 +288,11 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           </a>
           <a
             href="https://www.youtube.com/@StorachaNetwork"
+            onClick={() =>
+              plausible("Social Click", {
+                props: { platform: "youtube", source: "mobile-menu" },
+              })
+            }
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#0176CE] hover:opacity-70 transition-opacity"
@@ -263,6 +310,11 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           </a>
           <a
             href="https://warpcast.com/storacha"
+            onClick={() =>
+              plausible("Social Click", {
+                props: { platform: "farcaster", source: "mobile-menu" },
+              })
+            }
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#0176CE] hover:opacity-70 transition-opacity"
@@ -280,6 +332,11 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           </a>
           <a
             href="https://bsky.app/profile/storacha.network"
+            onClick={() =>
+              plausible("Social Click", {
+                props: { platform: "bluesky", source: "mobile-menu" },
+              })
+            }
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#0176CE] hover:opacity-70 transition-opacity"
@@ -297,6 +354,11 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           </a>
           <a
             href="https://www.reddit.com/r/Storacha"
+            onClick={() =>
+              plausible("Social Click", {
+                props: { platform: "reddit", source: "mobile-menu" },
+              })
+            }
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#0176CE] hover:opacity-70 transition-opacity"
