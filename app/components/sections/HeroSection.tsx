@@ -39,24 +39,28 @@ export default function HeroSection() {
           <div className="hidden lg:flex items-center gap-2 border-2 border-[#0176CE] rounded-full p-2">
             <Link
               href="#why"
+              onClick={() => plausible('Navigation Click', { props: { section: 'features' } })}
               className="bg-white text-[#0176CE] px-6 py-3 rounded-full font-medium text-l"
             >
               FEATURES
             </Link>
             <Link
               href="#pricing"
+              onClick={() => plausible('Navigation Click', { props: { section: 'pricing' } })}
               className="bg-white text-[#0176CE] px-6 py-3 rounded-full font-medium text-l"
             >
               PRICING
             </Link>
             <Link
               href="#use-cases"
+              onClick={() => plausible('Navigation Click', { props: { section: 'use-cases' } })}
               className="bg-white text-[#0176CE] px-6 py-3 rounded-full font-medium text-l"
             >
               USE CASES
             </Link>
             <Link
               href={MEETING_URL}
+              onClick={() => plausible('CTA Click', { props: { location: 'header-nav' } })}
               className="bg-[#0176CE] text-white px-6 py-3 rounded-full text-l hover:bg-[#0089F0] transition-colors"
             >
               GET STARTED
@@ -64,7 +68,10 @@ export default function HeroSection() {
           </div>
 
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={() => {
+                plausible('Mobile Menu Toggle', { props: { action: isMobileMenuOpen ? 'close' : 'open' } })
+                setIsMobileMenuOpen(!isMobileMenuOpen)
+              }}
             className="lg:hidden p-2 relative z-[60]"
             aria-label="Toggle menu"
           >
@@ -121,7 +128,7 @@ export default function HeroSection() {
 
           <Link
             href={MEETING_URL}
-            onClick={() => plausible('CTA Click', { props: { location: 'hero' } })}
+            onClick={() => plausible('CTA Click', { props: { location: 'hero-main' } })}
             className="bg-[#E91315] text-white px-4 py-2.5 sm:px-6 sm:py-3 md:px-7 md:py-3.5 rounded-full font-semibold text-sm sm:text-base md:text-xl flex items-center gap-2 md:gap-2.5 hover:bg-red-700 transition-colors w-fit"
           >
             <Image

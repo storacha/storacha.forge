@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePlausible } from 'next-plausible'
-
+import { usePlausible } from "next-plausible";
 
 export default function Footer() {
-  const plausible = usePlausible()
+  const plausible = usePlausible();
+
   return (
     <footer className="bg-white border-t border-gray-200 pt-8 md:pt-12 lg:pt-16 pb-4 md:pb-6 lg:pb-8">
       <div className="container-custom">
@@ -15,18 +15,33 @@ export default function Footer() {
           <div className="space-y-3 md:space-y-4 lg:space-y-6">
             <Link
               href="#why"
+              onClick={() =>
+                plausible("Footer Navigation", {
+                  props: { section: "why-storacha" },
+                })
+              }
               className="block text-[#0176CE] font-dm-sans text-sm sm:text-base md:text-[18px] font-semibold leading-6 hover:underline"
             >
               Why Storacha
             </Link>
             <Link
               href="#use-cases"
+              onClick={() =>
+                plausible("Footer Navigation", {
+                  props: { section: "use-cases" },
+                })
+              }
               className="block text-[#0176CE] font-dm-sans text-sm sm:text-base md:text-[18px] font-semibold leading-6 hover:underline"
             >
               Use Cases
             </Link>
             <Link
               href="#stories"
+              onClick={() =>
+                plausible("Footer Navigation", {
+                  props: { section: "success-stories" },
+                })
+              }
               className="block text-[#0176CE] font-dm-sans text-sm sm:text-base md:text-[18px] font-semibold leading-6 hover:underline"
             >
               Success Stories
@@ -37,12 +52,22 @@ export default function Footer() {
           <div className="space-y-3 md:space-y-4 lg:space-y-6">
             <Link
               href="#pricing"
+              onClick={() =>
+                plausible("Footer Navigation", {
+                  props: { section: "pricing" },
+                })
+              }
               className="block text-[#0176CE] font-dm-sans text-sm sm:text-base md:text-[18px] font-semibold leading-6 hover:underline"
             >
               Pricing
             </Link>
             <Link
               href="#comparison"
+              onClick={() =>
+                plausible("Footer Navigation", {
+                  props: { section: "cost-comparison" },
+                })
+              }
               className="block text-[#0176CE] font-dm-sans text-sm sm:text-base md:text-[18px] font-semibold leading-6 hover:underline"
             >
               Cost Comparison
@@ -58,15 +83,22 @@ export default function Footer() {
           <Image
             src="/forge/logos/storacha-logo-blue.svg"
             alt="Storacha"
+            onClick={() =>
+              plausible("Logo Click", { props: { location: "footer" } })
+            }
             width={140}
             height={50}
-            className="h-8 sm:h-10 md:h-[50px] w-auto"
+            className="h-8 sm:h-10 md:h-[50px] w-auto cursor-pointer"
           />
 
           <div className="flex flex-wrap items-center gap-4 md:gap-6 lg:gap-8">
             <Link
               href="https://docs.storacha.network/terms/"
-              onClick={() => plausible('External Link', { props: { destination: 'terms' } })}
+              onClick={() =>
+                plausible("External Link", {
+                  props: { destination: "terms", source: "footer" },
+                })
+              }
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#0176CE] font-dm-sans text-xs sm:text-sm md:text-base lg:text-[18px] font-semibold leading-6 hover:underline"
@@ -75,7 +107,11 @@ export default function Footer() {
             </Link>
             <Link
               href="https://docs.storacha.network/privacy-policy/"
-              onClick={() => plausible('External Link', { props: { destination: 'privacy' } })}
+              onClick={() =>
+                plausible("External Link", {
+                  props: { destination: "privacy-policy", source: "footer" },
+                })
+              }
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#0176CE] font-dm-sans text-xs sm:text-sm md:text-base lg:text-[18px] font-semibold leading-6 hover:underline"
@@ -84,7 +120,11 @@ export default function Footer() {
             </Link>
             <Link
               href="https://www.linkedin.com/company/storacha"
-              onClick={() => plausible('External Link', { props: { destination: 'linkedin' } })}
+              onClick={() =>
+                plausible("Social Click", {
+                  props: { platform: "linkedin", source: "footer" },
+                })
+              }
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#0176CE] font-dm-sans text-xs sm:text-sm md:text-base lg:text-[18px] font-semibold leading-6 hover:underline"
