@@ -23,6 +23,10 @@ export const metadata: Metadata = {
     "Decentralized backup & archival for enterprises, secure, verifiable, zero lock-in. Your data, governed by protocol, not corporations.",
   keywords:
     "cloud storage, decentralized storage, backup solutions, enterprise storage, filecoin, IPFS, data ownership",
+  icons: {
+    icon: "/forge/cost-comparison/forge.svg",
+    apple: "/forge/cost-comparison/forge.svg",
+  },
   openGraph: {
     title: "Storacha Forge - Cut Cloud Backup Costs by 80%",
     description:
