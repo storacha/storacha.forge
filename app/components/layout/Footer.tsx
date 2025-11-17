@@ -10,7 +10,7 @@ export default function Footer() {
   return (
     <footer className="bg-white border-t border-gray-200 pt-8 md:pt-12 lg:pt-16 pb-4 md:pb-6 lg:pb-8">
       <div className="container-custom">
-        <div className="grid md:grid-cols-3 gap-6 md:gap-10 lg:gap-12 mb-8 md:mb-12 lg:mb-16">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-16 lg:gap-30 xl:gap-74 mb-8 md:mb-12 lg:mb-16">
           {/* Column 1 */}
           <div className="space-y-3 md:space-y-4 lg:space-y-6">
             <Link
@@ -91,20 +91,8 @@ export default function Footer() {
             className="h-8 sm:h-10 md:h-[50px] w-auto cursor-pointer"
           />
 
-          <div className="flex flex-wrap items-center gap-4 md:gap-6 lg:gap-8">
-            <Link
-              href="https://docs.storacha.network/terms/"
-              onClick={() =>
-                plausible("External Link", {
-                  props: { destination: "terms", source: "footer" },
-                })
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#0176CE] font-dm-sans text-xs sm:text-sm md:text-base lg:text-[18px] font-semibold leading-6 hover:underline"
-            >
-              Terms
-            </Link>
+          <div className="flex flex-wrap items-center gap-4 md:gap-6 lg:gap-8 ">
+
             <Link
               href="https://docs.storacha.network/privacy-policy/"
               onClick={() =>

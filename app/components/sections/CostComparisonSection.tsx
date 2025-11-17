@@ -78,7 +78,7 @@ export default function CostComparisonSection() {
             <table className="w-full">
               <thead>
                 <tr className="bg-white rounded-xl">
-                  <th className="text-left p-1 sm:p-2 md:p-3 lg:p-4 font-dm-sans font-semibold text-[#0176CE] text-[8px] sm:text-xs md:text-lg lg:text-xl xl:text-2xl leading-tight">
+                  <th className="text-left p-1 sm:p-2 md:p-3 lg:p-4 font-dm-sans font-semibold text-[#0176CE] text-[8px] sm:text-xs md:text-lg lg:text-xl xl:text-2xl leading-tight rounded-tl-xl md:rounded-tl-2xl">
                     Provider
                   </th>
                   <th className="text-center p-1 sm:p-2 md:p-3 lg:p-4 font-dm-sans font-semibold text-[#0176CE] text-[7px] sm:text-xs md:text-lg lg:text-xl xl:text-2xl leading-tight">
@@ -90,13 +90,13 @@ export default function CostComparisonSection() {
                   <th className="text-center p-1 sm:p-2 md:p-3 lg:p-4 font-dm-sans font-semibold text-[#0176CE] text-[7px] sm:text-xs md:text-lg lg:text-xl xl:text-2xl leading-tight">
                     True Data Ownership
                   </th>
-                  <th className="text-center p-1 sm:p-2 md:p-3 lg:p-4 font-dm-sans font-semibold text-[#0176CE] text-[7px] sm:text-xs md:text-lg lg:text-xl xl:text-2xl leading-tight">
+                  <th className="text-center p-1 sm:p-2 md:p-3 lg:p-4 font-dm-sans font-semibold text-[#0176CE] text-[7px] sm:text-xs md:text-lg lg:text-xl xl:text-2xl leading-tight rounded-tr-xl md:rounded-tr-2xl">
                     Verifiability
                   </th>
                 </tr>
               </thead>
-              <tbody className="space-y-1 md:space-y-2">
-                {competitors.map((comp) => (
+              <tbody>
+                {competitors.map((comp, index) => (
                   <tr
                     key={comp.name}
                     className={`${
@@ -105,17 +105,25 @@ export default function CostComparisonSection() {
                         : "bg-white text-[#0176CE]"
                     } rounded-[20px]`}
                   >
-                    <td className="p-1 sm:p-2 md:p-3 lg:p-4 flex items-center gap-2 sm:gap-3">
-                      <Image
-                        src={comp.logo}
-                        alt={comp.name}
-                        width={16}
-                        height={16}
-                        className="w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6 lg:w-8 lg:h-8 flex-shrink-0"
-                      />
-                      <span className="font-dm-sans font-medium text-[8px] sm:text-xs md:text-lg lg:text-xl xl:text-2xl">
-                        {comp.name}
-                      </span>
+                    <td
+                      className={`p-1 sm:p-2 md:p-3 lg:p-4 ${
+                        index === competitors.length - 1
+                          ? "rounded-bl-xl md:rounded-bl-2xl overflow-hidden"
+                          : ""
+                      }`}
+                    >
+                      <div className="flex items-center gap-2 sm:gap-3">
+                        <Image
+                          src={comp.logo}
+                          alt={comp.name}
+                          width={16}
+                          height={16}
+                          className="w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6 lg:w-8 lg:h-8 flex-shrink-0"
+                        />
+                        <span className="font-dm-sans font-medium text-[8px] sm:text-xs md:text-lg lg:text-xl xl:text-2xl">
+                          {comp.name}
+                        </span>
+                      </div>
                     </td>
                     <td className="p-1 sm:p-2 md:p-3 lg:p-4 text-center font-dm-sans font-medium text-[8px] sm:text-xs md:text-lg lg:text-xl xl:text-2xl">
                       {comp.storage}
@@ -132,7 +140,11 @@ export default function CostComparisonSection() {
                         </span>
                       )}
                     </td>
-                    <td className="p-1 sm:p-2 md:p-3 lg:p-4 text-center font-dm-sans font-medium text-[8px] sm:text-xs md:text-lg lg:text-xl xl:text-2xl">
+                    <td
+                      className={`p-1 sm:p-2 md:p-3 lg:p-4 text-center font-dm-sans font-medium text-[8px] sm:text-xs md:text-lg lg:text-xl xl:text-2xl ${
+                        index === competitors.length - 1 ? "rounded-br-xl md:rounded-br-2xl" : ""
+                      }`}
+                    >
                       {comp.verifiability ? (
                         "✓"
                       ) : (
@@ -185,7 +197,7 @@ export default function CostComparisonSection() {
                         }
                       }
                     />
-                   <Image
+                    <Image
                       src={item.logo}
                       alt={item.company}
                       width={40}
