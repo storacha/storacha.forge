@@ -113,7 +113,7 @@ export default function HeroSection() {
         }`}
       >
         <div className="flex flex-col gap-6 md:gap-10 max-w-4xl">
-          <h1 className="font-epilogue font-medium text-2xl sm:text-3xl md:text-4xl lg:text-[56px] leading-[1.15] text-[#0176CE] tracking-[-1px]">
+          <h1 className="font-epilogue font-medium text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[72px] leading-[1.15] text-[#0176CE] tracking-[-1px]">
             Cut Cloud Backup Costs by{" "}
             <span className="text-[#E91315]">80%.</span>
             <br />
