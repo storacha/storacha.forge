@@ -1,6 +1,40 @@
+"use client";
+
 import Image from "next/image";
+import { useState, useEffect } from "react";
+import {
+  calculateAnnualCosts,
+  calculateBarHeights,
+} from "@/lib/cost-calculator";
 
 export default function CostComparisonSection() {
+  const [storage_TiB, setStorage_TiB] = useState(100);
+  const [egress_percent, setEgress_percent] = useState(5);
+  const [screenSize, setScreenSize] = useState<"mobile" | "tablet" | "desktop">(
+    "desktop"
+  );
+
+  // Detect screen size for responsive bar heights
+  useEffect(() => {
+    const updateScreenSize = () => {
+      if (window.innerWidth < 768) {
+        setScreenSize("mobile");
+      } else if (window.innerWidth < 1024) {
+        setScreenSize("tablet");
+      } else {
+        setScreenSize("desktop");
+      }
+    };
+
+    updateScreenSize();
+    window.addEventListener("resize", updateScreenSize);
+    return () => window.removeEventListener("resize", updateScreenSize);
+  }, []);
+
+  // Calculate chartData directly - no need for useEffect or separate state
+  const costs = calculateAnnualCosts(storage_TiB, egress_percent);
+  const chartData = calculateBarHeights(costs);
+
   const competitors = [
     {
       name: "Storacha Forge",
@@ -26,40 +60,6 @@ export default function CostComparisonSection() {
       egress: "$100",
       ownership: false,
       verifiability: false,
-    },
-  ];
-
-  const chartData = [
-    {
-      company: "Storacha",
-      logo: "/forge/cost-comparison/forge.svg",
-      cost: 7788,
-      height: { mobile: 50, tablet: 82, desktop: 109 },
-      highlight: true,
-    },
-    {
-      company: "Wasabi",
-      logo: "/forge/cost-comparison/wasabi.svg",
-      cost: 8592,
-      height: { mobile: 84, tablet: 135, desktop: 180 },
-    },
-    {
-      company: "Azure",
-      logo: "/forge/cost-comparison/azure.svg",
-      cost: 18288,
-      height: { mobile: 118, tablet: 193, desktop: 257 },
-    },
-    {
-      company: "Google",
-      logo: "/forge/cost-comparison/google.svg",
-      cost: 19488,
-      height: { mobile: 126, tablet: 206, desktop: 274 },
-    },
-    {
-      company: "Amazon",
-      logo: "/forge/cost-comparison/aws.svg",
-      cost: 21360,
-      height: { mobile: 138, tablet: 225, desktop: 300 },
     },
   ];
 
@@ -142,7 +142,9 @@ export default function CostComparisonSection() {
                     </td>
                     <td
                       className={`p-1 sm:p-2 md:p-3 lg:p-4 text-center font-dm-sans font-medium text-[8px] sm:text-xs md:text-lg lg:text-xl xl:text-2xl ${
-                        index === competitors.length - 1 ? "rounded-br-xl md:rounded-br-2xl" : ""
+                        index === competitors.length - 1
+                          ? "rounded-br-xl md:rounded-br-2xl"
+                          : ""
                       }`}
                     >
                       {comp.verifiability ? (
@@ -160,9 +162,9 @@ export default function CostComparisonSection() {
           </div>
 
           {/* Cost Advantage Section */}
-          <div className="grid lg:grid-cols-2 gap-6 md:gap-10 lg:gap-12 items-center">
+          <div className="space-y-6 md:space-y-10 lg:space-y-12">
+            {/* Bar Chart */}
             <div>
-              {/* Bar Chart */}
               <div className="relative flex items-end gap-1.5 md:gap-3 lg:gap-4 justify-center px-2 md:px-4">
                 {chartData.map((item, index) => (
                   <div
@@ -183,19 +185,10 @@ export default function CostComparisonSection() {
                         item.highlight
                           ? "bg-[#0176CE]"
                           : "bg-gradient-to-b from-white via-[#aedcff] to-[#0176CE]"
-                      } md:!h-[var(--tablet-height)] lg:!h-[var(--desktop-height)]`}
-                      style={
-                        {
-                          "--mobile-height": `${item.height.mobile}px`,
-                          "--tablet-height": `${item.height.tablet}px`,
-                          "--desktop-height": `${item.height.desktop}px`,
-                          height: `${item.height.mobile}px`,
-                        } as React.CSSProperties & {
-                          "--mobile-height": string;
-                          "--tablet-height": string;
-                          "--desktop-height": string;
-                        }
-                      }
+                      }`}
+                      style={{
+                        height: `${item.height[screenSize]}px`,
+                      }}
                     />
                     <Image
                       src={item.logo}
@@ -208,11 +201,77 @@ export default function CostComparisonSection() {
                 ))}
               </div>
               <p className="text-[#0176CE] text-[10px] md:text-sm text-center mt-2 md:mt-4">
-                *For 100 TB storage and 5TB monthly egress
+                *For {storage_TiB} TB storage and{" "}
+                {((storage_TiB * egress_percent) / 100).toFixed(1)}TB monthly
+                egress
               </p>
             </div>
 
-            <div className="space-y-3 md:space-y-6 text-[#0176CE]">
+            {/* Cost Calculator Sliders */}
+            <div className="bg-white rounded-2xl p-4 md:p-6 lg:p-8 space-y-6 max-w-5xl mx-auto">
+              <div className="space-y-4">
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <label className="font-dm-sans font-semibold text-[#0176CE] text-sm md:text-base lg:text-lg">
+                      Storage (TiB)
+                    </label>
+                    <span className="font-dm-sans font-bold text-[#0176CE] text-base md:text-lg lg:text-xl">
+                      {storage_TiB.toLocaleString()} TiB
+                    </span>
+                  </div>
+                  <input
+                    type="range"
+                    min="100"
+                    max="10000"
+                    step="100"
+                    value={storage_TiB}
+                    onChange={(e) => setStorage_TiB(Number(e.target.value))}
+                    className="w-full h-2 bg-[#C5DFFD] rounded-lg appearance-none cursor-pointer accent-[#0176CE]"
+                    style={{
+                      background: `linear-gradient(to right, #0176CE 0%, #0176CE ${
+                        ((storage_TiB - 100) / (10000 - 100)) * 100
+                      }%, #C5DFFD ${
+                        ((storage_TiB - 100) / (10000 - 100)) * 100
+                      }%, #C5DFFD 100%)`,
+                    }}
+                  />
+                  <div className="flex justify-between text-xs text-[#0176CE]/60 mt-1">
+                    <span>100</span>
+                    <span>10,000</span>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <label className="font-dm-sans font-semibold text-[#0176CE] text-sm md:text-base lg:text-lg">
+                      Monthly Egress
+                    </label>
+                    <span className="font-dm-sans font-bold text-[#0176CE] text-base md:text-lg lg:text-xl">
+                      {egress_percent}% (
+                      {((storage_TiB * egress_percent) / 100).toFixed(1)} TiB)
+                    </span>
+                  </div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    step="1"
+                    value={egress_percent}
+                    onChange={(e) => setEgress_percent(Number(e.target.value))}
+                    className="w-full h-2 bg-[#C5DFFD] rounded-lg appearance-none cursor-pointer accent-[#0176CE]"
+                    style={{
+                      background: `linear-gradient(to right, #0176CE 0%, #0176CE ${egress_percent}%, #C5DFFD ${egress_percent}%, #C5DFFD 100%)`,
+                    }}
+                  />
+                  <div className="flex justify-between text-xs text-[#0176CE]/60 mt-1">
+                    <span>0%</span>
+                    <span>100%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-3 md:space-y-6 text-[#0176CE] text-center max-w-4xl mx-auto">
               <p className="text-base md:text-xl lg:text-2xl xl:text-[32px] leading-relaxed">
                 Transparent <span className="font-bold">pricing,</span>{" "}
                 <span className="font-bold">decentralized storage</span> with
