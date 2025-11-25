@@ -18,11 +18,12 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://forge.storacha.network"),
   title: "Storacha Forge - Cut Cloud Backup Costs by 80%",
   description:
     "Decentralized backup & archival for enterprises, secure, verifiable, zero lock-in. Your data, governed by protocol, not corporations.",
   keywords:
-    "cloud storage, decentralized storage, backup solutions, enterprise storage, filecoin, IPFS, data ownership",
+    "cloud storage, decentralized storage, backup solutions, enterprise storage, filecoin, IPFS, data ownership, cloud backup, archival storage",
   icons: {
     icon: "/forge/cost-comparison/forge.svg",
     apple: "/forge/cost-comparison/forge.svg",
@@ -31,8 +32,30 @@ export const metadata: Metadata = {
     title: "Storacha Forge - Cut Cloud Backup Costs by 80%",
     description:
       "Decentralized backup & archival for enterprises, secure, verifiable, zero lock-in.",
-    images: ["/forge/hero/earth-bg.png"],
+    url: "https://forge.storacha.network",
+    siteName: "Storacha Forge",
+    images: [
+      {
+        url: "/forge/hero/earth-bg.png",
+        width: 1200,
+        height: 630,
+        alt: "Storacha Forge - Decentralized Cloud Storage",
+      },
+    ],
+    locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Storacha Forge - Cut Cloud Backup Costs by 80%",
+    description:
+      "Decentralized backup & archival for enterprises, secure, verifiable, zero lock-in.",
+    images: ["/forge/hero/earth-bg.png"],
+    creator: "@storachanetwork",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
