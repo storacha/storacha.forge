@@ -36,9 +36,9 @@ export const metadata: Metadata = {
     siteName: "Storacha Forge",
     images: [
       {
-        url: "/forge/hero/earth-bg.png",
-        width: 1200,
-        height: 630,
+        url: "/forge/cost-comparison/forge.svg",
+        width: 334,
+        height: 334,
         alt: "Storacha Forge - Decentralized Cloud Storage",
       },
     ],
@@ -50,12 +50,15 @@ export const metadata: Metadata = {
     title: "Storacha Forge - Cut Cloud Backup Costs by 80%",
     description:
       "Decentralized backup & archival for enterprises, secure, verifiable, zero lock-in.",
-    images: ["/forge/hero/earth-bg.png"],
+    images: ["/forge/cost-comparison/forge.svg"],
     creator: "@storachanetwork",
   },
   robots: {
     index: true,
     follow: true,
+  },
+  verification: {
+    google: "KfBIk19AYw14qC6nMtc3_RVlM49pn6eJLRcS1XwhXMc",
   },
 };
 
