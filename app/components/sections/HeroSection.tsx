@@ -66,7 +66,7 @@ export default function HeroSection() {
         <nav className="flex items-center justify-between max-w-[1920px] mx-auto">
           <div className="flex items-center gap-2">
             <Image
-              src="/forge/logos/forge-header.svg"
+              src="/forge/logos/storacha-logo-blue.svg"
               alt="Storacha"
               width={191}
               height={68}
