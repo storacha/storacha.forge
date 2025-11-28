@@ -56,7 +56,7 @@ export default function HeroSection() {
         className="absolute inset-0 z-0 opacity-100"
         style={{
           backgroundImage: "url(/forge/hero/earth-bg.png)",
-          backgroundSize: "min(650px, 50vw)",
+          backgroundSize: "min(1200px, 90vw)",
           backgroundPosition: "100% 100%",
           backgroundRepeat: "no-repeat",
         }}
