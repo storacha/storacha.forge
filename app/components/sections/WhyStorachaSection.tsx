@@ -1,8 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 
 export default function WhyStorachaSection() {
+  const [activeFeature, setActiveFeature] = useState(0);
+
   const features = [
     {
       icon: "/forge/features/verifiable-security.svg",
@@ -55,43 +58,75 @@ export default function WhyStorachaSection() {
   ];
 
   return (
-    <section id="why" className="bg-white py-10 md:py-16 lg:py-20">
+    <section id="why" className="bg-[#0176CE] py-10 md:py-16 lg:py-20">
       <div className="container-custom">
         <div className="space-y-6 md:space-y-10 lg:space-y-12">
           <div className="text-center space-y-3 md:space-y-4 lg:space-y-6">
-            <h2 className="font-epilogue font-medium text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[72px] text-[#0176CE] tracking-tight md:tracking-[-1.5px] lg:tracking-[-2.88px]">
+            <h2 className="font-epilogue font-medium text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[72px] text-white tracking-tight md:tracking-[-1.5px] lg:tracking-[-2.88px]">
               Why Storacha?
             </h2>
-            <p className="font-dm-sans text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[28px] text-[#0176CE] tracking-normal md:tracking-[-0.5px] lg:tracking-[-1.12px]">
+            <p className="font-dm-sans text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[28px] text-white tracking-normal md:tracking-[-0.5px] lg:tracking-[-1.12px]">
               Built for enterprises that demand security, control, and
               transparency.
             </p>
           </div>
 
-          <div className="bg-[#0176CE] rounded-[16px] md:rounded-[20px] p-4 md:p-6 lg:p-8">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-5">
-              {features.map((feature) => (
-                <div
+          {/* Accordion Container */}
+          <div className="bg-[#C5DFFD] rounded-[16px] md:rounded-[24px] lg:rounded-[32px] p-4 md:p-6 lg:p-8">
+            {/* Feature Buttons Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 lg:gap-4 mb-4 md:mb-6">
+              {features.map((feature, index) => (
+                <button
                   key={feature.title}
-                  className="bg-white rounded-[12px] md:rounded-[16px] p-3 sm:p-4 md:p-5 flex flex-col h-full"
+                  onClick={() => setActiveFeature(index)}
+                  className={`relative p-3 md:p-4 rounded-xl md:rounded-2xl transition-all duration-300 text-left group ${
+                    activeFeature === index
+                      ? "bg-[#0176CE] text-white scale-[1.02] shadow-lg"
+                      : "bg-white text-[#0176CE] hover:scale-[1.05] hover:shadow-md"
+                  }`}
                 >
-                  <div className="h-auto">
+                  <div className="flex items-start gap-2 md:gap-3">
                     <Image
                       src={feature.icon}
-                      alt={feature.title}
-                      width={36}
-                      height={36}
-                      className="w-6 h-6 sm:w-7 sm:h-7 md:w-9 md:h-9"
+                      alt=""
+                      width={24}
+                      height={24}
+                      className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 flex-shrink-0 mt-0.5"
                     />
-                    <h3 className="font-epilogue font-semibold text-sm sm:text-base md:text-lg lg:text-xl text-[#0176CE] mt-2 md:mt-4">
+                    <p className="font-dm-sans font-semibold text-xs md:text-sm lg:text-base leading-tight">
                       {feature.title}
-                    </h3>
+                    </p>
                   </div>
-                  <p className="font-dm-sans text-xs sm:text-sm md:text-[15px] text-[#0176CE] mt-2 md:mt-4">
-                    {feature.description}
+                  {activeFeature === index && (
+                    <div className="absolute -right-1 top-1/2 -translate-y-1/2">
+                      <div className="w-2 h-2 md:w-3 md:h-3 bg-green-400 rounded-full border-2 border-white"></div>
+                    </div>
+                  )}
+                </button>
+              ))}
+            </div>
+
+            {/* Active Feature Card */}
+            <div className="bg-[#0176CE] rounded-xl md:rounded-2xl p-5 md:p-8 lg:p-10 min-h-[180px] md:min-h-[220px]">
+              <div className="flex items-start gap-4 md:gap-6">
+                <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center flex-shrink-0">
+                  <Image
+                    src={features[activeFeature].icon}
+                    alt={features[activeFeature].title}
+                    width={48}
+                    height={48}
+                    className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10"
+                  />
+                </div>
+                <div className="flex-1 space-y-3 md:space-y-4">
+                  <h3 className="font-epilogue font-semibold text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white">
+                    {features[activeFeature].title}
+                  </h3>
+                  <p className="font-dm-sans text-sm md:text-base lg:text-lg xl:text-xl text-white/90 leading-relaxed">
+                    {features[activeFeature].description}
                   </p>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </div>

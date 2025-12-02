@@ -8,11 +8,12 @@ export default function Footer() {
   const plausible = usePlausible();
 
   return (
-    <footer className="bg-white border-t border-gray-200 pt-8 md:pt-12 lg:pt-16 pb-4 md:pb-6 lg:pb-8">
+    <footer className="bg-[#C5DFFD] border-t border-[#0176CE]/20 pt-12 md:pt-16 lg:pt-20 pb-6 md:pb-8 lg:pb-10">
       <div className="container-custom">
-        <div className="grid md:grid-cols-3 gap-6 md:gap-16 lg:gap-30 xl:gap-74 mb-8 md:mb-12 lg:mb-16">
+        {/* Navigation Links */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-6 lg:gap-8 mb-12 md:mb-16 lg:mb-20">
           {/* Column 1 */}
-          <div className="space-y-3 md:space-y-4 lg:space-y-6">
+          <div>
             <Link
               href="#why"
               onClick={() =>
@@ -20,10 +21,14 @@ export default function Footer() {
                   props: { section: "why-storacha" },
                 })
               }
-              className="block text-[#0176CE] font-dm-sans text-sm sm:text-base md:text-[18px] font-semibold leading-6 hover:underline"
+              className="block text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline mb-4"
             >
               Why Storacha
             </Link>
+          </div>
+
+          {/* Column 2 */}
+          <div>
             <Link
               href="#use-cases"
               onClick={() =>
@@ -31,10 +36,14 @@ export default function Footer() {
                   props: { section: "use-cases" },
                 })
               }
-              className="block text-[#0176CE] font-dm-sans text-sm sm:text-base md:text-[18px] font-semibold leading-6 hover:underline"
+              className="block text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline mb-4"
             >
               Use Cases
             </Link>
+          </div>
+
+          {/* Column 3 */}
+          <div>
             <Link
               href="#stories"
               onClick={() =>
@@ -42,14 +51,14 @@ export default function Footer() {
                   props: { section: "success-stories" },
                 })
               }
-              className="block text-[#0176CE] font-dm-sans text-sm sm:text-base md:text-[18px] font-semibold leading-6 hover:underline"
+              className="block text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline mb-4"
             >
               Success Stories
             </Link>
           </div>
 
-          {/* Column 2 */}
-          <div className="space-y-3 md:space-y-4 lg:space-y-6">
+          {/* Column 4 */}
+          <div>
             <Link
               href="#pricing"
               onClick={() =>
@@ -57,10 +66,14 @@ export default function Footer() {
                   props: { section: "pricing" },
                 })
               }
-              className="block text-[#0176CE] font-dm-sans text-sm sm:text-base md:text-[18px] font-semibold leading-6 hover:underline"
+              className="block text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline mb-4"
             >
               Pricing
             </Link>
+          </div>
+
+          {/* Column 5 */}
+          <div>
             <Link
               href="#comparison"
               onClick={() =>
@@ -68,31 +81,34 @@ export default function Footer() {
                   props: { section: "cost-comparison" },
                 })
               }
-              className="block text-[#0176CE] font-dm-sans text-sm sm:text-base md:text-[18px] font-semibold leading-6 hover:underline"
+              className="block text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline mb-4"
             >
               Cost Comparison
             </Link>
           </div>
-
-          {/* Column 3 - Empty for layout */}
-          <div></div>
         </div>
 
-        {/* Bottom row */}
-        <div className="flex flex-wrap items-center justify-between gap-4 md:gap-6 pt-4 md:pt-6 lg:pt-8 border-t border-gray-200">
-          <Image
-            src="/forge/logos/storacha-logo-blue.svg"
-            alt="Storacha"
-            onClick={() =>
-              plausible("Logo Click", { props: { location: "footer" } })
-            }
-            width={140}
-            height={50}
-            className="h-8 sm:h-10 md:h-[50px] w-auto cursor-pointer"
-          />
+        {/* Divider */}
+        <div className="h-px bg-[#0176CE]/20 mb-6 md:mb-8"></div>
 
-          <div className="flex flex-wrap items-center gap-4 md:gap-6 lg:gap-8 ">
+        {/* Bottom Row */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+          {/* Logo */}
+          <Link href="/">
+            <Image
+              src="/forge/logos/storacha-logo-blue.svg"
+              alt="Storacha"
+              onClick={() =>
+                plausible("Logo Click", { props: { location: "footer" } })
+              }
+              width={140}
+              height={50}
+              className="h-8 md:h-10 lg:h-12 w-auto cursor-pointer"
+            />
+          </Link>
 
+          {/* Links */}
+          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
             <Link
               href="https://docs.storacha.network/privacy-policy/"
               onClick={() =>
@@ -102,7 +118,7 @@ export default function Footer() {
               }
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#0176CE] font-dm-sans text-xs sm:text-sm md:text-base lg:text-[18px] font-semibold leading-6 hover:underline"
+              className="text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline"
             >
               Privacy Policy
             </Link>
@@ -115,13 +131,14 @@ export default function Footer() {
               }
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#0176CE] font-dm-sans text-xs sm:text-sm md:text-base lg:text-[18px] font-semibold leading-6 hover:underline"
+              className="text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline"
             >
               Linkedin
             </Link>
           </div>
 
-          <span className="hidden sm:inline text-[#0176CE] font-dm-sans text-xs sm:text-sm md:text-base lg:text-[18px] font-semibold leading-6">
+          {/* Copyright */}
+          <span className="text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold">
             @2025 Storacha
           </span>
         </div>
