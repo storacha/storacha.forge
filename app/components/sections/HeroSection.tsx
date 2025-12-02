@@ -231,7 +231,11 @@ export default function HeroSection() {
       </div>
 
       {/* Trusted By Section - Integrated with divider lines */}
-      <div className="relative z-10 pb-8 md:pb-12 lg:pb-16 w-full">
+      <div
+        className={`relative z-10 pb-8 md:pb-12 lg:pb-16 w-full ${
+          isMobileMenuOpen ? "hidden lg:block" : ""
+        }`}
+      >
         <div className="flex items-center gap-6 md:gap-8 w-full px-6 md:px-12 lg:px-[70px]">
           {/* Left divider line */}
           <div className="flex-1 h-[1px] bg-[#0176CE]/30"></div>
