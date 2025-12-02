@@ -11,81 +11,66 @@ export default function Footer() {
     <footer className="bg-[#C5DFFD] border-t border-[#0176CE]/20 pt-12 md:pt-16 lg:pt-20 pb-6 md:pb-8 lg:pb-10">
       <div className="container-custom">
         {/* Navigation Links */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-6 lg:gap-8 mb-12 md:mb-16 lg:mb-20">
-          {/* Column 1 */}
-          <div>
-            <Link
-              href="#why"
-              onClick={() =>
-                plausible("Footer Navigation", {
-                  props: { section: "why-storacha" },
-                })
-              }
-              className="block text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline mb-4"
-            >
-              Why Storacha
-            </Link>
-          </div>
+        <div className="flex flex-wrap justify-between gap-8 md:gap-4 mb-12 md:mb-16 lg:mb-20">
+          <Link
+            href="#why"
+            onClick={() =>
+              plausible("Footer Navigation", {
+                props: { section: "why-storacha" },
+              })
+            }
+            className="text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline"
+          >
+            Why Storacha
+          </Link>
 
-          {/* Column 2 */}
-          <div>
-            <Link
-              href="#use-cases"
-              onClick={() =>
-                plausible("Footer Navigation", {
-                  props: { section: "use-cases" },
-                })
-              }
-              className="block text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline mb-4"
-            >
-              Use Cases
-            </Link>
-          </div>
+          <Link
+            href="#use-cases"
+            onClick={() =>
+              plausible("Footer Navigation", {
+                props: { section: "use-cases" },
+              })
+            }
+            className="text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline"
+          >
+            Use Cases
+          </Link>
 
-          {/* Column 3 */}
-          <div>
-            <Link
-              href="#stories"
-              onClick={() =>
-                plausible("Footer Navigation", {
-                  props: { section: "success-stories" },
-                })
-              }
-              className="block text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline mb-4"
-            >
-              Success Stories
-            </Link>
-          </div>
+          <Link
+            href="#stories"
+            onClick={() =>
+              plausible("Footer Navigation", {
+                props: { section: "success-stories" },
+              })
+            }
+            className="text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline"
+          >
+            Success Stories
+          </Link>
 
-          {/* Column 4 */}
-          <div>
-            <Link
-              href="#pricing"
-              onClick={() =>
-                plausible("Footer Navigation", {
-                  props: { section: "pricing" },
-                })
-              }
-              className="block text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline mb-4"
-            >
-              Pricing
-            </Link>
-          </div>
+          <Link
+            href="#pricing"
+            onClick={() =>
+              plausible("Footer Navigation", {
+                props: { section: "pricing" },
+              })
+            }
+            className="text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline"
+          >
+            Pricing
+          </Link>
 
-          {/* Column 5 */}
-          <div>
-            <Link
-              href="#comparison"
-              onClick={() =>
-                plausible("Footer Navigation", {
-                  props: { section: "cost-comparison" },
-                })
-              }
-              className="block text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline mb-4"
-            >
-              Cost Comparison
-            </Link>
-          </div>
+          <Link
+            href="#comparison"
+            onClick={() =>
+              plausible("Footer Navigation", {
+                props: { section: "cost-comparison" },
+              })
+            }
+            className="text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline"
+          >
+            Cost Comparison
+          </Link>
         </div>
 
         {/* Divider */}
