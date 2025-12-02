@@ -96,7 +96,7 @@ export default function SuccessStoriesSection() {
 
                     {/* Quote */}
                     <p className="font-dm-sans italic text-sm sm:text-base md:text-lg text-[#0176CE] leading-relaxed flex-1">
-                      "{testimonial.quote}"
+                      &quot;{testimonial.quote}&quot;
                     </p>
 
                     {/* Author Info */}
