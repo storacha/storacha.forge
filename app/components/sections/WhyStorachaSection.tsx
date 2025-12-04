@@ -39,7 +39,7 @@ export default function WhyStorachaSection() {
     },
     {
       icon: "/forge/features/data-lifecycle.svg",
-      title: "Data Lifecycle Management",
+      title: "Intelligent Data Lifecycle Management",
       description:
         "Manage retention and deletion through intelligent, policy-aware controls optimizing cost, integrity, and compliance over time.",
     },
@@ -74,49 +74,12 @@ export default function WhyStorachaSection() {
             </p>
           </div>
 
-          {/* Mobile/Tablet: All buttons then card */}
+          {/* Mobile/Tablet: Feature card FIRST, then buttons */}
           <div className="lg:hidden bg-[#C5DFFD] rounded-[16px] md:rounded-[24px] p-4 md:p-6">
-            <div className="grid grid-cols-2 gap-2 md:gap-3 mb-4 md:mb-6">
-              {features.map((feature, index) => (
-                <button
-                  key={feature.title}
-                  onClick={() => setActiveFeature(index)}
-                  className={`relative p-3 md:p-4 rounded-xl transition-all duration-300 text-left ${
-                    activeFeature === index
-                      ? "bg-[#0176CE] text-white scale-[1.02] shadow-lg"
-                      : "bg-white text-[#0176CE] hover:scale-[1.05] hover:shadow-md"
-                  }`}
-                >
-                  <div className="flex items-start gap-2">
-                    <Image
-                      src={feature.icon}
-                      alt=""
-                      width={24}
-                      height={24}
-                      className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0 mt-0.5"
-                    />
-                    <p className="font-dm-sans font-semibold text-xs md:text-sm leading-tight">
-                      {feature.title}
-                    </p>
-                  </div>
-                  {activeFeature === index && (
-                    <div className="absolute -right-1 top-1/2 -translate-y-1/2">
-                      <Image
-                        src="/forge/features/checkmark.svg"
-                        alt=""
-                        width={16}
-                        height={16}
-                        className="w-3 h-3 md:w-4 md:h-4"
-                      />
-                    </div>
-                  )}
-                </button>
-              ))}
-            </div>
-
-            <div className="bg-[#0176CE] rounded-xl p-5 md:p-8 min-h-[180px]">
+            {/* Active Feature Card - FIRST */}
+            <div className="bg-white rounded-xl p-5 md:p-8 mb-4 md:mb-6">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-[#C5DFFD] rounded-full flex items-center justify-center flex-shrink-0">
                   <Image
                     src={features[activeFeature].icon}
                     alt={features[activeFeature].title}
@@ -126,14 +89,53 @@ export default function WhyStorachaSection() {
                   />
                 </div>
                 <div className="flex-1 space-y-3">
-                  <h3 className="font-epilogue font-semibold text-xl md:text-2xl text-white">
+                  <h3 className="font-epilogue font-semibold text-xl md:text-2xl text-[#0176CE]">
                     {features[activeFeature].title}
                   </h3>
-                  <p className="font-dm-sans text-sm md:text-base text-white/90 leading-relaxed">
+                  <p className="font-dm-sans text-sm md:text-base text-[#0176CE] leading-relaxed">
                     {features[activeFeature].description}
                   </p>
                 </div>
               </div>
+            </div>
+
+            {/* Feature Buttons Grid - SECOND */}
+            <div className="grid grid-cols-2 gap-2 md:gap-3">
+              {features.map((feature, index) => (
+                <button
+                  key={feature.title}
+                  onClick={() => setActiveFeature(index)}
+                  className={`relative p-2 sm:p-3 md:p-4 rounded-xl transition-all duration-300 text-left ${
+                    activeFeature === index
+                      ? "bg-white text-[#0176CE] shadow-lg scale-[1.02]"
+                      : "bg-transparent text-[#0176CE] border-2 border-white hover:bg-white/20"
+                  }`}
+                >
+                  <div className="flex items-start gap-1.5 sm:gap-2">
+                    <Image
+                      src={feature.icon}
+                      alt=""
+                      width={24}
+                      height={24}
+                      className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 flex-shrink-0 mt-0.5"
+                    />
+                    <p className="font-dm-sans font-semibold text-[10px] sm:text-xs md:text-sm leading-tight break-words">
+                      {feature.title}
+                    </p>
+                  </div>
+                  {activeFeature === index && (
+                    <div className="absolute -top-1 -right-1">
+                      <Image
+                        src="/forge/features/checkmark.svg"
+                        alt=""
+                        width={20}
+                        height={20}
+                        className="w-4 h-4 md:w-5 md:h-5"
+                      />
+                    </div>
+                  )}
+                </button>
+              ))}
             </div>
           </div>
 
