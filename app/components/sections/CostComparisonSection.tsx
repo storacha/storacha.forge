@@ -50,7 +50,7 @@ export default function CostComparisonSection() {
       logo: "/forge/cost-comparison/nearline.svg",
       storage: "$10.24",
       storageNote: "per TiB/month",
-      egress: "$120",
+      egress: "$100",
       egressNote: "per TiB/month",
       ownership: false,
       verifiability: false,
@@ -60,7 +60,7 @@ export default function CostComparisonSection() {
       logo: "/forge/cost-comparison/aws.svg",
       storage: "$12.80",
       storageNote: "per TiB/month",
-      egress: "$100",
+      egress: "$90",
       egressNote: "per TiB/month",
       ownership: false,
       verifiability: false,
@@ -81,124 +81,133 @@ export default function CostComparisonSection() {
             </h2>
           </div>
 
-          {/* Comparison Table */}
-          <div className="w-full overflow-x-auto -mx-2 px-2 sm:mx-0 sm:px-0">
-            <table className="w-full min-w-[420px] sm:min-w-[500px] md:min-w-[600px]">
-              <thead>
-                <tr className="bg-white rounded-lg md:rounded-xl">
-                  <th className="text-left p-0.5 sm:p-1 md:p-2 lg:p-3 xl:p-4 font-dm-sans font-semibold text-[#0176CE] text-[6px] xs:text-[7px] sm:text-[8px] md:text-xs lg:text-base xl:text-lg 2xl:text-xl leading-tight rounded-tl-lg md:rounded-tl-xl">
-                    Provider
-                  </th>
-                  <th className="text-center p-0.5 sm:p-1 md:p-2 lg:p-3 xl:p-4 font-dm-sans font-semibold text-[#0176CE] text-[5px] xs:text-[6px] sm:text-[7px] md:text-[10px] lg:text-sm xl:text-base 2xl:text-lg leading-tight">
-                    Storage
-                    <br className="hidden xs:block" />
-                    <span className="text-[4px] xs:text-[5px] sm:text-[6px] md:text-[8px] lg:text-xs xl:text-sm font-normal">
-                      Cost/TiB/Mo
+          {/* Comparison Table - NO SCROLL, scales to fit */}
+          <div className="w-full rounded-[8px] sm:rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden shadow-sm">
+            {/* Table Header - White background per design */}
+            <div className="bg-white grid grid-cols-[1.8fr_1fr_1fr_0.9fr_0.9fr] items-center">
+              <div className="p-1 xs:p-1.5 sm:p-2 md:p-3 lg:p-4 xl:p-6">
+                <span className="font-dm-sans font-medium text-[#0176CE] text-[7px] xs:text-[8px] sm:text-[10px] md:text-sm lg:text-base xl:text-xl">
+                  Provider
+                </span>
+              </div>
+              <div className="p-1 xs:p-1.5 sm:p-2 md:p-3 lg:p-4 xl:p-6 text-center">
+                <span className="font-dm-sans font-medium text-[#0176CE] text-[7px] xs:text-[8px] sm:text-[10px] md:text-sm lg:text-base xl:text-xl">
+                  Storage Cost
+                </span>
+              </div>
+              <div className="p-1 xs:p-1.5 sm:p-2 md:p-3 lg:p-4 xl:p-6 text-center">
+                <span className="font-dm-sans font-medium text-[#0176CE] text-[7px] xs:text-[8px] sm:text-[10px] md:text-sm lg:text-base xl:text-xl">
+                  Egress Cost
+                </span>
+              </div>
+              <div className="p-1 xs:p-1.5 sm:p-2 md:p-3 lg:p-4 xl:p-6 text-center">
+                <span className="font-dm-sans font-medium text-[#0176CE] text-[6px] xs:text-[7px] sm:text-[9px] md:text-xs lg:text-sm xl:text-lg">
+                  Data Ownership
+                </span>
+              </div>
+              <div className="p-1 xs:p-1.5 sm:p-2 md:p-3 lg:p-4 xl:p-6 text-center">
+                <span className="font-dm-sans font-medium text-[#0176CE] text-[6px] xs:text-[7px] sm:text-[9px] md:text-xs lg:text-sm xl:text-lg">
+                  Verifiability
+                </span>
+              </div>
+            </div>
+
+            {/* Table Body */}
+            {competitors.map((comp) => (
+              <div
+                key={comp.name}
+                className={`grid grid-cols-[1.8fr_1fr_1fr_0.9fr_0.9fr] items-center ${
+                  comp.highlight
+                    ? "bg-[#E8F4FD] text-[#0176CE]"
+                    : "bg-white text-[#0176CE]"
+                }`}
+              >
+                {/* Provider */}
+                <div className="p-1 xs:p-1.5 sm:p-2 md:p-3 lg:p-4 xl:p-6">
+                  <div className="flex items-center gap-0.5 xs:gap-1 sm:gap-1.5 md:gap-2 lg:gap-3">
+                    <Image
+                      src={comp.logo}
+                      alt={comp.name}
+                      width={28}
+                      height={28}
+                      className="w-2.5 h-2.5 xs:w-3 xs:h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 xl:w-8 xl:h-8 flex-shrink-0"
+                    />
+                    <span className="font-dm-sans font-semibold text-[6px] xs:text-[7px] sm:text-[9px] md:text-xs lg:text-sm xl:text-lg truncate">
+                      {comp.name}
                     </span>
-                  </th>
-                  <th className="text-center p-0.5 sm:p-1 md:p-2 lg:p-3 xl:p-4 font-dm-sans font-semibold text-[#0176CE] text-[5px] xs:text-[6px] sm:text-[7px] md:text-[10px] lg:text-sm xl:text-base 2xl:text-lg leading-tight">
-                    Egress
-                    <br className="hidden xs:block" />
-                    <span className="text-[4px] xs:text-[5px] sm:text-[6px] md:text-[8px] lg:text-xs xl:text-sm font-normal">
-                      Cost/TiB
-                    </span>
-                  </th>
-                  <th className="text-center p-0.5 sm:p-1 md:p-2 lg:p-3 xl:p-4 font-dm-sans font-semibold text-[#0176CE] text-[5px] xs:text-[6px] sm:text-[7px] md:text-[10px] lg:text-sm xl:text-base 2xl:text-lg leading-tight">
-                    Data
-                    <br className="hidden xs:block" /> Own.
-                  </th>
-                  <th className="text-center p-0.5 sm:p-1 md:p-2 lg:p-3 xl:p-4 font-dm-sans font-semibold text-[#0176CE] text-[5px] xs:text-[6px] sm:text-[7px] md:text-[10px] lg:text-sm xl:text-base 2xl:text-lg leading-tight rounded-tr-lg md:rounded-tr-xl">
-                    Verify
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {competitors.map((comp, index) => (
-                  <tr
-                    key={comp.name}
-                    className={`${
-                      comp.highlight
-                        ? "bg-[#0176CE] text-white"
-                        : "bg-white text-[#0176CE]"
-                    }`}
+                  </div>
+                </div>
+
+                {/* Storage Cost */}
+                <div className="p-1 xs:p-1.5 sm:p-2 md:p-3 lg:p-4 xl:p-6 text-center">
+                  <div className="font-dm-sans font-bold text-[7px] xs:text-[8px] sm:text-[10px] md:text-sm lg:text-base xl:text-xl">
+                    {comp.storage}
+                  </div>
+                  <div
+                    className={`font-dm-sans text-[5px] xs:text-[6px] sm:text-[7px] md:text-[9px] lg:text-xs xl:text-sm text-[#0176CE]/70`}
                   >
-                    <td
-                      className={`p-0.5 sm:p-1 md:p-2 lg:p-3 xl:p-4 ${
-                        index === competitors.length - 1
-                          ? "rounded-bl-lg md:rounded-bl-xl"
-                          : ""
-                      }`}
-                    >
-                      <div className="flex items-center gap-0.5 sm:gap-1 md:gap-2 lg:gap-3">
-                        <Image
-                          src={comp.logo}
-                          alt={comp.name}
-                          width={16}
-                          height={16}
-                          className="w-2 h-2 xs:w-2.5 xs:h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4 lg:w-6 lg:h-6 xl:w-7 xl:h-7 flex-shrink-0"
-                        />
-                        <span className="font-dm-sans font-medium text-[6px] xs:text-[7px] sm:text-[8px] md:text-xs lg:text-base xl:text-lg 2xl:text-xl">
-                          {comp.name}
-                        </span>
-                      </div>
-                    </td>
-                    <td className="p-0.5 sm:p-1 md:p-2 lg:p-3 xl:p-4 text-center">
-                      <div className="font-dm-sans font-medium text-[6px] xs:text-[7px] sm:text-[8px] md:text-xs lg:text-base xl:text-lg 2xl:text-xl">
-                        {comp.storage}
-                      </div>
-                      <div
-                        className={`font-dm-sans text-[4px] xs:text-[5px] sm:text-[6px] md:text-[8px] lg:text-xs xl:text-sm ${
-                          comp.highlight ? "text-white/70" : "text-[#0176CE]/70"
-                        }`}
-                      >
-                        {comp.storageNote}
-                      </div>
-                    </td>
-                    <td className="p-0.5 sm:p-1 md:p-2 lg:p-3 xl:p-4 text-center">
-                      <div className="font-dm-sans font-medium text-[6px] xs:text-[7px] sm:text-[8px] md:text-xs lg:text-base xl:text-lg 2xl:text-xl">
-                        {comp.egress}
-                      </div>
-                      <div
-                        className={`font-dm-sans text-[4px] xs:text-[5px] sm:text-[6px] md:text-[8px] lg:text-xs xl:text-sm ${
-                          comp.highlight ? "text-white/70" : "text-[#0176CE]/70"
-                        }`}
-                      >
-                        {comp.egressNote}
-                      </div>
-                    </td>
-                    <td className="p-0.5 sm:p-1 md:p-2 lg:p-3 xl:p-4 text-center font-dm-sans font-medium text-[6px] xs:text-[7px] sm:text-[8px] md:text-xs lg:text-base xl:text-lg 2xl:text-xl">
-                      {comp.ownership ? "✓" : <span>❌</span>}
-                    </td>
-                    <td
-                      className={`p-0.5 sm:p-1 md:p-2 lg:p-3 xl:p-4 text-center font-dm-sans font-medium text-[6px] xs:text-[7px] sm:text-[8px] md:text-xs lg:text-base xl:text-lg 2xl:text-xl ${
-                        index === competitors.length - 1
-                          ? "rounded-br-lg md:rounded-br-xl"
-                          : ""
-                      }`}
-                    >
-                      {comp.verifiability ? "✓" : <span>❌</span>}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                    {comp.storageNote}
+                  </div>
+                </div>
+
+                {/* Egress Cost */}
+                <div className="p-1 xs:p-1.5 sm:p-2 md:p-3 lg:p-4 xl:p-6 text-center">
+                  <div className="font-dm-sans font-bold text-[7px] xs:text-[8px] sm:text-[10px] md:text-sm lg:text-base xl:text-xl">
+                    {comp.egress}
+                  </div>
+                  <div className="font-dm-sans text-[5px] xs:text-[6px] sm:text-[7px] md:text-[9px] lg:text-xs xl:text-sm text-[#0176CE]/70">
+                    {comp.egressNote}
+                  </div>
+                </div>
+
+                {/* Data Ownership - Replace with your SVG */}
+                <div className="p-1 xs:p-1.5 sm:p-2 md:p-3 lg:p-4 xl:p-6 flex justify-center">
+                  {comp.ownership ? (
+                    <div className="w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 xl:w-8 xl:h-8 rounded-full bg-green-500 flex items-center justify-center">
+                      <span className="text-white text-[6px] xs:text-[7px] sm:text-[8px] md:text-[10px] lg:text-xs xl:text-sm font-bold">
+                        ✓
+                      </span>
+                    </div>
+                  ) : (
+                    <span className="text-red-500 text-[10px] xs:text-xs sm:text-sm md:text-base lg:text-xl xl:text-2xl font-bold">
+                      ✕
+                    </span>
+                  )}
+                </div>
+
+                {/* Verifiability - Replace with your SVG */}
+                <div className="p-1 xs:p-1.5 sm:p-2 md:p-3 lg:p-4 xl:p-6 flex justify-center">
+                  {comp.verifiability ? (
+                    <div className="w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 xl:w-8 xl:h-8 rounded-full bg-green-500 flex items-center justify-center">
+                      <span className="text-white text-[6px] xs:text-[7px] sm:text-[8px] md:text-[10px] lg:text-xs xl:text-sm font-bold">
+                        ✓
+                      </span>
+                    </div>
+                  ) : (
+                    <span className="text-red-500 text-[10px] xs:text-xs sm:text-sm md:text-base lg:text-xl xl:text-2xl font-bold">
+                      ✕
+                    </span>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* Bar Chart and Calculator Section */}
-          <div className="grid lg:grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:gap-12 items-stretch">
+          {/* Bar Chart and Calculator Section - ALWAYS SIDE BY SIDE */}
+          <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 lg:gap-8 xl:gap-12 items-stretch">
             {/* LEFT: Bar Chart */}
-            <div className="order-2 lg:order-1 bg-white rounded-xl sm:rounded-2xl md:rounded-3xl border border-[#0176CE]/20 sm:border-2 p-2 sm:p-3 md:p-4 lg:p-6 xl:p-8 flex flex-col justify-between">
-              <div className="flex-1 flex items-end justify-center gap-1 sm:gap-1.5 md:gap-2 lg:gap-4 xl:gap-6 px-0.5 sm:px-1 min-h-[140px] sm:min-h-[180px] md:min-h-[240px] lg:min-h-[320px] xl:min-h-[380px]">
+            <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-3xl border border-[#0176CE]/20 sm:border-2 p-1.5 sm:p-2 md:p-3 lg:p-6 xl:p-8 flex flex-col justify-between">
+              <div className="flex-1 flex items-end justify-center gap-0.5 sm:gap-1 md:gap-2 lg:gap-4 xl:gap-6 px-0.5 min-h-[120px] sm:min-h-[160px] md:min-h-[220px] lg:min-h-[300px] xl:min-h-[380px]">
                 {chartData.map((item) => (
                   <div
                     key={item.company}
-                    className="flex flex-col items-center justify-end w-[40px] xs:w-[45px] sm:w-[50px] md:w-[55px] lg:w-[65px] xl:w-[70px]"
+                    className="flex flex-col items-center justify-end w-[32px] xs:w-[38px] sm:w-[45px] md:w-[52px] lg:w-[65px] xl:w-[70px]"
                   >
                     <p
                       className={`font-dm-sans ${
                         item.highlight
-                          ? "font-extrabold text-[7px] xs:text-[8px] sm:text-[9px] md:text-xs lg:text-sm xl:text-base 2xl:text-lg"
-                          : "font-medium text-[6px] xs:text-[7px] sm:text-[8px] md:text-[10px] lg:text-xs xl:text-sm 2xl:text-base"
+                          ? "font-extrabold text-[6px] xs:text-[7px] sm:text-[8px] md:text-[10px] lg:text-sm xl:text-base 2xl:text-lg"
+                          : "font-medium text-[5px] xs:text-[6px] sm:text-[7px] md:text-[9px] lg:text-xs xl:text-sm 2xl:text-base"
                       } text-[#0176CE] mb-0.5 sm:mb-1 md:mb-1.5 lg:mb-2 whitespace-nowrap`}
                     >
                       ${item.cost.toLocaleString()}/yr
@@ -216,12 +225,12 @@ export default function CostComparisonSection() {
                       alt={item.company}
                       width={40}
                       height={40}
-                      className="mt-1 sm:mt-1.5 md:mt-2 lg:mt-3 w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 xl:w-9 xl:h-9 object-contain"
+                      className="mt-0.5 sm:mt-1 md:mt-1.5 lg:mt-2 xl:mt-3 w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 xl:w-9 xl:h-9 object-contain"
                     />
                   </div>
                 ))}
               </div>
-              <p className="text-[#0176CE] text-[7px] xs:text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs xl:text-sm text-center mt-1.5 sm:mt-2 md:mt-3 lg:mt-4">
+              <p className="text-[#0176CE] text-[5px] xs:text-[6px] sm:text-[7px] md:text-[8px] lg:text-xs xl:text-sm text-center mt-1 sm:mt-2 md:mt-3 lg:mt-4">
                 *For {storage_TiB} TiB storage and{" "}
                 {((storage_TiB * egress_percent) / 100).toFixed(1)}TiB monthly
                 egress
@@ -229,26 +238,26 @@ export default function CostComparisonSection() {
             </div>
 
             {/* RIGHT: Calculator */}
-            <div className="order-1 lg:order-2 flex flex-col gap-2 sm:gap-3 md:gap-4 lg:gap-6">
+            <div className="flex flex-col gap-1.5 sm:gap-2 md:gap-3 lg:gap-4 xl:gap-6">
               {/* Savings Box */}
-              <div className="bg-white rounded-xl sm:rounded-2xl md:rounded-3xl border border-[#0176CE]/20 sm:border-2 shadow-sm sm:shadow-[0_4px_16px_rgba(1,118,206,0.08)] md:shadow-[0_8px_24px_rgba(1,118,206,0.12)] p-2 sm:p-3 md:p-4 lg:p-6 xl:p-8">
-                <div className="flex items-center justify-between gap-1.5 sm:gap-2 md:gap-3 lg:gap-4">
-                  <div>
-                    <p className="text-[#0176CE] text-[7px] xs:text-[8px] sm:text-[9px] md:text-xs lg:text-sm xl:text-base font-dm-sans mb-0.5 sm:mb-1">
+              <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-3xl border border-[#0176CE]/20 sm:border-2 shadow-sm sm:shadow-[0_4px_16px_rgba(1,118,206,0.08)] md:shadow-[0_8px_24px_rgba(1,118,206,0.12)] p-1.5 sm:p-2 md:p-3 lg:p-4 xl:p-6 2xl:p-8">
+                <div className="flex items-center justify-between gap-1 sm:gap-1.5 md:gap-2 lg:gap-3 xl:gap-4">
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[#0176CE] text-[6px] xs:text-[7px] sm:text-[8px] md:text-[9px] lg:text-xs xl:text-sm 2xl:text-base font-dm-sans mb-0.5 truncate">
                       Total Annual Savings
                     </p>
-                    <p className="font-epilogue font-bold text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl text-[#0176CE]">
+                    <p className="font-epilogue font-bold text-[11px] xs:text-xs sm:text-sm md:text-base lg:text-xl xl:text-2xl 2xl:text-4xl text-[#0176CE] truncate">
                       ${Math.round(costs.annual_savings).toLocaleString()}
                     </p>
                   </div>
-                  <div className="text-right">
-                    <p className="text-[#0176CE]/70 text-[7px] xs:text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-dm-sans mb-0.5 sm:mb-1">
+                  <div className="text-right flex-shrink-0">
+                    <p className="text-[#0176CE]/70 text-[6px] xs:text-[7px] sm:text-[8px] md:text-[9px] lg:text-xs font-dm-sans mb-0.5">
                       Up to
                     </p>
-                    <p className="font-epilogue font-bold text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl text-[#0176CE]">
+                    <p className="font-epilogue font-bold text-[11px] xs:text-xs sm:text-sm md:text-base lg:text-xl xl:text-2xl 2xl:text-4xl text-[#0176CE]">
                       {Math.round(costs.savings_percent)}%
                     </p>
-                    <p className="text-[#0089F0] text-[7px] xs:text-[8px] sm:text-[9px] md:text-xs lg:text-sm xl:text-base font-dm-sans font-semibold">
+                    <p className="text-[#0089F0] text-[6px] xs:text-[7px] sm:text-[8px] md:text-[9px] lg:text-xs xl:text-sm 2xl:text-base font-dm-sans font-semibold">
                       cheaper
                     </p>
                   </div>
@@ -256,15 +265,15 @@ export default function CostComparisonSection() {
               </div>
 
               {/* Sliders */}
-              <div className="space-y-2.5 sm:space-y-3 md:space-y-4 lg:space-y-6 xl:space-y-8">
+              <div className="space-y-1.5 sm:space-y-2 md:space-y-3 lg:space-y-4 xl:space-y-6">
                 {/* Storage Slider */}
                 <div>
-                  <div className="flex justify-between items-center mb-1.5 sm:mb-2 md:mb-2.5 lg:mb-3">
-                    <label className="font-dm-sans font-bold text-[#0176CE] text-[7px] xs:text-[8px] sm:text-[9px] md:text-xs lg:text-sm xl:text-base uppercase tracking-wider">
+                  <div className="flex justify-between items-center mb-1 sm:mb-1.5 md:mb-2">
+                    <label className="font-dm-sans font-bold text-[#0176CE] text-[6px] xs:text-[7px] sm:text-[8px] md:text-[9px] lg:text-xs xl:text-sm 2xl:text-base uppercase tracking-wider flex-1 min-w-0 truncate">
                       Storage Amount
                     </label>
-                    <div className="bg-white border border-[#0176CE] sm:border-2 rounded-full px-1.5 py-0.5 sm:px-2 sm:py-0.5 md:px-3 md:py-1 lg:px-4 lg:py-1.5">
-                      <span className="font-dm-sans font-bold text-[#0176CE] text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base 2xl:text-lg">
+                    <div className="bg-white border border-[#0176CE] sm:border-2 rounded-full px-1 py-0.5 sm:px-1.5 sm:py-0.5 md:px-2 md:py-0.5 lg:px-3 lg:py-1 xl:px-4 xl:py-1.5 flex-shrink-0 ml-1">
+                      <span className="font-dm-sans font-bold text-[#0176CE] text-[7px] xs:text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs xl:text-sm 2xl:text-base whitespace-nowrap">
                         {storage_TiB.toLocaleString()} TiB
                       </span>
                     </div>
@@ -276,7 +285,7 @@ export default function CostComparisonSection() {
                     step="100"
                     value={storage_TiB}
                     onChange={(e) => setStorage_TiB(Number(e.target.value))}
-                    className="w-full h-1.5 sm:h-2 md:h-2.5 lg:h-3 rounded-lg appearance-none cursor-pointer"
+                    className="w-full h-1 sm:h-1.5 md:h-2 lg:h-2.5 xl:h-3 rounded-lg appearance-none cursor-pointer"
                     style={{
                       background: `linear-gradient(to right, #0176CE 0%, #0176CE ${
                         ((storage_TiB - 100) / (10000 - 100)) * 100
@@ -285,7 +294,7 @@ export default function CostComparisonSection() {
                       }%, #C5DFFD 100%)`,
                     }}
                   />
-                  <div className="flex justify-between text-[6px] xs:text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px] xl:text-xs text-[#0176CE]/60 mt-0.5 sm:mt-1">
+                  <div className="flex justify-between text-[5px] xs:text-[6px] sm:text-[7px] md:text-[8px] lg:text-[9px] xl:text-xs text-[#0176CE]/60 mt-0.5">
                     <span>100</span>
                     <span>10,000</span>
                   </div>
@@ -293,12 +302,12 @@ export default function CostComparisonSection() {
 
                 {/* Egress Slider */}
                 <div>
-                  <div className="flex justify-between items-center mb-1.5 sm:mb-2 md:mb-2.5 lg:mb-3">
-                    <label className="font-dm-sans font-bold text-[#0176CE] text-[7px] xs:text-[8px] sm:text-[9px] md:text-xs lg:text-sm xl:text-base uppercase tracking-wider">
+                  <div className="flex justify-between items-center mb-1 sm:mb-1.5 md:mb-2">
+                    <label className="font-dm-sans font-bold text-[#0176CE] text-[6px] xs:text-[7px] sm:text-[8px] md:text-[9px] lg:text-xs xl:text-sm 2xl:text-base uppercase tracking-wider flex-1 min-w-0 truncate">
                       Percent Download/Mo
                     </label>
-                    <div className="bg-white border border-[#0176CE] sm:border-2 rounded-full px-1.5 py-0.5 sm:px-2 sm:py-0.5 md:px-3 md:py-1 lg:px-4 lg:py-1.5">
-                      <span className="font-dm-sans font-bold text-[#0176CE] text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base 2xl:text-lg">
+                    <div className="bg-white border border-[#0176CE] sm:border-2 rounded-full px-1 py-0.5 sm:px-1.5 sm:py-0.5 md:px-2 md:py-0.5 lg:px-3 lg:py-1 xl:px-4 xl:py-1.5 flex-shrink-0 ml-1">
+                      <span className="font-dm-sans font-bold text-[#0176CE] text-[7px] xs:text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs xl:text-sm 2xl:text-base">
                         {egress_percent}%
                       </span>
                     </div>
@@ -310,12 +319,12 @@ export default function CostComparisonSection() {
                     step="1"
                     value={egress_percent}
                     onChange={(e) => setEgress_percent(Number(e.target.value))}
-                    className="w-full h-1.5 sm:h-2 md:h-2.5 lg:h-3 rounded-lg appearance-none cursor-pointer"
+                    className="w-full h-1 sm:h-1.5 md:h-2 lg:h-2.5 xl:h-3 rounded-lg appearance-none cursor-pointer"
                     style={{
                       background: `linear-gradient(to right, #0176CE 0%, #0176CE ${egress_percent}%, #C5DFFD ${egress_percent}%, #C5DFFD 100%)`,
                     }}
                   />
-                  <div className="flex justify-between text-[6px] xs:text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px] xl:text-xs text-[#0176CE]/60 mt-0.5 sm:mt-1">
+                  <div className="flex justify-between text-[5px] xs:text-[6px] sm:text-[7px] md:text-[8px] lg:text-[9px] xl:text-xs text-[#0176CE]/60 mt-0.5">
                     <span>0%</span>
                     <span>100%</span>
                   </div>
@@ -323,7 +332,7 @@ export default function CostComparisonSection() {
               </div>
 
               {/* Text Below Sliders */}
-              <p className="text-[#0176CE] text-[9px] xs:text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl leading-relaxed font-dm-sans">
+              <p className="text-[#0176CE] text-[7px] xs:text-[8px] sm:text-[9px] md:text-[10px] lg:text-sm xl:text-base 2xl:text-lg leading-relaxed font-dm-sans">
                 Transparent{" "}
                 <span className="font-bold">
                   flat-rate pricing, decentralized storage
