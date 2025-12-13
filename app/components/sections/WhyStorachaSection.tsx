@@ -107,8 +107,8 @@ export default function WhyStorachaSection() {
                   onClick={() => setActiveFeature(index)}
                   className={`relative p-2 sm:p-3 md:p-4 rounded-xl transition-all duration-300 text-left ${
                     activeFeature === index
-                      ? "bg-white text-[#0176CE] shadow-lg scale-[1.02]"
-                      : "bg-transparent text-[#0176CE] border-2 border-white hover:bg-white/20"
+                      ? "bg-[#0176CE] text-white shadow-lg scale-[1.02]"
+                      : "bg-white text-[#0176CE] hover:bg-white/80"
                   }`}
                 >
                   <div className="flex items-start gap-1.5 sm:gap-2">
@@ -117,21 +117,29 @@ export default function WhyStorachaSection() {
                       alt=""
                       width={24}
                       height={24}
-                      className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 flex-shrink-0 mt-0.5"
+                      className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 flex-shrink-0 mt-0.5 `}
                     />
-                    <p className="font-dm-sans font-semibold text-[10px] sm:text-xs md:text-sm leading-tight break-words">
+                    <p className="font-dm-sans font-medium text-[10px] sm:text-xs md:text-sm leading-tight break-words">
                       {feature.title}
                     </p>
                   </div>
                   {activeFeature === index && (
-                    <div className="absolute -top-1 -right-1">
-                      <Image
-                        src="/forge/features/checkmark.svg"
-                        alt=""
-                        width={20}
-                        height={20}
-                        className="w-4 h-4 md:w-5 md:h-5"
-                      />
+                    <div className="absolute -top-1.5 -right-1.5">
+                      <div className="w-4 h-4 md:w-5 md:h-5 bg-green-500 rounded-full flex items-center justify-center">
+                        <svg
+                          className="w-2.5 h-2.5 md:w-3 md:h-3 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={3}
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                      </div>
                     </div>
                   )}
                 </button>
@@ -141,13 +149,13 @@ export default function WhyStorachaSection() {
 
           {/* Desktop: 3-column layout */}
           <div className="hidden lg:block bg-[#C5DFFD] rounded-[24px] xl:rounded-[32px] p-6 xl:p-10">
-            <div className="grid grid-cols-[1fr_2fr_1fr] gap-6 xl:gap-10 items-center">
+            <div className="grid grid-cols-[1fr_1.5fr_1fr] gap-6 xl:gap-10 items-center">
               {/* Left Column - First 4 features */}
               <div className="space-y-3 xl:space-y-4">
                 {leftFeatures.map((feature, index) => (
                   <button
                     key={feature.title}
-                    onClick={() => setActiveFeature(index)}
+                    onMouseEnter={() => setActiveFeature(index)}
                     className={`w-full relative p-4 xl:p-5 rounded-xl xl:rounded-2xl transition-all duration-300 text-left ${
                       activeFeature === index
                         ? "bg-[#0176CE] text-white scale-[1.02] shadow-lg"
@@ -160,21 +168,29 @@ export default function WhyStorachaSection() {
                         alt=""
                         width={28}
                         height={28}
-                        className="w-6 h-6 xl:w-7 xl:h-7 flex-shrink-0"
+                        className={`w-6 h-6 xl:w-7 xl:h-7 flex-shrink-0`}
                       />
-                      <p className="font-dm-sans font-semibold text-sm xl:text-base leading-tight">
+                      <p className="font-dm-sans font-medium text-sm xl:text-base leading-tight">
                         {feature.title}
                       </p>
                     </div>
                     {activeFeature === index && (
-                      <div className="absolute -right-1 top-1/2 -translate-y-1/2">
-                        <Image
-                          src="/forge/features/checkmark.svg"
-                          alt=""
-                          width={20}
-                          height={20}
-                          className="w-4 h-4 xl:w-5 xl:h-5"
-                        />
+                      <div className="absolute -top-2 -right-2">
+                        <div className="w-5 h-5 xl:w-6 xl:h-6 bg-green-500 rounded-full flex items-center justify-center">
+                          <svg
+                            className="w-3 h-3 xl:w-4 xl:h-4 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={3}
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                        </div>
                       </div>
                     )}
                   </button>
@@ -182,9 +198,9 @@ export default function WhyStorachaSection() {
               </div>
 
               {/* Center - Active Feature Card */}
-              <div className="bg-[#0176CE] rounded-2xl xl:rounded-3xl p-6 xl:p-8 flex items-center">
+              <div className="bg-[#0176CE] rounded-2xl xl:rounded-3xl p-6 xl:p-8 flex items-center min-h-[280px] xl:min-h-[320px]">
                 <div className="flex flex-col items-center text-center space-y-4 xl:space-y-5 w-full">
-                  <div className="w-16 h-16 xl:w-20 xl:h-20 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center">
+                  <div className="w-16 h-16 xl:w-20 xl:h-20 bg-[#C5DFFD] rounded-full flex items-center justify-center">
                     <Image
                       src={features[activeFeature].icon}
                       alt={features[activeFeature].title}
@@ -209,7 +225,7 @@ export default function WhyStorachaSection() {
                   return (
                     <button
                       key={feature.title}
-                      onClick={() => setActiveFeature(featureIndex)}
+                      onMouseEnter={() => setActiveFeature(featureIndex)}
                       className={`w-full relative p-4 xl:p-5 rounded-xl xl:rounded-2xl transition-all duration-300 text-left ${
                         activeFeature === featureIndex
                           ? "bg-[#0176CE] text-white scale-[1.02] shadow-lg"
@@ -222,21 +238,29 @@ export default function WhyStorachaSection() {
                           alt=""
                           width={28}
                           height={28}
-                          className="w-6 h-6 xl:w-7 xl:h-7 flex-shrink-0"
+                          className={`w-6 h-6 xl:w-7 xl:h-7 flex-shrink-0 `}
                         />
-                        <p className="font-dm-sans font-semibold text-sm xl:text-base leading-tight">
+                        <p className="font-dm-sans font-medium text-sm xl:text-base leading-tight">
                           {feature.title}
                         </p>
                       </div>
                       {activeFeature === featureIndex && (
-                        <div className="absolute -left-1 top-1/2 -translate-y-1/2">
-                          <Image
-                            src="/forge/features/checkmark.svg"
-                            alt=""
-                            width={20}
-                            height={20}
-                            className="w-4 h-4 xl:w-5 xl:h-5"
-                          />
+                        <div className="absolute -top-2 -right-2">
+                          <div className="w-5 h-5 xl:w-6 xl:h-6 bg-green-500 rounded-full flex items-center justify-center">
+                            <svg
+                              className="w-3 h-3 xl:w-4 xl:h-4 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={3}
+                                d="M5 13l4 4L19 7"
+                              />
+                            </svg>
+                          </div>
                         </div>
                       )}
                     </button>
