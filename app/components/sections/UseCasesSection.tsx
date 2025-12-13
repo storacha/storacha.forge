@@ -32,6 +32,7 @@ export default function UseCasesSection() {
     },
   ];
 
+  // Auto-rotation effect
   useEffect(() => {
     if (!isAutoPlaying) return;
 
@@ -41,6 +42,17 @@ export default function UseCasesSection() {
 
     return () => clearInterval(interval);
   }, [isAutoPlaying, useCases.length]);
+
+  // Resume auto-rotation after 8 seconds of user inactivity
+  useEffect(() => {
+    if (isAutoPlaying) return;
+
+    const resumeTimer = setTimeout(() => {
+      setIsAutoPlaying(true);
+    }, 8000);
+
+    return () => clearTimeout(resumeTimer);
+  }, [isAutoPlaying]);
 
   const handlePrev = () => {
     setIsAutoPlaying(false);
@@ -175,6 +187,8 @@ export default function UseCasesSection() {
                 />
               </svg>
             </button>
+
+
           </div>
         </div>
       </div>
