@@ -52,13 +52,17 @@ export default function UseCasesSection() {
     setCurrentIndex((prev) => (prev + 1) % useCases.length);
   };
 
-  const getVisibleCards = () => {
-    const prev = (currentIndex - 1 + useCases.length) % useCases.length;
-    const next = (currentIndex + 1) % useCases.length;
-    return [prev, currentIndex, next];
-  };
+  // Calculate position offset for each card relative to current
+  const getCardPosition = (cardIndex: number) => {
+    const totalCards = useCases.length;
+    let offset = cardIndex - currentIndex;
 
-  const visibleIndices = getVisibleCards();
+    // Handle wrapping for circular carousel
+    if (offset > totalCards / 2) offset -= totalCards;
+    if (offset < -totalCards / 2) offset += totalCards;
+
+    return offset;
+  };
 
   return (
     <section
@@ -73,19 +77,31 @@ export default function UseCasesSection() {
 
           {/* Carousel */}
           <div className="relative">
-            <div className="flex items-center justify-center gap-2 md:gap-4 lg:gap-6 px-4 md:px-8">
-              {visibleIndices.map((index, position) => {
-                const useCase = useCases[index];
-                const isCenter = position === 1;
+            {/* Cards Container */}
+            <div className="relative flex items-center justify-center min-h-[400px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[550px] px-12 md:px-16 lg:px-20">
+              {useCases.map((useCase, index) => {
+                const position = getCardPosition(index);
+                const isCenter = position === 0;
+                const isVisible = Math.abs(position) <= 1;
+
+                // Calculate transform values based on position
+                // Center: 0, Left: -110%, Right: +110%
+                const translateX = position * 110;
+                const scale = isCenter ? 1 : 0.75;
+                const opacity = isCenter ? 1 : 0.4;
+                const zIndex = isCenter ? 20 : 10 - Math.abs(position);
 
                 return (
                   <div
                     key={index}
-                    className={`transition-all duration-500 ${
-                      isCenter
-                        ? "scale-100 opacity-100 z-10 w-full max-w-md lg:max-w-lg"
-                        : "scale-75 opacity-40 w-full max-w-xs lg:max-w-md hidden md:block"
+                    className={`absolute transition-all duration-700 ease-out w-full max-w-[280px] sm:max-w-[320px] md:max-w-md lg:max-w-lg ${
+                      !isVisible ? "pointer-events-none" : ""
                     }`}
+                    style={{
+                      transform: `translateX(${translateX}%) scale(${scale})`,
+                      opacity: isVisible ? opacity : 0,
+                      zIndex,
+                    }}
                   >
                     <div className="border border-[#0176CE] rounded-[20px] overflow-hidden bg-white shadow-lg">
                       <div className="bg-[#0176CE] px-4 py-3 sm:px-6 sm:py-4 md:px-9 md:py-5">
@@ -122,7 +138,7 @@ export default function UseCasesSection() {
             {/* Navigation Arrows */}
             <button
               onClick={handlePrev}
-              className="absolute left-0 top-1/2 -translate-y-1/2 bg-[#0176CE] text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center hover:bg-[#0089F0] transition-colors shadow-lg z-20"
+              className="absolute left-0 sm:left-2 md:left-4 top-1/2 -translate-y-1/2 bg-[#0176CE] text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center hover:bg-[#0089F0] transition-colors shadow-lg z-30"
               aria-label="Previous use case"
             >
               <svg
@@ -142,7 +158,7 @@ export default function UseCasesSection() {
 
             <button
               onClick={handleNext}
-              className="absolute right-0 top-1/2 -translate-y-1/2 bg-[#0176CE] text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center hover:bg-[#0089F0] transition-colors shadow-lg z-20"
+              className="absolute right-0 sm:right-2 md:right-4 top-1/2 -translate-y-1/2 bg-[#0176CE] text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center hover:bg-[#0089F0] transition-colors shadow-lg z-30"
               aria-label="Next use case"
             >
               <svg
@@ -169,10 +185,10 @@ export default function UseCasesSection() {
                     setIsAutoPlaying(false);
                     setCurrentIndex(index);
                   }}
-                  className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all ${
+                  className={`h-2 md:h-3 rounded-full transition-all duration-300 ${
                     index === currentIndex
                       ? "bg-[#0176CE] w-6 md:w-8"
-                      : "bg-[#0176CE]/30"
+                      : "bg-[#0176CE]/30 w-2 md:w-3"
                   }`}
                   aria-label={`Go to use case ${index + 1}`}
                 />
