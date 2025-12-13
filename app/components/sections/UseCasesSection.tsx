@@ -175,25 +175,6 @@ export default function UseCasesSection() {
                 />
               </svg>
             </button>
-
-            {/* Dots Indicator */}
-            <div className="flex justify-center gap-2 mt-6 md:mt-8">
-              {useCases.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    setIsAutoPlaying(false);
-                    setCurrentIndex(index);
-                  }}
-                  className={`h-2 md:h-3 rounded-full transition-all duration-300 ${
-                    index === currentIndex
-                      ? "bg-[#0176CE] w-6 md:w-8"
-                      : "bg-[#0176CE]/30 w-2 md:w-3"
-                  }`}
-                  aria-label={`Go to use case ${index + 1}`}
-                />
-              ))}
-            </div>
           </div>
         </div>
       </div>
