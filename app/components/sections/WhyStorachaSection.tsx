@@ -111,7 +111,7 @@ export default function WhyStorachaSection() {
                       : "bg-white text-[#0176CE] hover:bg-white/80"
                   }`}
                 >
-                  <div className="flex items-start gap-1.5 sm:gap-2">
+                  <div className="flex items-start gap-1.5 sm:gap-2 w-full">
                     <Image
                       src={feature.icon}
                       alt=""
@@ -122,26 +122,26 @@ export default function WhyStorachaSection() {
                     <p className="font-dm-sans font-medium text-[10px] sm:text-xs md:text-sm leading-tight break-words">
                       {feature.title}
                     </p>
-                  </div>
-                  {activeFeature === index && (
-                    <div className="absolute -top-1.5 -right-1.5">
-                      <div className="w-4 h-4 md:w-5 md:h-5 bg-green-500 rounded-full flex items-center justify-center">
-                        <svg
-                          className="w-2.5 h-2.5 md:w-3 md:h-3 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={3}
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
+                    {activeFeature === index && (
+                      <div className="ml-auto flex-shrink-0">
+                        <div className="w-4 h-4 md:w-5 md:h-5 bg-green-500 rounded-full flex items-center justify-center">
+                          <svg
+                            className="w-2.5 h-2.5 md:w-3 md:h-3 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={3}
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </button>
               ))}
             </div>
@@ -162,7 +162,7 @@ export default function WhyStorachaSection() {
                         : "bg-white text-[#0176CE] hover:scale-[1.02] hover:shadow-md"
                     }`}
                   >
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 w-full">
                       <Image
                         src={feature.icon}
                         alt=""
@@ -173,24 +173,30 @@ export default function WhyStorachaSection() {
                       <p className="font-dm-sans font-medium text-sm xl:text-base leading-tight">
                         {feature.title}
                       </p>
-                    </div>
-                    {activeFeature === index && (
-                      <div className="absolute -top-2 -right-2">
-                        <div className="w-5 h-5 xl:w-6 xl:h-6 bg-green-500 rounded-full flex items-center justify-center">
-                          <svg
-                            className="w-3 h-3 xl:w-4 xl:h-4 text-white"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={3}
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
+                      {activeFeature === index && (
+                        <div className="ml-auto flex-shrink-0">
+                          <div className="w-5 h-5 xl:w-6 xl:h-6 bg-green-500 rounded-full flex items-center justify-center">
+                            <svg
+                              className="w-3 h-3 xl:w-4 xl:h-4 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={3}
+                                d="M5 13l4 4L19 7"
+                              />
+                            </svg>
+                          </div>
                         </div>
+                      )}
+                    </div>
+                    {/* Beak pointing right toward center */}
+                    {activeFeature === index && (
+                      <div className="absolute top-1/2 -right-3 -translate-y-1/2">
+                        <div className="w-0 h-0 border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent border-l-[12px] border-l-[#0176CE]"></div>
                       </div>
                     )}
                   </button>
@@ -232,7 +238,7 @@ export default function WhyStorachaSection() {
                           : "bg-white text-[#0176CE] hover:scale-[1.02] hover:shadow-md"
                       }`}
                     >
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-3 w-full">
                         <Image
                           src={feature.icon}
                           alt=""
@@ -243,24 +249,30 @@ export default function WhyStorachaSection() {
                         <p className="font-dm-sans font-medium text-sm xl:text-base leading-tight">
                           {feature.title}
                         </p>
-                      </div>
-                      {activeFeature === featureIndex && (
-                        <div className="absolute -top-2 -right-2">
-                          <div className="w-5 h-5 xl:w-6 xl:h-6 bg-green-500 rounded-full flex items-center justify-center">
-                            <svg
-                              className="w-3 h-3 xl:w-4 xl:h-4 text-white"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={3}
-                                d="M5 13l4 4L19 7"
-                              />
-                            </svg>
+                        {activeFeature === featureIndex && (
+                          <div className="ml-auto flex-shrink-0">
+                            <div className="w-5 h-5 xl:w-6 xl:h-6 bg-green-500 rounded-full flex items-center justify-center">
+                              <svg
+                                className="w-3 h-3 xl:w-4 xl:h-4 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={3}
+                                  d="M5 13l4 4L19 7"
+                                />
+                              </svg>
+                            </div>
                           </div>
+                        )}
+                      </div>
+                      {/* Beak pointing left toward center */}
+                      {activeFeature === featureIndex && (
+                        <div className="absolute top-1/2 -left-3 -translate-y-1/2">
+                          <div className="w-0 h-0 border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent border-r-[12px] border-r-[#0176CE]"></div>
                         </div>
                       )}
                     </button>
