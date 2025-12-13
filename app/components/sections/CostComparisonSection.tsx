@@ -10,18 +10,24 @@ import {
 export default function CostComparisonSection() {
   const [storage_TiB, setStorage_TiB] = useState(100);
   const [egress_percent, setEgress_percent] = useState(5);
-  const [screenSize, setScreenSize] = useState<"mobile" | "tablet" | "desktop">(
-    "desktop"
-  );
+  const [screenSize, setScreenSize] = useState<
+    "mobileS" | "mobile" | "tablet" | "laptop" | "desktop" | "desktop4k"
+  >("desktop");
 
   useEffect(() => {
     const updateScreenSize = () => {
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 375) {
+        setScreenSize("mobileS");
+      } else if (window.innerWidth < 768) {
         setScreenSize("mobile");
       } else if (window.innerWidth < 1024) {
         setScreenSize("tablet");
-      } else {
+      } else if (window.innerWidth < 1440) {
+        setScreenSize("laptop");
+      } else if (window.innerWidth < 2560) {
         setScreenSize("desktop");
+      } else {
+        setScreenSize("desktop4k");
       }
     };
 
@@ -151,28 +157,28 @@ export default function CostComparisonSection() {
           <div className="w-full rounded-[8px] sm:rounded-xl md:rounded-2xl lg:rounded-3xl overflow-hidden shadow-sm">
             {/* Table Header  */}
             <div className="bg-white grid grid-cols-[1.8fr_1fr_1fr_0.9fr_0.9fr] items-center">
-              <div className="p-1.5 sm:p-2 md:p-3 lg:p-4 xl:p-6">
-                <span className="font-dm-sans font-medium text-[#0176CE] text-[4.5px] sm:text-[8px] md:text-xs lg:text-base xl:text-xl">
+              <div className="px-1 sm:p-1 md:p-2 lg:p-4 xl:p-6">
+                <span className="font-dm-sans font-medium text-[#0176CE] text-[4px] min-[375px]:text-[6px] sm:text-xs  lg:text-base xl:text-xl">
                   Provider
                 </span>
               </div>
-              <div className="p-1.5 sm:p-2 md:p-3 lg:p-4 xl:p-6 text-center">
-                <span className="font-dm-sans font-medium text-[#0176CE] text-[4.5px] sm:text-[8px] md:text-xs lg:text-base xl:text-xl">
+              <div className=" px-1 sm:p-1 md:p-3 lg:p-4 xl:p-6 text-center">
+                <span className="font-dm-sans font-medium text-[#0176CE] text-[4px] min-[375px]:text-[6px] sm:text-xs  lg:text-base xl:text-xl">
                   Storage Cost
                 </span>
               </div>
-              <div className="p-1.5 sm:p-2 md:p-3 lg:p-4 xl:p-6 text-center">
-                <span className="font-dm-sans font-medium text-[#0176CE] text-[4.5px] sm:text-[8px] md:text-xs lg:text-base xl:text-xl">
+              <div className="px-1 sm:p-1 md:p-3 lg:p-4 xl:p-6 text-center">
+                <span className="font-dm-sans font-medium text-[#0176CE] text-[4px] min-[375px]:text-[6px] sm:text-xs  lg:text-base xl:text-xl">
                   Egress Cost
                 </span>
               </div>
-              <div className="p-1.5 sm:p-2 md:p-3 lg:p-4 xl:p-6 text-center">
-                <span className="font-dm-sans font-medium text-[#0176CE] text-[4.5px] sm:text-[8px] md:text-xs lg:text-base xl:text-xl">
+              <div className=" px-1 sm:p-1 md:p-3 lg:p-4 xl:p-6 text-center">
+                <span className="font-dm-sans font-medium text-[#0176CE] text-[4px] min-[375px]:text-[6px] sm:text-xs  lg:text-base xl:text-xl">
                   Data Ownership
                 </span>
               </div>
-              <div className="p-1.5 sm:p-2 md:p-3 lg:p-4 xl:p-6 text-center">
-                <span className="font-dm-sans font-medium text-[#0176CE] text-[4.5px] sm:text-[8px] md:text-xs lg:text-base xl:text-xl">
+              <div className="px-1 sm:p-1 md:p-3 lg:p-4 xl:p-6 text-center">
+                <span className="font-dm-sans font-medium text-[#0176CE] text-[4px] min-[375px]:text-[6px] sm:text-xs  lg:text-base xl:text-xl">
                   Verifiability
                 </span>
               </div>
@@ -269,7 +275,7 @@ export default function CostComparisonSection() {
               </h3>
 
               {/* Bar chart container with relative positioning for transform-based animation */}
-              <div className="flex-1 flex items-end justify-center px-0.5 min-h-[120px] sm:min-h-[160px] md:min-h-[220px] lg:min-h-[300px] xl:min-h-[380px]">
+              <div className="flex-1 flex items-end justify-center px-0.5 min-h-[100px] sm:min-h-[130px] md:min-h-[200px] lg:min-h-[260px] xl:min-h-[320px] 2xl:min-h-[380px]">
                 <div className="relative flex items-end justify-center w-full">
                   {/* We render bars in a fixed order (by company name) but use transform to position them */}
                   {["Storacha", "Azure", "Google", "Amazon"].map(
@@ -282,37 +288,53 @@ export default function CostComparisonSection() {
                       );
 
                       // Calculate position based on sorted index
-                      // Bar width + gap for each position
-                      const barWidth =
-                        screenSize === "mobile"
-                          ? 28
-                          : screenSize === "tablet"
-                          ? 44
-                          : 58;
-                      const gap =
-                        screenSize === "mobile"
-                          ? 12
-                          : screenSize === "tablet"
-                          ? 20
-                          : 28;
+                      // Bar width + gap for each position - adjusted per screen size
+                      const barWidths: Record<string, number> = {
+                        mobileS: 22,
+                        mobile: 28,
+                        tablet: 40,
+                        laptop: 48,
+                        desktop: 55,
+                        desktop4k: 65,
+                      };
+                      const gaps: Record<string, number> = {
+                        mobileS: 6,
+                        mobile: 12,
+                        tablet: 16,
+                        laptop: 22,
+                        desktop: 32,
+                        desktop4k: 50,
+                      };
+
+                      const barWidth = barWidths[screenSize];
+                      const gap = gaps[screenSize];
                       const totalWidth = (barWidth + gap) * 4 - gap;
                       const startOffset = -totalWidth / 2 + barWidth / 2;
                       const xPosition =
                         startOffset + sortedIndex * (barWidth + gap);
 
+                      // Map granular screen sizes to cost calculator's mobile/tablet/desktop
+                      const heightKey =
+                        screenSize === "mobileS" || screenSize === "mobile"
+                          ? "mobile"
+                          : screenSize === "tablet" || screenSize === "laptop"
+                          ? "tablet"
+                          : "desktop";
+
                       return (
                         <div
                           key={item.company}
-                          className="absolute flex flex-col items-center justify-end w-[28px] sm:w-[44px] md:w-[44px] lg:w-[58px] xl:w-[58px] transition-transform duration-700 ease-out"
+                          className="absolute flex flex-col items-center justify-end w-[22px] xs:w-[28px] sm:w-[28px] md:w-[40px] lg:w-[48px] xl:w-[55px] 2xl:w-[65px] transition-transform duration-700 ease-out"
                           style={{
                             transform: `translateX(${xPosition}px)`,
+                            width: `${barWidth}px`,
                           }}
                         >
                           <p
                             className={`font-dm-sans ${
                               item.highlight
-                                ? "font-extrabold text-[5px] sm:text-[7px] md:text-[9px] lg:text-xs xl:text-sm 2xl:text-base"
-                                : "font-medium text-[4px] sm:text-[6px] md:text-[8px] lg:text-[10px] xl:text-xs 2xl:text-sm"
+                                ? "font-extrabold text-[4px] xs:text-[5px] sm:text-[7px] md:text-[8px] lg:text-[10px] xl:text-xs 2xl:text-sm"
+                                : "font-medium text-[3.5px] xs:text-[4px] sm:text-[6px] md:text-[7px] lg:text-[9px] xl:text-[11px] 2xl:text-xs"
                             } text-[#0176CE] mb-0.5 sm:mb-1 md:mb-1.5 lg:mb-2 whitespace-nowrap transition-all duration-700 ease-out`}
                           >
                             ${item.cost.toLocaleString()}/yr
@@ -323,14 +345,14 @@ export default function CostComparisonSection() {
                                 ? "bg-[#0176CE]"
                                 : "bg-gradient-to-b from-white via-[#d4ebff] to-[#5ba8e3]"
                             }`}
-                            style={{ height: `${item.height[screenSize]}px` }}
+                            style={{ height: `${item.height[heightKey]}px` }}
                           />
                           <Image
                             src={item.logo}
                             alt={item.company}
                             width={40}
                             height={40}
-                            className="mt-0.5 sm:mt-1 md:mt-1.5 lg:mt-2 xl:mt-3 w-2.5 h-2.5 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7 object-contain"
+                            className="mt-0.5 sm:mt-1 md:mt-1.5 lg:mt-2 xl:mt-3 w-2 h-2 xs:w-2.5 xs:h-2.5 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7 object-contain"
                           />
                         </div>
                       );

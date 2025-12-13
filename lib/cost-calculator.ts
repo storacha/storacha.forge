@@ -85,8 +85,8 @@ export function calculateBarHeights(
 
     const MAX_HEIGHTS = {
         mobile: 138,
-        tablet: 225,
-        desktop: 300,
+        tablet: 170,
+        desktop: 280,
     };
 
     const calculateHeight = (cost: number) => ({
