@@ -8,10 +8,28 @@ export default function Footer() {
   const plausible = usePlausible();
 
   return (
-    <footer className="bg-[#C5DFFD] border-t border-[#0176CE]/20 pt-12 md:pt-16 lg:pt-20 pb-6 md:pb-8 lg:pb-10">
-      <div className="container-custom">
-        {/* Navigation Links */}
-        <div className="flex flex-wrap justify-between gap-8 md:gap-4 mb-12 md:mb-16 lg:mb-20">
+    <footer
+      className="bg-[#C5DFFD] border-t border-[#0176CE]/20 
+      py-4 px-3
+      xs:py-5 xs:px-4
+      sm:py-6 sm:px-6
+      md:py-8 md:px-10
+      lg:py-10 lg:px-14
+      xl:py-[60px] xl:px-[70px]
+      2xl:py-[60px] 2xl:px-[70px]"
+    >
+      <div className="max-w-[1800px] mx-auto">
+        {/* Navigation Links - Always single row */}
+        <div
+          className="flex justify-between items-center
+          mb-3
+          xs:mb-4
+          sm:mb-5
+          md:mb-6
+          lg:mb-8
+          xl:mb-10
+          2xl:mb-10"
+        >
           <Link
             href="#why"
             onClick={() =>
@@ -19,7 +37,9 @@ export default function Footer() {
                 props: { section: "why-storacha" },
               })
             }
-            className="text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline"
+            className="text-[#0176CE] font-dm-sans 
+              text-[6px] xs:text-[8px] sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
+              font-semibold hover:underline whitespace-nowrap"
           >
             Why Storacha
           </Link>
@@ -31,7 +51,9 @@ export default function Footer() {
                 props: { section: "use-cases" },
               })
             }
-            className="text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline"
+            className="text-[#0176CE] font-dm-sans 
+              text-[6px] xs:text-[8px] sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
+              font-semibold hover:underline whitespace-nowrap"
           >
             Use Cases
           </Link>
@@ -43,7 +65,9 @@ export default function Footer() {
                 props: { section: "success-stories" },
               })
             }
-            className="text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline"
+            className="text-[#0176CE] font-dm-sans 
+              text-[6px] xs:text-[8px] sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
+              font-semibold hover:underline whitespace-nowrap"
           >
             Success Stories
           </Link>
@@ -55,7 +79,9 @@ export default function Footer() {
                 props: { section: "pricing" },
               })
             }
-            className="text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline"
+            className="text-[#0176CE] font-dm-sans 
+              text-[6px] xs:text-[8px] sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
+              font-semibold hover:underline whitespace-nowrap"
           >
             Pricing
           </Link>
@@ -67,19 +93,30 @@ export default function Footer() {
                 props: { section: "cost-comparison" },
               })
             }
-            className="text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline"
+            className="text-[#0176CE] font-dm-sans 
+              text-[6px] xs:text-[8px] sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
+              font-semibold hover:underline whitespace-nowrap"
           >
             Cost Comparison
           </Link>
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-[#0176CE]/20 mb-6 md:mb-8"></div>
+        <div
+          className="h-px bg-[#0176CE]/20 
+          mb-3
+          xs:mb-4
+          sm:mb-5
+          md:mb-6
+          lg:mb-8
+          xl:mb-10
+          2xl:mb-10"
+        ></div>
 
-        {/* Bottom Row */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+        {/* Bottom Row - Always horizontal: Logo left, Links right */}
+        <div className="flex flex-row items-center justify-between">
           {/* Logo */}
-          <Link href="/">
+          <Link href="/" className="flex items-center flex-shrink-0">
             <Image
               src="/forge/logos/storacha-logo-blue.svg"
               alt="Storacha"
@@ -88,12 +125,15 @@ export default function Footer() {
               }
               width={140}
               height={50}
-              className="h-8 md:h-10 lg:h-12 w-auto cursor-pointer"
+              className="h-4 xs:h-5 sm:h-6 md:h-8 lg:h-10 xl:h-11 2xl:h-12 w-auto cursor-pointer"
             />
           </Link>
 
-          {/* Links */}
-          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
+          {/* Links - Right aligned, always horizontal */}
+          <div
+            className="flex items-center flex-shrink-0
+            gap-2 xs:gap-3 sm:gap-4 md:gap-6 lg:gap-10 xl:gap-12 2xl:gap-14"
+          >
             <Link
               href="https://docs.storacha.network/privacy-policy/"
               onClick={() =>
@@ -103,7 +143,9 @@ export default function Footer() {
               }
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline"
+              className="text-[#0176CE] font-dm-sans 
+                text-[6px] xs:text-[8px] sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
+                font-semibold hover:underline whitespace-nowrap"
             >
               Privacy Policy
             </Link>
@@ -116,16 +158,13 @@ export default function Footer() {
               }
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold hover:underline"
+              className="text-[#0176CE] font-dm-sans 
+                text-[6px] xs:text-[8px] sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
+                font-semibold hover:underline whitespace-nowrap"
             >
               Linkedin
             </Link>
           </div>
-
-          {/* Copyright */}
-          <span className="text-[#0176CE] font-dm-sans text-sm md:text-base lg:text-lg font-semibold">
-            @2025 Storacha
-          </span>
         </div>
       </div>
     </footer>
