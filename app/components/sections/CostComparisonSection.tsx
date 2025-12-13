@@ -148,7 +148,7 @@ export default function CostComparisonSection() {
         <div className="space-y-3 sm:space-y-4 md:space-y-8 lg:space-y-12 xl:space-y-16">
           {/* Title */}
           <div className="text-center">
-            <h2 className="font-epilogue font-medium text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl 2xl:text-[72px] text-[#0176CE] tracking-tight md:tracking-[-1.5px] lg:tracking-[-2.88px]">
+            <h2 className="font-epilogue font-medium text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[72px] text-[#0176CE] tracking-tight md:tracking-[-1.5px] lg:tracking-[-2.88px]">
               Cost Comparison
             </h2>
           </div>
