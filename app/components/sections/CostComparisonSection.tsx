@@ -419,9 +419,9 @@ export default function CostComparisonSection() {
                     style={{
                       background: `linear-gradient(to right, #0176CE 0%, #0176CE ${
                         ((storage_TiB - 100) / (10000 - 100)) * 100
-                      }%, #C5DFFD ${
+                      }%, #ffffff ${
                         ((storage_TiB - 100) / (10000 - 100)) * 100
-                      }%, #C5DFFD 100%)`,
+                      }%, #ffffff 100%)`,
                     }}
                   />
                   <div className="flex justify-between text-[5px] sm:text-[7px] md:text-[8px] lg:text-[9px] xl:text-xs text-[#0176CE]/60 mt-0.5">
@@ -452,7 +452,7 @@ export default function CostComparisonSection() {
                     onChange={(e) => setEgress_percent(Number(e.target.value))}
                     className="w-full h-1 sm:h-1.5 md:h-2 lg:h-2.5 xl:h-3 rounded-lg appearance-none cursor-pointer"
                     style={{
-                      background: `linear-gradient(to right, #0176CE 0%, #0176CE ${egress_percent}%, #C5DFFD ${egress_percent}%, #C5DFFD 100%)`,
+                      background: `linear-gradient(to right, #0176CE 0%, #0176CE ${egress_percent}%, #ffffff ${egress_percent}%, #ffffff 100%)`,
                     }}
                   />
                   <div className="flex justify-between text-[5px] sm:text-[7px] md:text-[8px] lg:text-[9px] xl:text-xs text-[#0176CE]/60 mt-0.5">
