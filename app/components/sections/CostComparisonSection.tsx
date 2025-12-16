@@ -212,7 +212,7 @@ export default function CostComparisonSection() {
 
                 {/* Storage Cost */}
                 <div className="p-1 sm:p-2 md:p-3 lg:p-4 xl:p-6 text-center">
-                  <div className="font-dm-sans font-bold text-[7px] sm:text-[10px] md:text-sm lg:text-base xl:text-xl">
+                <div className={`font-dm-sans text-[7px] sm:text-[10px] md:text-sm lg:text-base xl:text-xl ${comp.highlight ? 'font-bold' : 'font-normal'}`}>
                     {comp.storage}
                   </div>
                   <div
@@ -224,7 +224,7 @@ export default function CostComparisonSection() {
 
                 {/* Egress Cost */}
                 <div className="p-1 sm:p-2 md:p-3 lg:p-4 xl:p-6 text-center">
-                  <div className="font-dm-sans font-bold text-[7px] sm:text-[10px] md:text-sm lg:text-base xl:text-xl">
+                <div className={`font-dm-sans text-[7px] sm:text-[10px] md:text-sm lg:text-base xl:text-xl ${comp.highlight ? 'font-bold' : 'font-normal'}`}>
                     {comp.egress}
                   </div>
                   <div className="font-dm-sans text-[5px] sm:text-[7px] md:text-[9px] lg:text-xs xl:text-sm text-[#0176CE]/70">
