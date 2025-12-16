@@ -384,10 +384,10 @@ export default function CostComparisonSection() {
                     <p className="text-[#0176CE]/70 text-[5px] sm:text-[7px] md:text-[8px] lg:text-[10px] xl:text-xs font-dm-sans mb-0.5">
                       Up to
                     </p>
-                    {/* Percentage and "cheaper" on same line */}
+                   
                     <p className="font-epilogue font-bold text-[10px] sm:text-xs md:text-sm lg:text-lg xl:text-xl 2xl:text-3xl text-[#0176CE] whitespace-nowrap">
                       {Math.round(costs.savings_percent)}%{" "}
-                      <span className="text-[#0089F0]">cheaper</span>
+                      <span className="text-[#0176CE]">cheaper</span>
                     </p>
                   </div>
                 </div>
