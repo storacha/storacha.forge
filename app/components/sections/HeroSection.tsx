@@ -162,7 +162,7 @@ export default function HeroSection() {
 
       {/* Main Content */}
       <div
-        className={`container-custom relative z-10 py-6 md:py-8 lg:py-10 flex-1 flex flex-col justify-start pt-6 md:pt-10 lg:justify-center lg:pt-0 ${
+        className={`container-custom relative z-10 py-5 lg:py-10 flex-1 flex flex-col justify-start  lg:justify-center lg:pt-0 ${
           isMobileMenuOpen ? "hidden lg:flex" : ""
         }`}
       >
