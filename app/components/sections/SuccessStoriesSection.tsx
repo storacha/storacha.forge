@@ -153,82 +153,84 @@ export default function SuccessStoriesSection() {
                 {pages.map((page, pageIndex) => (
                   <div
                     key={pageIndex}
-                    className="w-full flex-shrink-0 flex flex-col sm:flex-row gap-4 sm:gap-3 md:gap-6 lg:gap-8"
+                    className="w-full flex-shrink-0 px-2 sm:px-4 md:px-6 lg:px-8"
                   >
-                    {page.map((testimonial, cardIndex) => {
-                      const globalIndex = pageIndex * 2 + cardIndex;
-                      const isExpanded = expandedCards.includes(globalIndex);
-                      const showMore = needsShowMore(testimonial.quote);
+                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-3 md:gap-6 lg:gap-8">
+                      {page.map((testimonial, cardIndex) => {
+                        const globalIndex = pageIndex * 2 + cardIndex;
+                        const isExpanded = expandedCards.includes(globalIndex);
+                        const showMore = needsShowMore(testimonial.quote);
 
-                      return (
-                        <div
-                          key={globalIndex}
-                          className="w-full sm:w-[calc(50%-6px)] md:w-[calc(50%-12px)] lg:w-[calc(50%-16px)] flex-shrink-0 bg-white rounded-2xl md:rounded-3xl p-5 sm:p-4 md:p-6 lg:p-8 shadow-sm flex flex-col"
-                        >
-                          {/* Avatar */}
-                          <div className="w-12 h-12 sm:w-10 sm:h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-gray-400 rounded-full flex items-center justify-center mb-4 sm:mb-4 md:mb-6">
-                            <svg
-                              className="w-6 h-6 sm:w-5 sm:h-5 md:w-7 md:h-7 lg:w-8 lg:h-8 text-gray-200"
-                              fill="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                            </svg>
-                          </div>
-
-                          {/* Quote */}
-                          <div className="flex-1">
-                            <p
-                              className={`font-dm-sans text-sm sm:text-sm md:text-base lg:text-xl text-[#0176CE] italic leading-relaxed ${
-                                !isExpanded && showMore ? "line-clamp-3" : ""
-                              }`}
-                            >
-                              "{testimonial.quote}"
-                            </p>
-
-                            {/* Show More / Show Less */}
-                            {showMore && (
-                              <button
-                                onClick={() => toggleExpand(globalIndex)}
-                                className="mt-2 sm:mt-2 font-dm-sans text-xs sm:text-xs md:text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1 transition-colors"
+                        return (
+                          <div
+                            key={globalIndex}
+                            className="w-full sm:w-1/2 flex-shrink-0 bg-white rounded-2xl md:rounded-3xl p-5 sm:p-4 md:p-6 lg:p-8 shadow-sm flex flex-col"
+                          >
+                            {/* Avatar */}
+                            <div className="w-12 h-12 sm:w-10 sm:h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-gray-400 rounded-full flex items-center justify-center mb-4 sm:mb-4 md:mb-6">
+                              <svg
+                                className="w-6 h-6 sm:w-5 sm:h-5 md:w-7 md:h-7 lg:w-8 lg:h-8 text-gray-200"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
                               >
-                                {isExpanded ? "Show Less" : "Show More"}
-                                <svg
-                                  className={`w-3 h-3 sm:w-3 sm:h-3 md:w-4 md:h-4 transition-transform ${
-                                    isExpanded ? "rotate-180" : ""
-                                  }`}
-                                  fill="none"
-                                  stroke="currentColor"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M19 9l-7 7-7-7"
-                                  />
-                                </svg>
-                              </button>
-                            )}
-                          </div>
-
-                          {/* Author Info */}
-                          <div className="flex flex-col gap-3 mt-4 sm:mt-4 md:mt-6 pt-4 sm:pt-4 border-t border-gray-100">
-                            <div className="min-w-0">
-                              <p className="font-dm-sans font-bold text-base sm:text-sm md:text-base lg:text-lg text-[#0176CE]">
-                                {testimonial.author}
-                              </p>
-                              <p className="font-dm-sans text-sm sm:text-xs md:text-sm lg:text-base text-[#0176CE]/70">
-                                {testimonial.role}
-                              </p>
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                              </svg>
                             </div>
-                            <button className="bg-[#E53935] hover:bg-[#C62828] text-white font-dm-sans font-medium text-sm sm:text-xs md:text-sm lg:text-base px-4 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-1.5 md:py-2 lg:py-2.5 rounded-full transition-colors whitespace-nowrap w-fit">
-                              {testimonial.company}
-                            </button>
+
+                            {/* Quote */}
+                            <div className="flex-1">
+                              <p
+                                className={`font-dm-sans text-sm sm:text-sm md:text-base lg:text-xl text-[#0176CE] italic leading-relaxed ${
+                                  !isExpanded && showMore ? "line-clamp-3" : ""
+                                }`}
+                              >
+                                "{testimonial.quote}"
+                              </p>
+
+                              {/* Show More / Show Less */}
+                              {showMore && (
+                                <button
+                                  onClick={() => toggleExpand(globalIndex)}
+                                  className="mt-2 sm:mt-2 font-dm-sans text-xs sm:text-xs md:text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1 transition-colors"
+                                >
+                                  {isExpanded ? "Show Less" : "Show More"}
+                                  <svg
+                                    className={`w-3 h-3 sm:w-3 sm:h-3 md:w-4 md:h-4 transition-transform ${
+                                      isExpanded ? "rotate-180" : ""
+                                    }`}
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M19 9l-7 7-7-7"
+                                    />
+                                  </svg>
+                                </button>
+                              )}
+                            </div>
+
+                            {/* Author Info */}
+                            <div className="flex flex-col gap-3 mt-4 sm:mt-4 md:mt-6 pt-4 sm:pt-4 border-t border-gray-100">
+                              <div className="min-w-0">
+                                <p className="font-dm-sans font-bold text-base sm:text-sm md:text-base lg:text-lg text-[#0176CE]">
+                                  {testimonial.author}
+                                </p>
+                                <p className="font-dm-sans text-sm sm:text-xs md:text-sm lg:text-base text-[#0176CE]/70">
+                                  {testimonial.role}
+                                </p>
+                              </div>
+                              <button className="bg-[#E53935] hover:bg-[#C62828] text-white font-dm-sans font-medium text-sm sm:text-xs md:text-sm lg:text-base px-4 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-1.5 md:py-2 lg:py-2.5 rounded-full transition-colors whitespace-nowrap w-fit">
+                                {testimonial.company}
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })}
+                    </div>
                   </div>
                 ))}
               </div>
