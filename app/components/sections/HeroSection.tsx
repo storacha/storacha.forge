@@ -166,7 +166,7 @@ export default function HeroSection() {
           isMobileMenuOpen ? "hidden lg:flex" : ""
         }`}
       >
-        <div className="flex flex-col gap-[3vh] md:gap-[3.5vh] lg:gap-[4vh] max-w-4xl">
+        <div className="flex flex-col gap-[2vh] xs:gap-[3vh] md:gap-[3.5vh] lg:gap-[4vh] max-w-4xl">
           <h1 className="font-epilogue font-medium text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[clamp(48px,4.5vw,72px)] leading-[1.15] text-[#0176CE] tracking-[-1px]">
             Cut Cloud Backup Costs by{" "}
             <span className="text-[#E91315]">80%.</span>
@@ -231,7 +231,7 @@ export default function HeroSection() {
 
       {/* Trusted By Section - fixed at bottom */}
       <div
-        className={`relative z-10 pb-6 md:pb-8 lg:pb-10 w-full flex-shrink-0 ${
+        className={`relative z-10 pb-4 xs:pb-6 md:pb-8 lg:pb-10 w-full flex-shrink-0 ${
           isMobileMenuOpen ? "hidden lg:block" : ""
         }`}
       >
@@ -240,7 +240,7 @@ export default function HeroSection() {
           <div className="flex-1 h-[1px] bg-[#0176CE]/30"></div>
 
           {/* Trusted by text */}
-          <p className="font-dm-sans font-medium text-[#0176CE] text-base md:text-lg lg:text-xl text-center whitespace-nowrap">
+          <p className="font-dm-sans font-medium text-[#0176CE] text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-center whitespace-nowrap">
             Trusted by
           </p>
 
