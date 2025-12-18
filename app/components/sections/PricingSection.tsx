@@ -90,7 +90,7 @@ export default function PricingSection() {
               onClick={() =>
                 plausible("CTA Click", { props: { location: "pricing" } })
               }
-              className="bg-[#E91315] text-white px-4 py-2.5 sm:px-5 sm:py-3 md:px-7 md:py-3.5 rounded-full font-semibold text-xs sm:text-sm md:text-base lg:text-xl flex items-center gap-2 md:gap-2.5 hover:bg-red-700 transition-colors w-fit"
+              className="bg-[#E91315] text-white px-4 py-2.5 sm:px-5 sm:py-3 md:px-7 md:py-3.5 rounded-full font-semibold text-sm sm:text-base md:text-lg lg:text-xl flex items-center gap-2 md:gap-2.5 hover:bg-red-700 transition-colors w-fit"
             >
               <Image
                 src="/forge/hero/cta-arrow-icon.svg"
