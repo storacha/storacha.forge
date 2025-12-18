@@ -10,8 +10,7 @@ export default function Footer() {
   return (
     <footer
       className="bg-[#C5DFFD] border-t border-[#0176CE]/20 
-      py-4 px-3
-      xs:py-5 xs:px-4
+      py-6 px-4
       sm:py-6 sm:px-6
       md:py-8 md:px-10
       lg:py-10 lg:px-14
@@ -19,11 +18,11 @@ export default function Footer() {
       2xl:py-[60px] 2xl:px-[70px]"
     >
       <div className="max-w-[1800px] mx-auto">
-        {/* Navigation Links - Always single row */}
+        {/* Navigation Links - Vertical on mobile, horizontal on larger screens */}
         <div
-          className="flex justify-between items-center
-          mb-3
-          xs:mb-4
+          className="flex flex-col gap-3
+          sm:flex-row sm:justify-between sm:items-center sm:gap-0
+          mb-5
           sm:mb-5
           md:mb-6
           lg:mb-8
@@ -38,7 +37,7 @@ export default function Footer() {
               })
             }
             className="text-[#0176CE] font-dm-sans 
-              text-[6px] xs:text-[8px] sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
+              text-base sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
               font-semibold hover:underline whitespace-nowrap"
           >
             Why Storacha
@@ -52,7 +51,7 @@ export default function Footer() {
               })
             }
             className="text-[#0176CE] font-dm-sans 
-              text-[6px] xs:text-[8px] sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
+              text-base sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
               font-semibold hover:underline whitespace-nowrap"
           >
             Use Cases
@@ -66,7 +65,7 @@ export default function Footer() {
               })
             }
             className="text-[#0176CE] font-dm-sans 
-              text-[6px] xs:text-[8px] sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
+              text-base sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
               font-semibold hover:underline whitespace-nowrap"
           >
             Success Stories
@@ -80,7 +79,7 @@ export default function Footer() {
               })
             }
             className="text-[#0176CE] font-dm-sans 
-              text-[6px] xs:text-[8px] sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
+              text-base sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
               font-semibold hover:underline whitespace-nowrap"
           >
             Pricing
@@ -94,7 +93,7 @@ export default function Footer() {
               })
             }
             className="text-[#0176CE] font-dm-sans 
-              text-[6px] xs:text-[8px] sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
+              text-base sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
               font-semibold hover:underline whitespace-nowrap"
           >
             Cost Comparison
@@ -104,8 +103,7 @@ export default function Footer() {
         {/* Divider */}
         <div
           className="h-px bg-[#0176CE]/20 
-          mb-3
-          xs:mb-4
+          mb-5
           sm:mb-5
           md:mb-6
           lg:mb-8
@@ -113,8 +111,8 @@ export default function Footer() {
           2xl:mb-10"
         ></div>
 
-        {/* Bottom Row - Always horizontal: Logo left, Links right */}
-        <div className="flex flex-row items-center justify-between">
+        {/* Bottom Row - Vertical on mobile, horizontal on larger screens */}
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center flex-shrink-0">
             <Image
@@ -125,14 +123,15 @@ export default function Footer() {
               }
               width={140}
               height={50}
-              className="h-4 xs:h-5 sm:h-6 md:h-8 lg:h-10 xl:h-11 2xl:h-12 w-auto cursor-pointer"
+              className="h-8 lg:h-10 xl:h-11 2xl:h-12 w-auto cursor-pointer"
             />
           </Link>
 
-          {/* Links - Right aligned, always horizontal */}
+          {/* Links - Vertical on mobile, horizontal on larger screens */}
           <div
-            className="flex items-center flex-shrink-0
-            gap-2 xs:gap-3 sm:gap-4 md:gap-6 lg:gap-10 xl:gap-12 2xl:gap-14"
+            className="flex flex-col gap-3
+            sm:flex-row sm:items-center sm:flex-shrink-0
+            sm:gap-4 md:gap-6 lg:gap-10 xl:gap-12 2xl:gap-14"
           >
             <Link
               href="https://docs.storacha.network/privacy-policy/"
@@ -144,7 +143,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#0176CE] font-dm-sans 
-                text-[6px] xs:text-[8px] sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
+                text-base sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
                 font-semibold hover:underline whitespace-nowrap"
             >
               Privacy Policy
@@ -159,7 +158,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#0176CE] font-dm-sans 
-                text-[6px] xs:text-[8px] sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
+                text-base sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
                 font-semibold hover:underline whitespace-nowrap"
             >
               Linkedin
