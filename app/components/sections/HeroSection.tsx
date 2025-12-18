@@ -222,7 +222,7 @@ export default function HeroSection() {
               alt=""
               width={24}
               height={24}
-              className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
+              className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5"
             />
             <span>Book a call with an expert</span>
           </Link>
