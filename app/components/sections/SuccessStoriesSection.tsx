@@ -15,7 +15,7 @@ export default function SuccessStoriesSection() {
       quote:
         "Storacha Forge has enabled us to upload PiBs of data with ZERO FRICTION backed up on Filecoin. No approval chains. No corporate gatekeepers. Our data can't be censored or held hostage.",
       author: "Clara Tsao",
-      role: "Co-Founder",
+      role: "Founding Officer",
       company: "Filecoin Foundation",
     },
     {
@@ -117,18 +117,18 @@ export default function SuccessStoriesSection() {
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
           >
-            {/* Left Arrow */}
-            <div className="flex-shrink-0 w-8 sm:w-10 md:w-12">
+            {/* Left Arrow - smaller on mobile */}
+            <div className="flex-shrink-0 w-6 sm:w-10 md:w-12">
               {!isFirstPage && (
                 <button
                   onClick={handlePrev}
-                  className={`bg-[#0176CE] text-white w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 ${
-                    isHovering ? "scale-125" : "scale-100"
+                  className={`bg-[#0176CE] text-white w-6 h-6 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 ${
+                    isHovering ? "sm:scale-125" : "scale-100"
                   }`}
                   aria-label="Previous testimonials"
                 >
                   <svg
-                    className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
+                    className="w-3 h-3 sm:w-5 sm:h-5 md:w-6 md:h-6"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -153,7 +153,7 @@ export default function SuccessStoriesSection() {
                 {pages.map((page, pageIndex) => (
                   <div
                     key={pageIndex}
-                    className="w-full flex-shrink-0 flex gap-2 sm:gap-3 md:gap-6 lg:gap-8"
+                    className="w-full flex-shrink-0 flex flex-col sm:flex-row gap-4 sm:gap-3 md:gap-6 lg:gap-8"
                   >
                     {page.map((testimonial, cardIndex) => {
                       const globalIndex = pageIndex * 2 + cardIndex;
@@ -163,12 +163,12 @@ export default function SuccessStoriesSection() {
                       return (
                         <div
                           key={globalIndex}
-                          className="w-[calc(50%-4px)] sm:w-[calc(50%-6px)] md:w-[calc(50%-12px)] lg:w-[calc(50%-16px)] flex-shrink-0 bg-white rounded-xl sm:rounded-2xl md:rounded-3xl p-3 sm:p-4 md:p-6 lg:p-8 shadow-sm flex flex-col"
+                          className="w-full sm:w-[calc(50%-6px)] md:w-[calc(50%-12px)] lg:w-[calc(50%-16px)] flex-shrink-0 bg-white rounded-2xl md:rounded-3xl p-5 sm:p-4 md:p-6 lg:p-8 shadow-sm flex flex-col"
                         >
                           {/* Avatar */}
-                          <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-gray-400 rounded-full flex items-center justify-center mb-3 sm:mb-4 md:mb-6">
+                          <div className="w-12 h-12 sm:w-10 sm:h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-gray-400 rounded-full flex items-center justify-center mb-4 sm:mb-4 md:mb-6">
                             <svg
-                              className="w-4 h-4 sm:w-5 sm:h-5 md:w-7 md:h-7 lg:w-8 lg:h-8 text-gray-200"
+                              className="w-6 h-6 sm:w-5 sm:h-5 md:w-7 md:h-7 lg:w-8 lg:h-8 text-gray-200"
                               fill="currentColor"
                               viewBox="0 0 24 24"
                             >
@@ -179,7 +179,7 @@ export default function SuccessStoriesSection() {
                           {/* Quote */}
                           <div className="flex-1">
                             <p
-                              className={`font-dm-sans text-xs sm:text-sm md:text-base lg:text-xl text-[#0176CE] italic leading-relaxed ${
+                              className={`font-dm-sans text-sm sm:text-sm md:text-base lg:text-xl text-[#0176CE] italic leading-relaxed ${
                                 !isExpanded && showMore ? "line-clamp-3" : ""
                               }`}
                             >
@@ -190,11 +190,11 @@ export default function SuccessStoriesSection() {
                             {showMore && (
                               <button
                                 onClick={() => toggleExpand(globalIndex)}
-                                className="mt-1 sm:mt-2 font-dm-sans text-[10px] sm:text-xs md:text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1 transition-colors"
+                                className="mt-2 sm:mt-2 font-dm-sans text-xs sm:text-xs md:text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1 transition-colors"
                               >
                                 {isExpanded ? "Show Less" : "Show More"}
                                 <svg
-                                  className={`w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4 transition-transform ${
+                                  className={`w-3 h-3 sm:w-3 sm:h-3 md:w-4 md:h-4 transition-transform ${
                                     isExpanded ? "rotate-180" : ""
                                   }`}
                                   fill="none"
@@ -213,16 +213,16 @@ export default function SuccessStoriesSection() {
                           </div>
 
                           {/* Author Info */}
-                          <div className="flex items-center justify-between mt-3 sm:mt-4 md:mt-6 pt-3 sm:pt-4 border-t border-gray-100 gap-1 sm:gap-2 md:gap-3">
-                            <div className="min-w-0 flex-shrink">
-                              <p className="font-dm-sans font-bold text-xs sm:text-sm md:text-base lg:text-lg text-[#0176CE] truncate">
+                          <div className="flex flex-col gap-3 mt-4 sm:mt-4 md:mt-6 pt-4 sm:pt-4 border-t border-gray-100">
+                            <div className="min-w-0">
+                              <p className="font-dm-sans font-bold text-base sm:text-sm md:text-base lg:text-lg text-[#0176CE]">
                                 {testimonial.author}
                               </p>
-                              <p className="font-dm-sans text-[10px] sm:text-xs md:text-sm lg:text-base text-[#0176CE]/70 truncate">
+                              <p className="font-dm-sans text-sm sm:text-xs md:text-sm lg:text-base text-[#0176CE]/70">
                                 {testimonial.role}
                               </p>
                             </div>
-                            <button className="bg-[#E53935] hover:bg-[#C62828] text-white font-dm-sans font-medium text-[10px] sm:text-xs md:text-sm lg:text-base px-2 sm:px-3 md:px-4 lg:px-6 py-1 sm:py-1.5 md:py-2 lg:py-2.5 rounded-full transition-colors whitespace-nowrap flex-shrink-0">
+                            <button className="bg-[#E53935] hover:bg-[#C62828] text-white font-dm-sans font-medium text-sm sm:text-xs md:text-sm lg:text-base px-4 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-1.5 md:py-2 lg:py-2.5 rounded-full transition-colors whitespace-nowrap w-fit">
                               {testimonial.company}
                             </button>
                           </div>
@@ -234,18 +234,18 @@ export default function SuccessStoriesSection() {
               </div>
             </div>
 
-            {/* Right Arrow */}
-            <div className="flex-shrink-0 w-8 sm:w-10 md:w-12">
+            {/* Right Arrow - smaller on mobile */}
+            <div className="flex-shrink-0 w-6 sm:w-10 md:w-12">
               {!isLastPage && (
                 <button
                   onClick={handleNext}
-                  className={`bg-[#0176CE] text-white w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 ${
-                    isHovering ? "scale-125" : "scale-100"
+                  className={`bg-[#0176CE] text-white w-6 h-6 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 ${
+                    isHovering ? "sm:scale-125" : "scale-100"
                   }`}
                   aria-label="Next testimonials"
                 >
                   <svg
-                    className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
+                    className="w-3 h-3 sm:w-5 sm:h-5 md:w-6 md:h-6"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
