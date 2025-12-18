@@ -51,7 +51,7 @@ export default function HeroSection() {
   ];
 
   return (
-    <section className="bg-[#C5DFFD] relative overflow-hidden h-screen flex flex-col">
+    <section className="bg-[#C5DFFD] relative overflow-hidden min-h-screen flex flex-col">
       <div
         className="absolute inset-0 z-0 opacity-100"
         style={{
@@ -71,11 +71,11 @@ export default function HeroSection() {
               alt="Storacha"
               width={191}
               height={68}
-              className="h-10 sm:h-12 md:h-[68px] w-auto"
+              className="h-8 sm:h-10 md:h-12 lg:h-14 xl:h-[68px] w-auto"
             />
           </div>
 
-          <div className="hidden lg:flex items-center gap-2 border-2 border-[#0176CE] rounded-full p-2">
+          <div className="hidden lg:flex items-center gap-1 xl:gap-2 border-2 border-[#0176CE] rounded-full p-1.5 xl:p-2">
             <Link
               href="#why"
               onClick={() =>
@@ -83,7 +83,7 @@ export default function HeroSection() {
                   props: { section: "features" },
                 })
               }
-              className="bg-white text-[#0176CE] px-6 py-3 rounded-full font-medium text-base xl:text-lg whitespace-nowrap"
+              className="bg-white text-[#0176CE] px-4 xl:px-6 py-2 xl:py-3 rounded-full font-medium text-sm lg:text-base xl:text-lg whitespace-nowrap"
             >
               FEATURES
             </Link>
@@ -92,7 +92,7 @@ export default function HeroSection() {
               onClick={() =>
                 plausible("Navigation Click", { props: { section: "pricing" } })
               }
-              className="bg-white text-[#0176CE] px-6 py-3 rounded-full font-medium text-base xl:text-lg whitespace-nowrap"
+              className="bg-white text-[#0176CE] px-4 xl:px-6 py-2 xl:py-3 rounded-full font-medium text-sm lg:text-base xl:text-lg whitespace-nowrap"
             >
               PRICING
             </Link>
@@ -103,7 +103,7 @@ export default function HeroSection() {
                   props: { section: "use-cases" },
                 })
               }
-              className="bg-white text-[#0176CE] px-6 py-3 rounded-full font-medium text-base xl:text-lg whitespace-nowrap"
+              className="bg-white text-[#0176CE] px-4 xl:px-6 py-2 xl:py-3 rounded-full font-medium text-sm lg:text-base xl:text-lg whitespace-nowrap"
             >
               USE CASES
             </Link>
@@ -112,7 +112,7 @@ export default function HeroSection() {
               onClick={() =>
                 plausible("CTA Click", { props: { location: "header-nav" } })
               }
-              className="bg-[#0176CE] text-white px-6 py-3 rounded-full text-base xl:text-lg hover:bg-[#0089F0] transition-colors whitespace-nowrap"
+              className="bg-[#0176CE] text-white px-4 xl:px-6 py-2 xl:py-3 rounded-full font-medium text-sm lg:text-base xl:text-lg whitespace-nowrap"
             >
               GET STARTED
             </Link>
