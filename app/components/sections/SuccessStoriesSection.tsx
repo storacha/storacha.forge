@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
@@ -8,6 +9,7 @@ export default function SuccessStoriesSection() {
   const [expandedCards, setExpandedCards] = useState<number[]>([]);
   const [isHovering, setIsHovering] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const testimonials = [
@@ -41,13 +43,31 @@ export default function SuccessStoriesSection() {
     },
   ];
 
-  // Group testimonials into pages of 2
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640); // sm breakpoint
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Group testimonials based on screen size
   const pages = [];
-  for (let i = 0; i < testimonials.length; i += 2) {
-    pages.push(testimonials.slice(i, i + 2));
+  const itemsPerPage = isMobile ? 1 : 2;
+
+  for (let i = 0; i < testimonials.length; i += itemsPerPage) {
+    pages.push(testimonials.slice(i, i + itemsPerPage));
   }
 
   const totalPages = pages.length;
+
+  // Reset to first page when switching between mobile/desktop
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [isMobile]);
 
   // Auto-carousel effect
   useEffect(() => {
@@ -151,13 +171,11 @@ export default function SuccessStoriesSection() {
                 style={{ transform: `translateX(-${currentPage * 100}%)` }}
               >
                 {pages.map((page, pageIndex) => (
-                  <div
-                    key={pageIndex}
-                    className="w-full flex-shrink-0 px-2 sm:px-4 md:px-6 lg:px-8"
-                  >
-                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-3 md:gap-6 lg:gap-8">
+                  <div key={pageIndex} className="w-full flex-shrink-0">
+                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-3 md:gap-6 lg:gap-8 px-2 sm:px-4 md:px-6 lg:px-8">
                       {page.map((testimonial, cardIndex) => {
-                        const globalIndex = pageIndex * 2 + cardIndex;
+                        const globalIndex =
+                          pageIndex * itemsPerPage + cardIndex;
                         const isExpanded = expandedCards.includes(globalIndex);
                         const showMore = needsShowMore(testimonial.quote);
 
