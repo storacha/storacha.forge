@@ -106,7 +106,7 @@ export default function UseCasesSection() {
                 return (
                   <div
                     key={index}
-                    className={`absolute transition-all duration-700 ease-out w-full max-w-[220px] sm:max-w-[320px] md:max-w-md lg:max-w-lg ${
+                    className={`absolute transition-all duration-700 ease-out w-full max-w-[180px] min-[360px]:max-w-[240px] sm:max-w-[320px] md:max-w-md lg:max-w-lg ${
                       !isVisible ? "pointer-events-none" : ""
                     }`}
                     style={{
@@ -150,7 +150,7 @@ export default function UseCasesSection() {
             {/* Navigation Arrows */}
             <button
               onClick={handlePrev}
-              className="absolute left-0 sm:left-2 md:left-4 top-1/2 -translate-y-1/2 bg-[#0176CE] text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center hover:bg-[#0089F0] transition-colors shadow-lg z-30"
+              className="absolute left-0 sm:left-2 md:left-4 top-1/2 -translate-y-1/2 bg-[#0176CE] text-white w-7 h-7 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center hover:bg-[#0089F0] transition-colors shadow-lg z-30"
               aria-label="Previous use case"
             >
               <svg
@@ -170,7 +170,7 @@ export default function UseCasesSection() {
 
             <button
               onClick={handleNext}
-              className="absolute right-0 sm:right-2 md:right-4 top-1/2 -translate-y-1/2 bg-[#0176CE] text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center hover:bg-[#0089F0] transition-colors shadow-lg z-30"
+              className="absolute right-0 sm:right-2 md:right-4 top-1/2 -translate-y-1/2 bg-[#0176CE] text-white w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center hover:bg-[#0089F0] transition-colors shadow-lg z-30"
               aria-label="Next use case"
             >
               <svg
@@ -187,8 +187,6 @@ export default function UseCasesSection() {
                 />
               </svg>
             </button>
-
-
           </div>
         </div>
       </div>
