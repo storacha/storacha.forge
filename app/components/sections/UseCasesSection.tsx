@@ -106,7 +106,7 @@ export default function UseCasesSection() {
                 return (
                   <div
                     key={index}
-                    className={`absolute transition-all duration-700 ease-out w-full max-w-[280px] sm:max-w-[320px] md:max-w-md lg:max-w-lg ${
+                    className={`absolute transition-all duration-700 ease-out w-full max-w-[220px] sm:max-w-[320px] md:max-w-md lg:max-w-lg ${
                       !isVisible ? "pointer-events-none" : ""
                     }`}
                     style={{
@@ -123,13 +123,13 @@ export default function UseCasesSection() {
                       </div>
 
                       <div className="p-4 sm:p-6 md:p-9 space-y-4 md:space-y-6 lg:space-y-10">
-                        <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-[60px] md:h-[60px] bg-[#C5DFFD] rounded-full flex items-center justify-center mx-auto">
+                        <div className="w-6 h-6 sm:w-12 sm:h-12 md:w-[60px] md:h-[60px] bg-[#C5DFFD] rounded-full flex items-center justify-center mx-auto">
                           <Image
                             src={useCase.icon}
                             alt={useCase.title}
                             width={40}
                             height={40}
-                            className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10"
+                            className="w-4 h-4 sm:w-8 sm:h-8 md:w-10 md:h-10"
                           />
                         </div>
 
