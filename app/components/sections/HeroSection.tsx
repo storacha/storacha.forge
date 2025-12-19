@@ -166,14 +166,16 @@ export default function HeroSection() {
           isMobileMenuOpen ? "hidden lg:flex" : ""
         }`}
       >
-        <div className="flex flex-col gap-[2vh] xs:gap-[3vh] md:gap-[3.5vh] lg:gap-[4vh] max-w-4xl">
+        <div className="flex flex-col gap-[2vh] xs:gap-[3vh] md:gap-[3.5vh] lg:gap-[4vh] ">
           <h1 className="font-epilogue font-medium text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[clamp(48px,4.5vw,72px)] leading-[1.15] text-[#0176CE] tracking-[-1px]">
-            Cut Cloud Backup Costs by 80%.
+            <span className="inline-block">Cut Cloud Backup Costs by 80%.</span>
             <br />
-            Gain Full Control of Your Data.
+            <span className="inline-block">
+              Gain Full Control of Your Data.
+            </span>
           </h1>
 
-          <p className="font-dm-sans text-sm sm:text-base md:text-lg lg:text-[20px] xl:text-[clamp(18px,1.5vw,24px)] text-[#0176CE] leading-relaxed max-w-2xl">
+          <p className="font-dm-sans text-sm sm:text-base md:text-lg lg:text-[20px] xl:text-[clamp(18px,1.5vw,24px)] text-[#0176CE] leading-relaxed ">
             Decentralized backup & archival for enterprises, secure, verifiable,
             zero
             <br className="hidden md:block" />
