@@ -172,7 +172,7 @@ export default function SuccessStoriesSection() {
               >
                 {pages.map((page, pageIndex) => (
                   <div key={pageIndex} className="w-full flex-shrink-0">
-                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-3 md:gap-6 lg:gap-8 px-2 sm:px-4 md:px-6 lg:px-8">
+                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-3 md:gap-6 lg:gap-8 px-2 sm:px-6 md:px-8 lg:px-10">
                       {page.map((testimonial, cardIndex) => {
                         const globalIndex =
                           pageIndex * itemsPerPage + cardIndex;
