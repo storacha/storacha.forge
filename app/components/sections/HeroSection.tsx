@@ -168,8 +168,7 @@ export default function HeroSection() {
       >
         <div className="flex flex-col gap-[2vh] xs:gap-[3vh] md:gap-[3.5vh] lg:gap-[4vh] max-w-4xl">
           <h1 className="font-epilogue font-medium text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[clamp(48px,4.5vw,72px)] leading-[1.15] text-[#0176CE] tracking-[-1px]">
-            Cut Cloud Backup Costs by{" "}
-            <span className="text-[#E91315]">80%.</span>
+            Cut Cloud Backup Costs by 80%.
             <br />
             Gain Full Control of Your Data.
           </h1>
