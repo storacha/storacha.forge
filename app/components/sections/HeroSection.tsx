@@ -216,7 +216,7 @@ export default function HeroSection() {
             onClick={() =>
               plausible("CTA Click", { props: { location: "hero-main" } })
             }
-            className="bg-[#E91315] text-white px-4 py-2.5 sm:px-5 sm:py-3 md:px-7 md:py-3.5 rounded-full font-semibold text-sm sm:text-base md:text-lg lg:text-xl flex items-center gap-2 md:gap-2.5 hover:bg-red-700 transition-colors w-fit mx-auto sm:mx-0"
+            className="my-2 min-[360px]:my-6 sm:my-0 bg-[#E91315] text-white px-4 py-2.5 sm:px-5 sm:py-3 md:px-7 md:py-3.5 rounded-full font-semibold text-sm sm:text-base md:text-lg lg:text-xl flex items-center gap-2 md:gap-2.5 hover:bg-red-700 transition-colors w-fit mx-auto sm:mx-0"
           >
             <Image
               src="/forge/hero/cta-arrow-icon.svg"
