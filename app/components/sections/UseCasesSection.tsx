@@ -1,16 +1,10 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 
 export default function UseCasesSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [wrappingCard, setWrappingCard] = useState<{
-    index: number;
-    phase: "out-start" | "out-animate" | "in-start" | "in-animate";
-    exitOffset: number;
-  } | null>(null);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   const useCases = [
@@ -38,100 +32,18 @@ export default function UseCasesSection() {
     },
   ];
 
-  const findWrappingCard = (prevIdx: number, newIdx: number) => {
-    const totalCards = useCases.length;
-    for (let i = 0; i < totalCards; i++) {
-      let prevOffset = i - prevIdx;
-      if (prevOffset > totalCards / 2) prevOffset -= totalCards;
-      if (prevOffset < -totalCards / 2) prevOffset += totalCards;
-
-      let newOffset = i - newIdx;
-      if (newOffset > totalCards / 2) newOffset -= totalCards;
-      if (newOffset < -totalCards / 2) newOffset += totalCards;
-
-      if (
-        (prevOffset === -1 && newOffset === 1) ||
-        (prevOffset === 1 && newOffset === -1)
-      ) {
-        return { index: i, exitOffset: prevOffset };
-      }
-    }
-    return null;
-  };
-
-  const TRANSITION_DURATION = 200;
-
-  const runWrappingAnimation = (wrapping: {
-    index: number;
-    exitOffset: number;
-  }) => {
-    // Phase 1: out-start (set position, no transition)
-    setWrappingCard({
-      index: wrapping.index,
-      phase: "out-start",
-      exitOffset: wrapping.exitOffset,
-    });
-
-    // Phase 2: out-animate (slide out)
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        setWrappingCard({
-          index: wrapping.index,
-          phase: "out-animate",
-          exitOffset: wrapping.exitOffset,
-        });
-
-        // Phase 3: in-start (jump to other side, no transition)
-        setTimeout(() => {
-          setWrappingCard({
-            index: wrapping.index,
-            phase: "in-start",
-            exitOffset: wrapping.exitOffset,
-          });
-
-          // Phase 4: in-animate (slide in) - small delay to ensure jump is hidden
-          setTimeout(() => {
-            setWrappingCard({
-              index: wrapping.index,
-              phase: "in-animate",
-              exitOffset: wrapping.exitOffset,
-            });
-
-            setTimeout(() => setWrappingCard(null), TRANSITION_DURATION);
-          }, 50);
-        }, TRANSITION_DURATION);
-      });
-    });
-  };
-
-  const changeSlide = useCallback(
-    (newIndex: number) => {
-      const wrapping = findWrappingCard(currentIndex, newIndex);
-      if (wrapping !== null) {
-        runWrappingAnimation(wrapping);
-      }
-      setCurrentIndex(newIndex);
-    },
-    [currentIndex, useCases.length]
-  );
-
+  // Auto-rotation effect
   useEffect(() => {
     if (!isAutoPlaying) return;
 
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => {
-        const newIdx = (prev + 1) % useCases.length;
-        const wrapping = findWrappingCard(prev, newIdx);
-        if (wrapping !== null) {
-          runWrappingAnimation(wrapping);
-        }
-        return newIdx;
-      });
+      setCurrentIndex((prev) => (prev + 1) % useCases.length);
     }, 5000);
 
     return () => clearInterval(interval);
   }, [isAutoPlaying, useCases.length]);
 
+  // Resume auto-rotation after 8 seconds of user inactivity
   useEffect(() => {
     if (isAutoPlaying) return;
 
@@ -144,41 +56,24 @@ export default function UseCasesSection() {
 
   const handlePrev = () => {
     setIsAutoPlaying(false);
-    changeSlide((currentIndex - 1 + useCases.length) % useCases.length);
+    setCurrentIndex((prev) => (prev - 1 + useCases.length) % useCases.length);
   };
 
   const handleNext = () => {
     setIsAutoPlaying(false);
-    changeSlide((currentIndex + 1) % useCases.length);
+    setCurrentIndex((prev) => (prev + 1) % useCases.length);
   };
 
-  const getCardStyle = (cardIndex: number) => {
+  // Calculate position offset for each card relative to current
+  const getCardPosition = (cardIndex: number) => {
     const totalCards = useCases.length;
     let offset = cardIndex - currentIndex;
 
+    // Handle wrapping for circular carousel
     if (offset > totalCards / 2) offset -= totalCards;
     if (offset < -totalCards / 2) offset += totalCards;
 
-    const isCenter = offset === 0;
-    const isVisible = Math.abs(offset) <= 1;
-
-    const isThisCard = wrappingCard?.index === cardIndex;
-    const isOutStart = isThisCard && wrappingCard?.phase === "out-start";
-    const isOutAnimate = isThisCard && wrappingCard?.phase === "out-animate";
-    const isInStart = isThisCard && wrappingCard?.phase === "in-start";
-    const isInAnimate = isThisCard && wrappingCard?.phase === "in-animate";
-    const isWrapping = isOutStart || isOutAnimate || isInStart || isInAnimate;
-
-    return {
-      offset,
-      isCenter,
-      isVisible,
-      isOutStart,
-      isOutAnimate,
-      isInStart,
-      isInAnimate,
-      isWrapping,
-    };
+    return offset;
   };
 
   return (
@@ -192,67 +87,32 @@ export default function UseCasesSection() {
             Use Cases
           </h2>
 
+          {/* Carousel */}
           <div className="relative">
+            {/* Cards Container */}
             <div className="relative flex items-center justify-center min-h-[400px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[550px] px-12 md:px-16 lg:px-20">
               {useCases.map((useCase, index) => {
-                const {
-                  offset,
-                  isCenter,
-                  isVisible,
-                  isOutStart,
-                  isOutAnimate,
-                  isInStart,
-                  isInAnimate,
-                  isWrapping,
-                } = getCardStyle(index);
+                const position = getCardPosition(index);
+                const isCenter = position === 0;
+                const isVisible = Math.abs(position) <= 1;
 
-                // Calculate translateX based on phase
-                let translateX: number;
-                if (isOutStart) {
-                  translateX = wrappingCard!.exitOffset * 110; // Current position
-                } else if (isOutAnimate) {
-                  translateX = wrappingCard!.exitOffset * 180; // Slide out
-                } else if (isInStart) {
-                  translateX = offset * 180; // Jump to far side
-                } else if (isInAnimate) {
-                  translateX = offset * 110; // Slide in
-                } else {
-                  translateX = offset * 110;
-                }
-
-                const scale = isCenter && !isWrapping ? 1 : 0.75;
-                const zIndex = isCenter ? 20 : 10 - Math.abs(offset);
-
-                // Opacity: hide during jump (in-start), visible otherwise
-                const opacity = isInStart
-                  ? 0
-                  : isWrapping
-                  ? 0.4
-                  : isCenter
-                  ? 1
-                  : isVisible
-                  ? 0.4
-                  : 0;
-
-                // Transition: none for start phases, animate for others
-                const transitionStyle =
-                  isOutStart || isInStart
-                    ? "none"
-                    : isOutAnimate || isInAnimate
-                    ? `transform ${TRANSITION_DURATION}ms ease-out`
-                    : "all 700ms ease-out";
+                // Calculate transform values based on position
+                // Center: 0, Left: -110%, Right: +110%
+                const translateX = position * 110;
+                const scale = isCenter ? 1 : 0.75;
+                const opacity = isCenter ? 1 : 0.4;
+                const zIndex = isCenter ? 20 : 10 - Math.abs(position);
 
                 return (
                   <div
                     key={index}
-                    className={`absolute w-full max-w-[280px] sm:max-w-[320px] md:max-w-md lg:max-w-lg ${
-                      !isVisible && !isWrapping ? "pointer-events-none" : ""
+                    className={`absolute transition-all duration-700 ease-out w-full max-w-[280px] sm:max-w-[320px] md:max-w-md lg:max-w-lg ${
+                      !isVisible ? "pointer-events-none" : ""
                     }`}
                     style={{
                       transform: `translateX(${translateX}%) scale(${scale})`,
-                      opacity,
+                      opacity: isVisible ? opacity : 0,
                       zIndex,
-                      transition: transitionStyle,
                     }}
                   >
                     <div className="border border-[#0176CE] rounded-[20px] overflow-hidden bg-white shadow-lg">
@@ -287,6 +147,7 @@ export default function UseCasesSection() {
               })}
             </div>
 
+            {/* Navigation Arrows */}
             <button
               onClick={handlePrev}
               className="absolute left-0 sm:left-2 md:left-4 top-1/2 -translate-y-1/2 bg-[#0176CE] text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center hover:bg-[#0089F0] transition-colors shadow-lg z-30"
@@ -326,6 +187,8 @@ export default function UseCasesSection() {
                 />
               </svg>
             </button>
+
+
           </div>
         </div>
       </div>
