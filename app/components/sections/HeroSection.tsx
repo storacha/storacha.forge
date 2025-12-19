@@ -63,8 +63,8 @@ export default function HeroSection() {
       />
 
       {/* Navbar - fixed height, reduced 2xl sizes */}
-      <header className="relative z-10 py-3 md:py-4 lg:py-5 px-6 md:px-12 lg:px-[70px] 2xl:px-20 flex-shrink-0">
-        <nav className="flex items-center justify-between max-w-[1920px] mx-auto">
+      <header className="relative z-10 py-3 md:py-4 lg:py-5 flex-shrink-0">
+        <nav className="flex items-center justify-between max-w-[1920px] mx-auto px-6 md:px-12 lg:px-[70px] 2xl:px-[250px]">
           <div className="flex items-center gap-2">
             <Image
               src="/forge/logos/storacha-logo-blue.svg"
