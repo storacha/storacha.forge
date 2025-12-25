@@ -162,11 +162,11 @@ export default function HeroSection() {
 
       {/* Main Content */}
       <div
-        className={`container-custom relative z-10 py-5 lg:py-10 flex-1 flex flex-col justify-start  lg:justify-center lg:pt-0 ${
+        className={`container-custom relative z-10 py-5 lg:py-10 flex-1 flex flex-col justify-between lg:justify-center lg:pt-0 ${
           isMobileMenuOpen ? "hidden lg:flex" : ""
         }`}
       >
-        <div className="flex flex-col gap-[2vh] xs:gap-[3vh] md:gap-[3.5vh] lg:gap-[4vh] ">
+        <div className="flex flex-col gap-[2.5vh] min-[380px]:gap-[5vh] sm:gap-[5vh]  md:gap-[3.5vh] lg:gap-[4vh] ">
           <h1 className="font-epilogue font-medium text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[clamp(48px,4.5vw,72px)] leading-[1.15] text-[#0176CE] tracking-[-1px]">
             <span className="inline-block">Cut Cloud Backup Costs by 80%.</span>
             <br />
