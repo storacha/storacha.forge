@@ -6,6 +6,11 @@ import { useState, useEffect } from "react";
 export default function UseCasesSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+
+  // Minimum swipe distance (in px)
+  const minSwipeDistance = 50;
 
   const useCases = [
     {
@@ -64,6 +69,31 @@ export default function UseCasesSection() {
     setCurrentIndex((prev) => (prev + 1) % useCases.length);
   };
 
+  // Touch event handlers for swipe
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(0); // Reset
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      handleNext();
+    }
+    if (isRightSwipe) {
+      handlePrev();
+    }
+  };
+
   // Calculate position offset for each card relative to current
   const getCardPosition = (cardIndex: number) => {
     const totalCards = useCases.length;
@@ -90,7 +120,12 @@ export default function UseCasesSection() {
           {/* Carousel */}
           <div className="relative">
             {/* Cards Container */}
-            <div className="relative flex items-center justify-center min-h-[400px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[550px] px-12 md:px-16 lg:px-20">
+            <div
+              className="relative flex items-center justify-center min-h-[400px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[550px] px-12 md:px-16 lg:px-20"
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+            >
               {useCases.map((useCase, index) => {
                 const position = getCardPosition(index);
                 const isCenter = position === 0;
