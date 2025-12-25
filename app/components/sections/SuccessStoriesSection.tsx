@@ -10,7 +10,12 @@ export default function SuccessStoriesSection() {
   const [isHovering, setIsHovering] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
+
+  // Minimum swipe distance (in px)
+  const minSwipeDistance = 50;
 
   const testimonials = [
     {
@@ -108,6 +113,31 @@ export default function SuccessStoriesSection() {
     );
   };
 
+  // Touch event handlers for swipe
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(0); // Reset
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && !isLastPage) {
+      handleNext();
+    }
+    if (isRightSwipe && !isFirstPage) {
+      handlePrev();
+    }
+  };
+
   const isFirstPage = currentPage === 0;
   const isLastPage = currentPage === totalPages - 1;
 
@@ -165,7 +195,13 @@ export default function SuccessStoriesSection() {
             </div>
 
             {/* Cards Wrapper */}
-            <div className="overflow-hidden flex-1 min-w-0" ref={carouselRef}>
+            <div
+              className="overflow-hidden flex-1 min-w-0"
+              ref={carouselRef}
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+            >
               <div
                 className="flex transition-transform duration-700 ease-out"
                 style={{ transform: `translateX(-${currentPage * 100}%)` }}
