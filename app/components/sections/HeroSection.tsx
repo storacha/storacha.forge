@@ -166,7 +166,7 @@ export default function HeroSection() {
           isMobileMenuOpen ? "hidden lg:flex" : ""
         }`}
       >
-        <div className="flex flex-col gap-[2.5vh] min-[380px]:gap-[5vh] sm:gap-[5vh]  md:gap-[3.5vh] lg:gap-[4vh] ">
+        <div className="flex flex-col gap-[2.5vh] min-[380px]:gap-[5vh] [@media(min-height:667px)]:gap-[7vh]  sm:gap-[5vh]  md:gap-[3.5vh] lg:gap-[4vh] ">
           <h1 className="font-epilogue font-medium text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[clamp(48px,4.5vw,72px)] leading-[1.15] text-[#0176CE] tracking-[-1px]">
             <span className="inline-block">Cut Cloud Backup Costs by 80%.</span>
             <br />
