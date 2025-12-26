@@ -109,11 +109,11 @@ export default function UseCasesSection() {
   return (
     <section
       id="use-cases"
-      className="bg-white py-10 md:py-16 lg:py-20 overflow-hidden"
+      className="bg-[#0176CE] py-10 md:py-16 lg:py-20 overflow-hidden"
     >
       <div className="container-custom">
         <div className="text-center space-y-6 md:space-y-10 lg:space-y-12">
-          <h2 className="font-epilogue font-medium text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[72px] text-[#0176CE] tracking-tight md:tracking-[-1.5px] lg:tracking-[-2.88px]">
+          <h2 className="font-epilogue font-medium text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[72px] text-white tracking-tight md:tracking-[-1.5px] lg:tracking-[-2.88px]">
             Use Cases
           </h2>
 
@@ -121,7 +121,7 @@ export default function UseCasesSection() {
           <div className="relative">
             {/* Cards Container */}
             <div
-              className="relative flex items-center justify-center min-h-[400px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[550px] px-12 md:px-16 lg:px-20"
+              className="relative flex items-center justify-center min-h-[400px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[550px] px-12 md:px-16 lg:px-20 pb-16 md:pb-20"
               onTouchStart={onTouchStart}
               onTouchMove={onTouchMove}
               onTouchEnd={onTouchEnd}
@@ -150,7 +150,13 @@ export default function UseCasesSection() {
                       zIndex,
                     }}
                   >
-                    <div className="border border-[#0176CE] rounded-[20px] overflow-hidden bg-white shadow-lg">
+                    <div
+                      className={`border-1 border-white rounded-[20px] overflow-hidden bg-white ${
+                        isCenter
+                          ? "shadow-[0_8px_30px_rgba(255,255,255,0.3)]"
+                          : "shadow-lg"
+                      }`}
+                    >
                       <div className="bg-[#0176CE] px-4 py-3 sm:px-6 sm:py-4 md:px-9 md:py-5">
                         <p className="font-dm-sans font-medium text-xs sm:text-sm md:text-base lg:text-[18px] text-white leading-tight">
                           {useCase.category}
@@ -182,46 +188,48 @@ export default function UseCasesSection() {
               })}
             </div>
 
-            {/* Navigation Arrows */}
-            <button
-              onClick={handlePrev}
-              className="absolute left-0 sm:left-2 md:left-4 top-1/2 -translate-y-1/2 bg-[#0176CE] text-white w-7 h-7 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center hover:bg-[#0089F0] transition-colors shadow-lg z-30"
-              aria-label="Previous use case"
-            >
-              <svg
-                className="w-5 h-5 md:w-6 md:h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+            {/* Navigation Arrows - Bottom Center */}
+            <div className="flex gap-4 justify-center mt-4 md:mt-6">
+              <button
+                onClick={handlePrev}
+                className="text-white w-10 h-10 md:w-12 md:h-12 flex items-center justify-center hover:opacity-80 transition-opacity z-30"
+                aria-label="Previous use case"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-            </button>
+                <svg
+                  className="w-8 h-8 md:w-10 md:h-10"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+              </button>
 
-            <button
-              onClick={handleNext}
-              className="absolute right-0 sm:right-2 md:right-4 top-1/2 -translate-y-1/2 bg-[#0176CE] text-white w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center hover:bg-[#0089F0] transition-colors shadow-lg z-30"
-              aria-label="Next use case"
-            >
-              <svg
-                className="w-5 h-5 md:w-6 md:h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+              <button
+                onClick={handleNext}
+                className="text-white w-10 h-10 md:w-12 md:h-12 flex items-center justify-center hover:opacity-80 transition-opacity z-30"
+                aria-label="Next use case"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </button>
+                <svg
+                  className="w-8 h-8 md:w-10 md:h-10"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
