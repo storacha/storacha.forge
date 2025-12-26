@@ -8,6 +8,7 @@ export default function UseCasesSection() {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
 
   // Minimum swipe distance (in px)
   const minSwipeDistance = 50;
@@ -36,6 +37,17 @@ export default function UseCasesSection() {
       isImage: true,
     },
   ];
+
+  // Detect large screen
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsLargeScreen(window.innerWidth >= 1024);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
 
   // Auto-rotation effect
   useEffect(() => {
@@ -131,10 +143,11 @@ export default function UseCasesSection() {
                 const isCenter = position === 0;
                 const isVisible = Math.abs(position) <= 1;
 
-                // Calculate transform values based on position
-                // Center: 0, Left: -110%, Right: +110%
-                const translateX = position * 110;
-                const scale = isCenter ? 1 : 0.75;
+                // Responsive gap: smaller on large screens
+                const translateX = position * (isLargeScreen ? 100 : 110);
+
+                // Responsive scaling - reduce side cards more on large screens
+                const scale = isCenter ? 1 : isLargeScreen ? 0.6 : 0.75;
                 const zIndex = isCenter ? 20 : 10 - Math.abs(position);
 
                 // Responsive opacity: hide side cards on mobile/tablet, show on desktop
@@ -145,7 +158,7 @@ export default function UseCasesSection() {
                 return (
                   <div
                     key={index}
-                    className={`absolute transition-all duration-700 ease-out w-full max-w-[180px] min-[360px]:max-w-[240px] sm:max-w-[320px] md:max-w-md lg:max-w-lg ${
+                    className={`absolute transition-all duration-700 ease-out w-full max-w-[180px] min-[360px]:max-w-[240px] sm:max-w-[320px] md:max-w-md lg:max-w-sm xl:max-w-md 2xl:max-w-lg ${
                       !isVisible ? "pointer-events-none" : ""
                     } ${opacityClass}`}
                     style={{
@@ -160,28 +173,28 @@ export default function UseCasesSection() {
                           : "shadow-lg"
                       }`}
                     >
-                      <div className="bg-[#0176CE] px-4 py-3 sm:px-6 sm:py-4 md:px-9 md:py-5">
-                        <p className="font-dm-sans font-medium text-xs sm:text-sm md:text-base lg:text-[18px] text-white leading-tight">
+                      <div className="bg-[#0176CE] px-4 py-3 sm:px-6 sm:py-4 md:px-9 md:py-5 lg:px-6 lg:py-4 xl:px-8 xl:py-5">
+                        <p className="font-dm-sans font-medium text-xs sm:text-sm md:text-base lg:text-sm xl:text-base 2xl:text-[18px] text-white leading-tight">
                           {useCase.category}
                         </p>
                       </div>
 
-                      <div className="p-4 sm:p-6 md:p-9 space-y-4 md:space-y-6 lg:space-y-10">
-                        <div className="w-6 h-6 sm:w-12 sm:h-12 md:w-[60px] md:h-[60px] bg-[#C5DFFD] rounded-full flex items-center justify-center mx-auto">
+                      <div className="p-4 sm:p-6 md:p-9 lg:p-6 xl:p-8 2xl:p-9 space-y-4 md:space-y-6 lg:space-y-5 xl:space-y-7 2xl:space-y-10">
+                        <div className="w-6 h-6 sm:w-12 sm:h-12 md:w-[60px] md:h-[60px] lg:w-10 lg:h-10 xl:w-12 xl:h-12 2xl:w-[60px] 2xl:h-[60px] bg-[#C5DFFD] rounded-full flex items-center justify-center mx-auto">
                           <Image
                             src={useCase.icon}
                             alt={useCase.title}
                             width={40}
                             height={40}
-                            className="w-4 h-4 sm:w-8 sm:h-8 md:w-10 md:h-10"
+                            className="w-4 h-4 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-6 lg:h-6 xl:w-8 xl:h-8 2xl:w-10 2xl:h-10"
                           />
                         </div>
 
-                        <h3 className="font-epilogue font-medium text-lg sm:text-xl md:text-2xl lg:text-[30px] leading-none text-[#0176CE] tracking-[-1.6px]">
+                        <h3 className="font-epilogue font-medium text-lg sm:text-xl md:text-2xl lg:text-xl xl:text-2xl 2xl:text-[30px] leading-none text-[#0176CE] tracking-[-1.6px]">
                           {useCase.title}
                         </h3>
 
-                        <p className="font-dm-sans text-sm sm:text-base md:text-lg lg:text-xl text-[#0176CE] leading-relaxed">
+                        <p className="font-dm-sans text-sm sm:text-base md:text-lg lg:text-base xl:text-lg 2xl:text-xl text-[#0176CE] leading-relaxed">
                           {useCase.description}
                         </p>
                       </div>
