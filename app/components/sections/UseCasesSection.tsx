@@ -135,18 +135,21 @@ export default function UseCasesSection() {
                 // Center: 0, Left: -110%, Right: +110%
                 const translateX = position * 110;
                 const scale = isCenter ? 1 : 0.75;
-                const opacity = isCenter ? 1 : 0.4;
                 const zIndex = isCenter ? 20 : 10 - Math.abs(position);
+
+                // Responsive opacity: hide side cards on mobile/tablet, show on desktop
+                const opacityClass = isCenter
+                  ? "opacity-100"
+                  : "opacity-0 lg:opacity-40";
 
                 return (
                   <div
                     key={index}
                     className={`absolute transition-all duration-700 ease-out w-full max-w-[180px] min-[360px]:max-w-[240px] sm:max-w-[320px] md:max-w-md lg:max-w-lg ${
                       !isVisible ? "pointer-events-none" : ""
-                    }`}
+                    } ${opacityClass}`}
                     style={{
                       transform: `translateX(${translateX}%) scale(${scale})`,
-                      opacity: isVisible ? opacity : 0,
                       zIndex,
                     }}
                   >
