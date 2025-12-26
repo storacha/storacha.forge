@@ -121,7 +121,7 @@ export default function UseCasesSection() {
   return (
     <section
       id="use-cases"
-      className="bg-[#0176CE] py-10 md:py-16 lg:py-20 overflow-hidden"
+      className="bg-[#0176CE] py-10 md:py-16 lg:py-20 overflow-hidden -mt-px"
     >
       <div className="container-custom">
         <div className="text-center space-y-6 md:space-y-10 lg:space-y-12">

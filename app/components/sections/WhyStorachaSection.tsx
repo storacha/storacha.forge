@@ -61,7 +61,7 @@ export default function WhyStorachaSection() {
   const rightFeatures = features.slice(4, 8);
 
   return (
-    <section id="why" className="bg-[#0176CE] py-10 md:py-16 lg:py-20">
+    <section id="why" className="bg-[#0176CE] py-10 md:py-16 lg:py-20 -mb-px">
       <div className="container-custom">
         <div className="space-y-6 md:space-y-10 lg:space-y-12">
           <div className="text-center space-y-3 md:space-y-4 lg:space-y-6">
