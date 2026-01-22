@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/set-state-in-effect */
 /* eslint-disable react/no-unescaped-entities */
 "use client";
@@ -24,6 +25,7 @@ export default function SuccessStoriesSection() {
       author: "Clara Tsao",
       role: "Founding Officer",
       company: "Filecoin Foundation",
+      image: "/forge/testimonials/clara_ff.png",
     },
     {
       quote:
@@ -31,6 +33,7 @@ export default function SuccessStoriesSection() {
       author: "Sylvan Z.",
       role: "Co-Founder",
       company: "Parasail",
+      image: "/forge/testimonials/sylvan_parasail.png",
     },
     {
       quote:
@@ -38,6 +41,7 @@ export default function SuccessStoriesSection() {
       author: "Miles S.",
       role: "Senior Engineer",
       company: "Triton",
+      image: "/forge/testimonials/miles_triton.png",
     },
     {
       quote:
@@ -45,6 +49,7 @@ export default function SuccessStoriesSection() {
       author: "Josh D.",
       role: "Head of Infrastructure",
       company: "Chainsafe",
+      image: "/forge/testimonials/josh_chainsafe.png",
     },
   ];
 
@@ -172,9 +177,8 @@ export default function SuccessStoriesSection() {
               {!isFirstPage && (
                 <button
                   onClick={handlePrev}
-                  className={`bg-[#0176CE] text-white w-6 h-6 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 ${
-                    isHovering ? "sm:scale-125" : "scale-100"
-                  }`}
+                  className={`bg-[#0176CE] text-white w-6 h-6 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 ${isHovering ? "sm:scale-125" : "scale-100"
+                    }`}
                   aria-label="Previous testimonials"
                 >
                   <svg
@@ -221,22 +225,19 @@ export default function SuccessStoriesSection() {
                             className="w-full sm:w-1/2 flex-shrink-0 bg-white rounded-2xl md:rounded-3xl p-5 sm:p-4 md:p-6 lg:p-8 shadow-sm flex flex-col"
                           >
                             {/* Avatar */}
-                            <div className="w-12 h-12 sm:w-10 sm:h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-gray-400 rounded-full flex items-center justify-center mb-4 sm:mb-4 md:mb-6">
-                              <svg
-                                className="w-6 h-6 sm:w-5 sm:h-5 md:w-7 md:h-7 lg:w-8 lg:h-8 text-gray-200"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                              </svg>
+                            <div className="w-12 h-12 sm:w-10 sm:h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full overflow-hidden mb-4 sm:mb-4 md:mb-6 flex-shrink-0">
+                              <img
+                                src={testimonial.image}
+                                alt={testimonial.author}
+                                className="w-full h-full object-cover"
+                              />
                             </div>
 
                             {/* Quote */}
                             <div className="flex-1">
                               <p
-                                className={`font-dm-sans text-sm sm:text-sm md:text-base lg:text-xl text-[#0176CE] italic leading-relaxed ${
-                                  !isExpanded && showMore ? "line-clamp-3" : ""
-                                }`}
+                                className={`font-dm-sans text-sm sm:text-sm md:text-base lg:text-xl text-[#0176CE] italic leading-relaxed ${!isExpanded && showMore ? "line-clamp-3" : ""
+                                  }`}
                               >
                                 "{testimonial.quote}"
                               </p>
@@ -249,9 +250,8 @@ export default function SuccessStoriesSection() {
                                 >
                                   {isExpanded ? "Show Less" : "Show More"}
                                   <svg
-                                    className={`w-3 h-3 sm:w-3 sm:h-3 md:w-4 md:h-4 transition-transform ${
-                                      isExpanded ? "rotate-180" : ""
-                                    }`}
+                                    className={`w-3 h-3 sm:w-3 sm:h-3 md:w-4 md:h-4 transition-transform ${isExpanded ? "rotate-180" : ""
+                                      }`}
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
@@ -295,9 +295,8 @@ export default function SuccessStoriesSection() {
               {!isLastPage && (
                 <button
                   onClick={handleNext}
-                  className={`bg-[#0176CE] text-white w-6 h-6 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 ${
-                    isHovering ? "sm:scale-125" : "scale-100"
-                  }`}
+                  className={`bg-[#0176CE] text-white w-6 h-6 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 ${isHovering ? "sm:scale-125" : "scale-100"
+                    }`}
                   aria-label="Next testimonials"
                 >
                   <svg
@@ -327,11 +326,10 @@ export default function SuccessStoriesSection() {
                   setIsPaused(true);
                   setCurrentPage(index);
                 }}
-                className={`h-2 md:h-3 rounded-full transition-all duration-300 ${
-                  index === currentPage
-                    ? "bg-[#0176CE] w-6 md:w-8"
-                    : "bg-[#0176CE]/30 w-2 md:w-3 hover:bg-[#0176CE]/50"
-                }`}
+                className={`h-2 md:h-3 rounded-full transition-all duration-300 ${index === currentPage
+                  ? "bg-[#0176CE] w-6 md:w-8"
+                  : "bg-[#0176CE]/30 w-2 md:w-3 hover:bg-[#0176CE]/50"
+                  }`}
                 aria-label={`Go to page ${index + 1}`}
               />
             ))}
