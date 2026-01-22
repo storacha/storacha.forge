@@ -204,11 +204,11 @@ export default function UseCasesSection() {
               })}
             </div>
 
-            {/* Navigation Arrows - Bottom Center */}
-            <div className="flex gap-4 justify-center mt-4 md:mt-6">
+            {/* Navigation Arrows - Side on mobile, Bottom on desktop */}
+            <div className="lg:flex lg:gap-4 lg:justify-center lg:mt-4 lg:mt-6">
               <button
                 onClick={handlePrev}
-                className="text-white w-10 h-10 md:w-12 md:h-12 flex items-center justify-center hover:opacity-80 transition-opacity z-30"
+                className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 lg:relative lg:left-0 lg:top-0 lg:translate-y-0 text-white w-10 h-10 md:w-12 md:h-12 flex items-center justify-center hover:opacity-80 transition-opacity z-30"
                 aria-label="Previous use case"
               >
                 <svg
@@ -228,7 +228,7 @@ export default function UseCasesSection() {
 
               <button
                 onClick={handleNext}
-                className="text-white w-10 h-10 md:w-12 md:h-12 flex items-center justify-center hover:opacity-80 transition-opacity z-30"
+                className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 lg:relative lg:right-0 lg:top-0 lg:translate-y-0 text-white w-10 h-10 md:w-12 md:h-12 flex items-center justify-center hover:opacity-80 transition-opacity z-30"
                 aria-label="Next use case"
               >
                 <svg
