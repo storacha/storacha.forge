@@ -28,7 +28,7 @@ export default function DataOwnershipSection() {
           {/* Left Column - Image */}
           <div className="relative">
             <Image
-              src="/forge/data-ownership/data-centre.png"
+              src="/forge/data-ownership/data-center.svg"
               alt="Globe"
               width={500}
               height={400}
@@ -56,8 +56,12 @@ export default function DataOwnershipSection() {
 
             <Link
               href={MEETING_URL}
-              onClick={() => plausible('CTA Click', { props: { location: 'data-ownership' } })}
-              className="bg-[#E91315] text-white px-4 py-2.5 sm:px-5 sm:py-3 md:px-7 md:py-3.5 rounded-full font-semibold text-sm sm:text-base md:text-lg lg:text-xl flex items-center gap-2 md:gap-2.5 hover:bg-red-700 transition-colors w-fit"
+              onClick={() =>
+                plausible("CTA Click", {
+                  props: { location: "data-ownership" },
+                })
+              }
+              className="bg-[#E91315] text-white px-4 py-2.5 sm:px-5 sm:py-3 md:px-7 md:py-3.5 rounded-full font-semibold text-sm sm:text-base md:text-lg lg:text-xl flex items-center gap-2 md:gap-2.5 hover:bg-red-700 transition-colors w-fit mx-auto sm:mx-0"
             >
               <Image
                 src="/forge/hero/cta-arrow-icon.svg"

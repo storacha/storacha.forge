@@ -1,7 +1,18 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
+import { useState, useEffect } from "react";
 
 export default function UseCasesSection() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+
+  // Minimum swipe distance (in px)
+  const minSwipeDistance = 50;
+
   const useCases = [
     {
       category: "Financial, Healthcare, Legal",
@@ -27,47 +38,214 @@ export default function UseCasesSection() {
     },
   ];
 
+  // Detect large screen
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsLargeScreen(window.innerWidth >= 1024);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
+  // Auto-rotation effect
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % useCases.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, useCases.length]);
+
+  // Resume auto-rotation after 8 seconds of user inactivity
+  useEffect(() => {
+    if (isAutoPlaying) return;
+
+    const resumeTimer = setTimeout(() => {
+      setIsAutoPlaying(true);
+    }, 8000);
+
+    return () => clearTimeout(resumeTimer);
+  }, [isAutoPlaying]);
+
+  const handlePrev = () => {
+    setIsAutoPlaying(false);
+    setCurrentIndex((prev) => (prev - 1 + useCases.length) % useCases.length);
+  };
+
+  const handleNext = () => {
+    setIsAutoPlaying(false);
+    setCurrentIndex((prev) => (prev + 1) % useCases.length);
+  };
+
+  // Touch event handlers for swipe
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(0); // Reset
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      handleNext();
+    }
+    if (isRightSwipe) {
+      handlePrev();
+    }
+  };
+
+  // Calculate position offset for each card relative to current
+  const getCardPosition = (cardIndex: number) => {
+    const totalCards = useCases.length;
+    let offset = cardIndex - currentIndex;
+
+    // Handle wrapping for circular carousel
+    if (offset > totalCards / 2) offset -= totalCards;
+    if (offset < -totalCards / 2) offset += totalCards;
+
+    return offset;
+  };
+
   return (
-    <section id="use-cases" className="bg-white py-10 md:py-16 lg:py-20">
+    <section
+      id="use-cases"
+      className="bg-[#0176CE] py-10 md:py-16 lg:py-20 overflow-hidden -mt-px"
+    >
       <div className="container-custom">
         <div className="text-center space-y-6 md:space-y-10 lg:space-y-12">
-          <h2 className="font-epilogue font-medium text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[72px] text-[#0176CE] tracking-tight md:tracking-[-1.5px] lg:tracking-[-2.88px]">
+          <h2 className="font-epilogue font-medium text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[72px] text-white tracking-tight md:tracking-[-1.5px] lg:tracking-[-2.88px]">
             Use Cases
           </h2>
 
-          <div className="grid lg:grid-cols-3 gap-3 md:gap-4 lg:gap-5">
-            {useCases.map((useCase) => (
-              <div
-                key={useCase.title}
-                className="border border-[#0176CE] rounded-[20px] overflow-hidden"
-              >
-                <div className="bg-[#0176CE] px-4 py-3 sm:px-6 sm:py-4 md:px-9 md:py-5">
-                  <p className="font-dm-sans font-medium text-xs sm:text-sm md:text-base lg:text-[18px] text-white leading-tight">
-                    {useCase.category}
-                  </p>
-                </div>
+          {/* Carousel */}
+          <div className="relative">
+            {/* Cards Container */}
+            <div
+              className="relative flex items-center justify-center min-h-[400px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[550px] px-12 md:px-16 lg:px-20 pb-16 md:pb-20"
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+            >
+              {useCases.map((useCase, index) => {
+                const position = getCardPosition(index);
+                const isCenter = position === 0;
+                const isVisible = Math.abs(position) <= 1;
 
-                <div className="p-4 sm:p-6 md:p-9 space-y-4 md:space-y-6 lg:space-y-10">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-[60px] md:h-[60px] bg-[#C5DFFD] rounded-full flex items-center justify-center mx-auto ">
-                    <Image
-                      src={useCase.icon}
-                      alt={useCase.title}
-                      width={40}
-                      height={40}
-                      className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10"
-                    />
+                // Responsive gap: smaller on large screens
+                const translateX = position * (isLargeScreen ? 100 : 110);
+
+                // Responsive scaling - reduce side cards more on large screens
+                const scale = isCenter ? 1 : isLargeScreen ? 0.6 : 0.75;
+                const zIndex = isCenter ? 20 : 10 - Math.abs(position);
+
+                // Responsive opacity: hide side cards on mobile/tablet, show on desktop
+                const opacityClass = isCenter
+                  ? "opacity-100"
+                  : "opacity-0 lg:opacity-40";
+
+                return (
+                  <div
+                    key={index}
+                    className={`absolute transition-all duration-700 ease-out w-full max-w-[180px] min-[360px]:max-w-[240px] sm:max-w-[320px] md:max-w-md lg:max-w-sm xl:max-w-md 2xl:max-w-lg ${
+                      !isVisible ? "pointer-events-none" : ""
+                    } ${opacityClass}`}
+                    style={{
+                      transform: `translateX(${translateX}%) scale(${scale})`,
+                      zIndex,
+                    }}
+                  >
+                    <div
+                      className={`border-1 border-white rounded-[20px] overflow-hidden bg-white ${
+                        isCenter
+                          ? "shadow-[0_8px_30px_rgba(255,255,255,0.3)]"
+                          : "shadow-lg"
+                      }`}
+                    >
+                      <div className="bg-[#0176CE] px-4 py-3 sm:px-6 sm:py-4 md:px-9 md:py-5 lg:px-6 lg:py-4 xl:px-8 xl:py-5">
+                        <p className="font-dm-sans font-medium text-xs sm:text-sm md:text-base lg:text-sm xl:text-base 2xl:text-[18px] text-white leading-tight">
+                          {useCase.category}
+                        </p>
+                      </div>
+
+                      <div className="p-4 sm:p-6 md:p-9 lg:p-6 xl:p-8 2xl:p-9 space-y-4 md:space-y-6 lg:space-y-5 xl:space-y-7 2xl:space-y-10">
+                        <div className="w-6 h-6 sm:w-12 sm:h-12 md:w-[60px] md:h-[60px] lg:w-10 lg:h-10 xl:w-12 xl:h-12 2xl:w-[60px] 2xl:h-[60px] bg-[#C5DFFD] rounded-full flex items-center justify-center mx-auto">
+                          <Image
+                            src={useCase.icon}
+                            alt={useCase.title}
+                            width={40}
+                            height={40}
+                            className="w-4 h-4 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-6 lg:h-6 xl:w-8 xl:h-8 2xl:w-10 2xl:h-10"
+                          />
+                        </div>
+
+                        <h3 className="font-epilogue font-medium text-lg sm:text-xl md:text-2xl lg:text-xl xl:text-2xl 2xl:text-[30px] leading-none text-[#0176CE] tracking-[-1.6px]">
+                          {useCase.title}
+                        </h3>
+
+                        <p className="font-dm-sans text-sm sm:text-base md:text-lg lg:text-base xl:text-lg 2xl:text-xl text-[#0176CE] leading-relaxed">
+                          {useCase.description}
+                        </p>
+                      </div>
+                    </div>
                   </div>
+                );
+              })}
+            </div>
 
-                  <h3 className="font-epilogue font-medium text-lg sm:text-xl md:text-2xl lg:text-[30px] leading-none text-[#0176CE] tracking-[-1.6px]">
-                    {useCase.title}
-                  </h3>
+            {/* Navigation Arrows - Side on mobile, Bottom on desktop */}
+            <div className="lg:flex lg:gap-4 lg:justify-center lg:mt-4 lg:mt-6">
+              <button
+                onClick={handlePrev}
+                className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 lg:relative lg:left-0 lg:top-0 lg:translate-y-0 text-white w-10 h-10 md:w-12 md:h-12 flex items-center justify-center hover:opacity-80 transition-opacity z-30"
+                aria-label="Previous use case"
+              >
+                <svg
+                  className="w-8 h-8 md:w-10 md:h-10"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+              </button>
 
-                  <p className="font-dm-sans text-sm sm:text-base md:text-lg lg:text-xl text-[#0176CE] leading-relaxed">
-                    {useCase.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+              <button
+                onClick={handleNext}
+                className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 lg:relative lg:right-0 lg:top-0 lg:translate-y-0 text-white w-10 h-10 md:w-12 md:h-12 flex items-center justify-center hover:opacity-80 transition-opacity z-30"
+                aria-label="Next use case"
+              >
+                <svg
+                  className="w-8 h-8 md:w-10 md:h-10"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>

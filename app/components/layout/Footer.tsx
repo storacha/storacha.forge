@@ -8,91 +8,131 @@ export default function Footer() {
   const plausible = usePlausible();
 
   return (
-    <footer className="bg-white border-t border-gray-200 pt-8 md:pt-12 lg:pt-16 pb-4 md:pb-6 lg:pb-8">
-      <div className="container-custom">
-        <div className="grid md:grid-cols-3 gap-6 md:gap-16 lg:gap-30 xl:gap-74 mb-8 md:mb-12 lg:mb-16">
-          {/* Column 1 */}
-          <div className="space-y-3 md:space-y-4 lg:space-y-6">
-            <Link
-              href="#why"
-              onClick={() =>
-                plausible("Footer Navigation", {
-                  props: { section: "why-storacha" },
-                })
-              }
-              className="block text-[#0176CE] font-dm-sans text-sm sm:text-base md:text-[18px] font-semibold leading-6 hover:underline"
-            >
-              Why Storacha
-            </Link>
-            <Link
-              href="#use-cases"
-              onClick={() =>
-                plausible("Footer Navigation", {
-                  props: { section: "use-cases" },
-                })
-              }
-              className="block text-[#0176CE] font-dm-sans text-sm sm:text-base md:text-[18px] font-semibold leading-6 hover:underline"
-            >
-              Use Cases
-            </Link>
-            <Link
-              href="#stories"
-              onClick={() =>
-                plausible("Footer Navigation", {
-                  props: { section: "success-stories" },
-                })
-              }
-              className="block text-[#0176CE] font-dm-sans text-sm sm:text-base md:text-[18px] font-semibold leading-6 hover:underline"
-            >
-              Success Stories
-            </Link>
-          </div>
+    <footer
+      className="bg-[#C5DFFD] border-t border-[#0176CE]/20 
+      py-6 px-4
+      sm:py-6 sm:px-6
+      md:py-8 md:px-10
+      lg:py-10 lg:px-14
+      xl:py-[60px] xl:px-[70px]
+      2xl:py-[60px] 2xl:px-[70px]"
+    >
+      <div className="max-w-[1800px] mx-auto">
+        {/* Navigation Links - Vertical on mobile, horizontal on larger screens */}
+        <div
+          className="flex flex-col gap-3
+          sm:flex-row sm:justify-between sm:items-center sm:gap-0
+          mb-5
+          sm:mb-5
+          md:mb-6
+          lg:mb-8
+          xl:mb-10
+          2xl:mb-10"
+        >
+          <Link
+            href="#why"
+            onClick={() =>
+              plausible("Footer Navigation", {
+                props: { section: "why-storacha" },
+              })
+            }
+            className="text-[#0176CE] font-dm-sans 
+              text-base sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
+              font-semibold hover:underline whitespace-nowrap"
+          >
+            Why Storacha
+          </Link>
 
-          {/* Column 2 */}
-          <div className="space-y-3 md:space-y-4 lg:space-y-6">
-            <Link
-              href="#pricing"
-              onClick={() =>
-                plausible("Footer Navigation", {
-                  props: { section: "pricing" },
-                })
-              }
-              className="block text-[#0176CE] font-dm-sans text-sm sm:text-base md:text-[18px] font-semibold leading-6 hover:underline"
-            >
-              Pricing
-            </Link>
-            <Link
-              href="#comparison"
-              onClick={() =>
-                plausible("Footer Navigation", {
-                  props: { section: "cost-comparison" },
-                })
-              }
-              className="block text-[#0176CE] font-dm-sans text-sm sm:text-base md:text-[18px] font-semibold leading-6 hover:underline"
-            >
-              Cost Comparison
-            </Link>
-          </div>
+          <Link
+            href="#use-cases"
+            onClick={() =>
+              plausible("Footer Navigation", {
+                props: { section: "use-cases" },
+              })
+            }
+            className="text-[#0176CE] font-dm-sans 
+              text-base sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
+              font-semibold hover:underline whitespace-nowrap"
+          >
+            Use Cases
+          </Link>
 
-          {/* Column 3 - Empty for layout */}
-          <div></div>
+          <Link
+            href="#stories"
+            onClick={() =>
+              plausible("Footer Navigation", {
+                props: { section: "success-stories" },
+              })
+            }
+            className="text-[#0176CE] font-dm-sans 
+              text-base sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
+              font-semibold hover:underline whitespace-nowrap"
+          >
+            Success Stories
+          </Link>
+
+          <Link
+            href="#pricing"
+            onClick={() =>
+              plausible("Footer Navigation", {
+                props: { section: "pricing" },
+              })
+            }
+            className="text-[#0176CE] font-dm-sans 
+              text-base sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
+              font-semibold hover:underline whitespace-nowrap"
+          >
+            Pricing
+          </Link>
+
+          <Link
+            href="#comparison"
+            onClick={() =>
+              plausible("Footer Navigation", {
+                props: { section: "cost-comparison" },
+              })
+            }
+            className="text-[#0176CE] font-dm-sans 
+              text-base sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
+              font-semibold hover:underline whitespace-nowrap"
+          >
+            Cost Comparison
+          </Link>
         </div>
 
-        {/* Bottom row */}
-        <div className="flex flex-wrap items-center justify-between gap-4 md:gap-6 pt-4 md:pt-6 lg:pt-8 border-t border-gray-200">
-          <Image
-            src="/forge/logos/storacha-logo-blue.svg"
-            alt="Storacha"
-            onClick={() =>
-              plausible("Logo Click", { props: { location: "footer" } })
-            }
-            width={140}
-            height={50}
-            className="h-8 sm:h-10 md:h-[50px] w-auto cursor-pointer"
-          />
+        {/* Divider */}
+        <div
+          className="h-px bg-[#0176CE]/20 
+          mb-5
+          sm:mb-5
+          md:mb-6
+          lg:mb-8
+          xl:mb-10
+          2xl:mb-10"
+        ></div>
 
-          <div className="flex flex-wrap items-center gap-4 md:gap-6 lg:gap-8 ">
+        {/* Bottom Row - Vertical on mobile, horizontal on larger screens */}
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          {/* Logo */}
+          <Link href="/" className="flex items-center flex-shrink-0">
+            <Image
+              src="/forge/logos/storacha-logo-blue.svg"
+              alt="Storacha"
+              onClick={() =>
+                plausible("Logo Click", { props: { location: "footer" } })
+              }
+              width={140}
+              height={50}
+              className="h-8 lg:h-10 xl:h-11 2xl:h-12 w-auto cursor-pointer"
+            />
+          </Link>
 
+          {/* Links - Vertical on mobile, horizontal on larger screens */}
+          <div
+            className="flex flex-col gap-3
+            sm:flex-row sm:items-center sm:flex-shrink-0
+            sm:gap-4 md:gap-6 lg:gap-10 xl:gap-12 2xl:gap-14"
+          >
             <Link
               href="https://docs.storacha.network/privacy-policy/"
               onClick={() =>
@@ -102,7 +142,9 @@ export default function Footer() {
               }
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#0176CE] font-dm-sans text-xs sm:text-sm md:text-base lg:text-[18px] font-semibold leading-6 hover:underline"
+              className="text-[#0176CE] font-dm-sans 
+                text-base sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
+                font-semibold hover:underline whitespace-nowrap"
             >
               Privacy Policy
             </Link>
@@ -115,15 +157,13 @@ export default function Footer() {
               }
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#0176CE] font-dm-sans text-xs sm:text-sm md:text-base lg:text-[18px] font-semibold leading-6 hover:underline"
+              className="text-[#0176CE] font-dm-sans 
+                text-base sm:text-[10px] md:text-xs lg:text-sm xl:text-lg 2xl:text-xl
+                font-semibold hover:underline whitespace-nowrap"
             >
               Linkedin
             </Link>
           </div>
-
-          <span className="hidden sm:inline text-[#0176CE] font-dm-sans text-xs sm:text-sm md:text-base lg:text-[18px] font-semibold leading-6">
-            @2025 Storacha
-          </span>
         </div>
       </div>
     </footer>

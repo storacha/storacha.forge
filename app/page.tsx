@@ -1,5 +1,4 @@
 import HeroSection from './components/sections/HeroSection'
-import TrustedBySection from './components/sections/TrustedBySection'
 import DataOwnershipSection from './components/sections/DataOwnershipSection'
 import PricingSection from './components/sections/PricingSection'
 import CostComparisonSection from './components/sections/CostComparisonSection'
@@ -13,7 +12,6 @@ export default function Home() {
   return (
     <main className="w-full overflow-x-hidden">
       <HeroSection />
-      <TrustedBySection />
       <DataOwnershipSection />
       <PricingSection />
       <CostComparisonSection />

@@ -1,20 +1,31 @@
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react-hooks/set-state-in-effect */
+/* eslint-disable react/no-unescaped-entities */
+"use client";
+
+import { useState, useEffect, useRef } from "react";
 
 export default function SuccessStoriesSection() {
+  const [currentPage, setCurrentPage] = useState(0);
+  const [expandedCards, setExpandedCards] = useState<number[]>([]);
+  const [isHovering, setIsHovering] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  // Minimum swipe distance (in px)
+  const minSwipeDistance = 50;
+
   const testimonials = [
     {
       quote:
         "Storacha Forge has enabled us to upload PiBs of data with ZERO FRICTION backed up on Filecoin. No approval chains. No corporate gatekeepers. Our data can't be censored or held hostage.",
       author: "Clara Tsao",
-      role: "Co-Founder/Founding Officer",
+      role: "Founding Officer",
       company: "Filecoin Foundation",
-    },
-    {
-      quote:
-        "Storacha Forge lets us back up Solana's full network state with full integrity and instant accessibility. Node operators can retrieve any block by byte range, reducing storage costs dramatically, no slow restores, no cold storage limits, no compromise on verifiability.",
-      author: "Miles S.",
-      role: "Senior Engineer",
-      company: "Triton",
+      image: "/forge/testimonials/clara_ff.png",
     },
     {
       quote:
@@ -22,6 +33,15 @@ export default function SuccessStoriesSection() {
       author: "Sylvan Z.",
       role: "Co-Founder",
       company: "Parasail",
+      image: "/forge/testimonials/sylvan_parasail.png",
+    },
+    {
+      quote:
+        "Storacha Forge lets us back up Solana's full network state with full integrity and instant accessibility. Node operators can retrieve any block by byte range, reducing storage costs dramatically, no slow restores, no cold storage limits, no compromise on verifiability.",
+      author: "Miles S.",
+      role: "Senior Engineer",
+      company: "Triton",
+      image: "/forge/testimonials/miles_triton.png",
     },
     {
       quote:
@@ -29,54 +49,289 @@ export default function SuccessStoriesSection() {
       author: "Josh D.",
       role: "Head of Infrastructure",
       company: "Chainsafe",
+      image: "/forge/testimonials/josh_chainsafe.png",
     },
   ];
 
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640); // sm breakpoint
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Group testimonials based on screen size
+  const pages = [];
+  const itemsPerPage = isMobile ? 1 : 2;
+
+  for (let i = 0; i < testimonials.length; i += itemsPerPage) {
+    pages.push(testimonials.slice(i, i + itemsPerPage));
+  }
+
+  const totalPages = pages.length;
+
+  // Reset to first page when switching between mobile/desktop
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [isMobile]);
+
+  // Auto-carousel effect
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      setCurrentPage((prev) => (prev + 1) % totalPages);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [isPaused, totalPages]);
+
+  // Resume after 10 seconds of inactivity
+  useEffect(() => {
+    if (!isPaused) return;
+
+    const resumeTimer = setTimeout(() => {
+      setIsPaused(false);
+    }, 10000);
+
+    return () => clearTimeout(resumeTimer);
+  }, [isPaused]);
+
+  const handlePrev = () => {
+    setIsPaused(true);
+    setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
+  };
+
+  const handleNext = () => {
+    setIsPaused(true);
+    setCurrentPage((prev) => (prev + 1) % totalPages);
+  };
+
+  const toggleExpand = (index: number) => {
+    setIsPaused(true);
+    setExpandedCards((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
+  };
+
+  // Touch event handlers for swipe
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(0); // Reset
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && !isLastPage) {
+      handleNext();
+    }
+    if (isRightSwipe && !isFirstPage) {
+      handlePrev();
+    }
+  };
+
+  const isFirstPage = currentPage === 0;
+  const isLastPage = currentPage === totalPages - 1;
+
+  // Show "Show More" only if quote is long enough
+  const needsShowMore = (quote: string) => quote.length > 180;
+
   return (
-    <section id="stories" className="bg-[#C5DFFD] py-10 md:py-16 lg:py-20">
+    <section
+      id="success-stories"
+      className="bg-[#C5DFFD] py-10 md:py-16 lg:py-20 overflow-hidden"
+    >
       <div className="container-custom">
         <div className="space-y-6 md:space-y-10 lg:space-y-12">
-          <div className="text-center space-y-3 md:space-y-4 lg:space-y-6">
+          {/* Header */}
+          <div className="text-center space-y-3 md:space-y-4">
             <h2 className="font-epilogue font-medium text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[72px] text-[#0176CE] tracking-tight md:tracking-[-1.5px] lg:tracking-[-2.88px]">
               Success Stories
             </h2>
-            <p className="font-dm-sans text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[28px] text-[#0176CE] tracking-normal md:tracking-[-0.5px] lg:tracking-[-1.12px]">
+            <p className="font-dm-sans text-base sm:text-lg md:text-xl lg:text-2xl text-[#0176CE]">
               Hear from leaders building on Storacha Forge
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-3 md:gap-4 lg:gap-5">
-            {testimonials.map((testimonial, index) => (
+          {/* Carousel Container */}
+          <div
+            className="relative flex items-center gap-2 md:gap-4"
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
+          >
+            {/* Left Arrow - smaller on mobile */}
+            <div className="flex-shrink-0 w-6 sm:w-10 md:w-12">
+              {!isFirstPage && (
+                <button
+                  onClick={handlePrev}
+                  className={`bg-[#0176CE] text-white w-6 h-6 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 ${isHovering ? "sm:scale-125" : "scale-100"
+                    }`}
+                  aria-label="Previous testimonials"
+                >
+                  <svg
+                    className="w-3 h-3 sm:w-5 sm:h-5 md:w-6 md:h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 19l-7-7 7-7"
+                    />
+                  </svg>
+                </button>
+              )}
+            </div>
+
+            {/* Cards Wrapper */}
+            <div
+              className="overflow-hidden flex-1 min-w-0"
+              ref={carouselRef}
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+            >
               <div
-                key={index}
-                className="testimonial-card !p-5 md:!p-8 lg:!p-10"
+                className="flex transition-transform duration-700 ease-out"
+                style={{ transform: `translateX(-${currentPage * 100}%)` }}
               >
-                <div className="space-y-5 md:space-y-8 lg:space-y-10">
-                  <Image
-                    src="/forge/testimonials/quote.svg"
-                    alt="Quote"
-                    width={42}
-                    height={40}
-                    className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10"
-                  />
+                {pages.map((page, pageIndex) => (
+                  <div key={pageIndex} className="w-full flex-shrink-0">
+                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-3 md:gap-6 lg:gap-8 px-2 sm:px-6 md:px-8 lg:px-10">
+                      {page.map((testimonial, cardIndex) => {
+                        const globalIndex =
+                          pageIndex * itemsPerPage + cardIndex;
+                        const isExpanded = expandedCards.includes(globalIndex);
+                        const showMore = needsShowMore(testimonial.quote);
 
-                  <p className="font-dm-sans italic text-sm sm:text-base md:text-lg lg:text-xl text-[#0176CE] leading-relaxed">
-                    {testimonial.quote}
-                  </p>
+                        return (
+                          <div
+                            key={globalIndex}
+                            className="w-full sm:w-1/2 flex-shrink-0 bg-white rounded-2xl md:rounded-3xl p-5 sm:p-4 md:p-6 lg:p-8 shadow-sm flex flex-col"
+                          >
+                            {/* Avatar */}
+                            <div className="w-12 h-12 sm:w-10 sm:h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full overflow-hidden mb-4 sm:mb-4 md:mb-6 flex-shrink-0">
+                              <img
+                                src={testimonial.image}
+                                alt={testimonial.author}
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
 
-                  <div className="space-y-1 md:space-y-2">
-                    <p className="font-epilogue font-semibold text-base sm:text-lg md:text-xl lg:text-2xl text-[#0176CE]">
-                      {testimonial.author}
-                    </p>
-                    <p className="font-dm-sans text-xs sm:text-sm md:text-base text-[#0176CE]">
-                      {testimonial.role}
-                    </p>
-                    <span className="inline-block bg-[#0176CE] text-white px-2 py-0.5 md:px-3 md:py-1 rounded-full font-dm-sans font-semibold text-xs sm:text-sm md:text-base">
-                      {testimonial.company}
-                    </span>
+                            {/* Quote */}
+                            <div className="flex-1">
+                              <p
+                                className={`font-dm-sans text-sm sm:text-sm md:text-base lg:text-xl text-[#0176CE] italic leading-relaxed ${!isExpanded && showMore ? "line-clamp-3" : ""
+                                  }`}
+                              >
+                                "{testimonial.quote}"
+                              </p>
+
+                              {/* Show More / Show Less */}
+                              {showMore && (
+                                <button
+                                  onClick={() => toggleExpand(globalIndex)}
+                                  className="mt-2 sm:mt-2 font-dm-sans text-xs sm:text-xs md:text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1 transition-colors"
+                                >
+                                  {isExpanded ? "Show Less" : "Show More"}
+                                  <svg
+                                    className={`w-3 h-3 sm:w-3 sm:h-3 md:w-4 md:h-4 transition-transform ${isExpanded ? "rotate-180" : ""
+                                      }`}
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M19 9l-7 7-7-7"
+                                    />
+                                  </svg>
+                                </button>
+                              )}
+                            </div>
+
+                            {/* Author Info */}
+                            <div className="flex flex-col gap-3 mt-4 sm:mt-4 md:mt-6 pt-4 sm:pt-4 border-t border-gray-100">
+                              <div className="min-w-0">
+                                <p className="font-dm-sans font-bold text-base sm:text-sm md:text-base lg:text-lg text-[#0176CE]">
+                                  {testimonial.author}
+                                </p>
+                                <p className="font-dm-sans text-sm sm:text-xs md:text-sm lg:text-base text-[#0176CE]/70">
+                                  {testimonial.role}
+                                </p>
+                              </div>
+                              <button className="bg-[#E53935] hover:bg-[#C62828] text-white font-dm-sans font-medium text-sm sm:text-xs md:text-sm lg:text-base px-4 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-1.5 md:py-2 lg:py-2.5 rounded-full transition-colors whitespace-nowrap w-fit">
+                                {testimonial.company}
+                              </button>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
+                ))}
               </div>
+            </div>
+
+            {/* Right Arrow - smaller on mobile */}
+            <div className="flex-shrink-0 w-6 sm:w-10 md:w-12">
+              {!isLastPage && (
+                <button
+                  onClick={handleNext}
+                  className={`bg-[#0176CE] text-white w-6 h-6 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 ${isHovering ? "sm:scale-125" : "scale-100"
+                    }`}
+                  aria-label="Next testimonials"
+                >
+                  <svg
+                    className="w-3 h-3 sm:w-5 sm:h-5 md:w-6 md:h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Dots Indicator */}
+          <div className="flex justify-center gap-2">
+            {pages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setIsPaused(true);
+                  setCurrentPage(index);
+                }}
+                className={`h-2 md:h-3 rounded-full transition-all duration-300 ${index === currentPage
+                  ? "bg-[#0176CE] w-6 md:w-8"
+                  : "bg-[#0176CE]/30 w-2 md:w-3 hover:bg-[#0176CE]/50"
+                  }`}
+                aria-label={`Go to page ${index + 1}`}
+              />
             ))}
           </div>
         </div>
