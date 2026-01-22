@@ -51,7 +51,7 @@ export default function HeroSection() {
   ];
 
   return (
-    <section className="bg-[#C5DFFD] relative overflow-hidden min-h-[100dvh] lg:min-h-screen flex flex-col">
+    <section className="bg-[#C5DFFD] relative overflow-hidden min-h-[100svh] lg:min-h-screen flex flex-col">
       <div
         className="absolute inset-0 z-0 opacity-100"
         style={{
