@@ -11,7 +11,6 @@ export default function HeroSection() {
   const plausible = usePlausible();
 
   const partners = [
-    { name: "Harvard", logo: "/forge/partners/harvard.png" },
     { name: "Filecoin", logo: "/forge/partners/filecoin.png" },
     { name: "Solana", logo: "/forge/partners/solana.png" },
     { name: "Infura", logo: "/forge/partners/infura.png" },
