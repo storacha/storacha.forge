@@ -52,10 +52,10 @@ export default function HeroSection() {
   return (
     <section className="bg-[#C5DFFD] relative overflow-hidden min-h-[100svh] lg:min-h-screen flex flex-col">
       <div
-        className="absolute inset-0 z-0 opacity-100"
+        className="absolute inset-0 z-0 opacity-50"
         style={{
-          backgroundImage: "url(/forge/hero/earth-bg.png)",
-          backgroundSize: "min(900px, 60vw)",
+          backgroundImage: "url(/forge/hero/forge.gif)",
+          backgroundSize: "min(750px, 50vw)",
           backgroundPosition: "100% 100%",
           backgroundRepeat: "no-repeat",
         }}
@@ -161,9 +161,8 @@ export default function HeroSection() {
 
       {/* Main Content */}
       <div
-        className={`container-custom relative z-10 py-5 lg:py-10 flex-1 flex flex-col justify-center lg:pt-0 ${
-          isMobileMenuOpen ? "hidden lg:flex" : ""
-        }`}
+        className={`container-custom relative z-10 py-5 lg:py-10 flex-1 flex flex-col justify-center lg:pt-0 ${isMobileMenuOpen ? "hidden lg:flex" : ""
+          }`}
       >
         <div className="flex flex-col gap-[2.5vh] min-[380px]:gap-[5vh] [@media(min-height:667px)]:gap-[7vh]  sm:gap-[5vh]  md:gap-[3.5vh] lg:gap-[4vh] ">
           <h1 className="font-epilogue font-medium text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[clamp(48px,4.5vw,72px)] leading-[1.15] text-[#0176CE] tracking-[-1px]">
@@ -231,9 +230,8 @@ export default function HeroSection() {
 
       {/* Trusted By Section - fixed at bottom */}
       <div
-        className={`relative z-10 pb-4 xs:pb-6 md:pb-8 lg:pb-10 w-full flex-shrink-0 ${
-          isMobileMenuOpen ? "hidden lg:block" : ""
-        }`}
+        className={`relative z-10 pb-4 xs:pb-6 md:pb-8 lg:pb-10 w-full flex-shrink-0 ${isMobileMenuOpen ? "hidden lg:block" : ""
+          }`}
       >
         <div className="flex items-center gap-6 md:gap-8 w-full px-6 md:px-12 lg:px-[70px]">
           {/* Left divider line */}
